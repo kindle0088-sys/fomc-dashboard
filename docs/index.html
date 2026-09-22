@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FOMC 前瞻看板 · 2026-09-22</title>
+<style>
+:root{
+  --bg:#12100E; --panel:#1B1917; --panel2:#221F1C; --line:#33302C;
+  --tx:#EDEAE6; --tx2:#A8A29A; --tx3:#6F6A63;
+  --red:#E24B4A; --green:#639922; --blue:#378ADD; --amber:#EF9F27; --purple:#7F77DD;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+     font-size:14px;line-height:1.6;padding:28px 22px 60px;max-width:1100px;margin:0 auto}
+h1{font-size:20px;font-weight:500;letter-spacing:.3px}
+h2{font-size:15px;font-weight:500;margin:32px 0 14px;padding-left:10px;border-left:3px solid var(--amber);letter-spacing:.2px}
+.sub{color:var(--tx2);font-size:13px;margin-top:6px}
+.badge{display:inline-block;padding:2px 9px;border-radius:20px;font-size:12px;margin-right:8px;
+       border:1px solid var(--line);color:var(--tx2)}
+.badge.ok{border-color:#3B6D11;color:#97C459;background:rgba(99,153,34,.1)}
+.badge.warn{border-color:#854F0B;color:#EF9F27;background:rgba(239,159,39,.1)}
+.grid{display:grid;gap:12px}
+.g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.card .k{font-size:12px;color:var(--tx3);letter-spacing:.3px}
+.card .v{font-size:22px;font-weight:500;margin:6px 0 2px;font-variant-numeric:tabular-nums}
+.card .d{font-size:12px;color:var(--tx2)}
+.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--tx2)}
+table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line)}
+th{color:var(--tx3);font-weight:400;font-size:12px;letter-spacing:.3px}
+td.n,th.n{text-align:right}
+tr:last-child td{border-bottom:none}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:6px 4px;overflow-x:auto}
+.legend{display:flex;gap:20px;flex-wrap:wrap;font-size:12px;color:var(--tx2);margin:12px 0 0;padding-left:4px}
+.legend i{display:inline-block;width:16px;height:0;border-top-width:2px;border-top-style:solid;vertical-align:middle;margin-right:6px}
+.note{font-size:12px;color:var(--tx3);margin-top:10px;line-height:1.7}
+footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--tx3);line-height:1.8}
+</style>
+</head>
+<body>
+
+<h1>FOMC 利率决议前瞻看板</h1>
+<div class="sub">
+  <span class="badge ok">数据 2026-09-22</span>
+  <span class="badge">期货结算日 09/21/2026</span>
+  <span class="badge">下一场会议 2026-10-28</span>
+</div>
+
+<h2>一、政策位置</h2>
+<div class="grid g4">
+  <div class="card"><div class="k">联邦基金目标区间</div>
+    <div class="v">3.75–4<span style="font-size:14px;color:var(--tx2)">%</span></div>
+    <div class="d">上次决议 2026-09-16：加息 25bp</div></div>
+  <div class="card"><div class="k">EFFR 有效利率</div>
+    <div class="v">3.88<span style="font-size:14px;color:var(--tx2)">%</span></div>
+    <div class="d">截至 2026-09-18</div></div>
+  <div class="card"><div class="k">核心 PCE 3M 年化</div>
+    <div class="v up">3.05<span style="font-size:14px;color:var(--tx2)">%</span></div>
+    <div class="d">同比 3.34% · 目标 2%</div></div>
+  <div class="card"><div class="k">失业率</div>
+    <div class="v">4.1<span style="font-size:14px;color:var(--tx2)">%</span></div>
+    <div class="d">非农 3M 均值 +71.333k/月</div></div>
+</div>
+
+<h2>二、核心图：市场路径 vs 美联储路径</h2>
+<div class="panel">
+<svg viewBox="0 0 900 400" width="100%" style="display:block;min-width:760px">
+  
+  <line x1="62" y1="325.1" x2="870" y2="325.1" stroke="#2A2724" stroke-width="1"/>
+  <text x="54" y="329.1" text-anchor="end" font-size="11" fill="#6F6A63">3.00</text>
+  <line x1="62" y1="287.0" x2="870" y2="287.0" stroke="#2A2724" stroke-width="1"/>
+  <text x="54" y="291.0" text-anchor="end" font-size="11" fill="#6F6A63">3.25</text>
+  <line x1="62" y1="248.9" x2="870" y2="248.9" stroke="#2A2724" stroke-width="1"/>
+  <text x="54" y="252.9" text-anchor="end" font-size="11" fill="#6F6A63">3.50</text>
+  <line x1="62" y1="210.7" x2="870" y2="210.7" stroke="#2A2724" stroke-width="1"/>
+  <text x="54" y="214.7" text-anchor="end" font-size="11" fill="#6F6A63">3.75</text>
+  <line x1="62" y1="172.6" x2="870" y2="172.6" stroke="#2A2724" stroke-width="1"/>
+  <text x="54" y="176.6" text-anchor="end" font-size="11" fill="#6F6A63">4.00</text>
+  <line x1="62" y1="134.5" x2="870" y2="134.5" stroke="#2A2724" stroke-width="1"/>
+  <text x="54" y="138.5" text-anchor="end" font-size="11" fill="#6F6A63">4.25</text>
+  <line x1="62" y1="96.3" x2="870" y2="96.3" stroke="#2A2724" stroke-width="1"/>
+  <text x="54" y="100.3" text-anchor="end" font-size="11" fill="#6F6A63">4.50</text>
+  <line x1="62" y1="58.2" x2="870" y2="58.2" stroke="#2A2724" stroke-width="1"/>
+  <text x="54" y="62.2" text-anchor="end" font-size="11" fill="#6F6A63">4.75</text>
+  
+  <line x1="62.0" y1="30" x2="62.0" y2="348" stroke="#211F1C" stroke-width="1"/>
+  <text x="62.0" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">26-09</text>
+  <line x1="372.8" y1="30" x2="372.8" y2="348" stroke="#211F1C" stroke-width="1"/>
+  <text x="372.8" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">27-12</text>
+  <line x1="186.3" y1="30" x2="186.3" y2="348" stroke="#211F1C" stroke-width="1"/>
+  <text x="186.3" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">27-03</text>
+  <line x1="248.5" y1="30" x2="248.5" y2="348" stroke="#211F1C" stroke-width="1"/>
+  <text x="248.5" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">27-06</text>
+  <line x1="310.6" y1="30" x2="310.6" y2="348" stroke="#211F1C" stroke-width="1"/>
+  <text x="310.6" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">27-09</text>
+  <line x1="621.4" y1="30" x2="621.4" y2="348" stroke="#211F1C" stroke-width="1"/>
+  <text x="621.4" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">28-12</text>
+  <line x1="434.9" y1="30" x2="434.9" y2="348" stroke="#211F1C" stroke-width="1"/>
+  <text x="434.9" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">28-03</text>
+  <line x1="497.1" y1="30" x2="497.1" y2="348" stroke="#211F1C" stroke-width="1"/>
+  <text x="497.1" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">28-06</text>
+  <line x1="559.2" y1="30" x2="559.2" y2="348" stroke="#211F1C" stroke-width="1"/>
+  <text x="559.2" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">28-09</text>
+  <line x1="870.0" y1="30" x2="870.0" y2="348" stroke="#211F1C" stroke-width="1"/>
+  <text x="870.0" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">29-12</text>
+  <line x1="683.5" y1="30" x2="683.5" y2="348" stroke="#211F1C" stroke-width="1"/>
+  <text x="683.5" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">29-03</text>
+  <line x1="745.7" y1="30" x2="745.7" y2="348" stroke="#211F1C" stroke-width="1"/>
+  <text x="745.7" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">29-06</text>
+  <line x1="807.8" y1="30" x2="807.8" y2="348" stroke="#211F1C" stroke-width="1"/>
+  <text x="807.8" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">29-09</text>
+  <line x1="1118.6" y1="30" x2="1118.6" y2="348" stroke="#211F1C" stroke-width="1"/>
+  <text x="1118.6" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">30-12</text>
+
+  <line x1="62" y1="348" x2="870" y2="348" stroke="#4A4640" stroke-width="1"/>
+  <line x1="62" y1="30" x2="62" y2="348" stroke="#4A4640" stroke-width="1"/>
+
+  <path d="M62.0 157.4 L372.8 203.1 L621.4 264.1 L870.0 309.9" fill="none" stroke="#7F77DD" stroke-width="2" stroke-dasharray="7 4"/>
+  <circle cx="62.0" cy="157.4" r="4" fill="#7F77DD"/><circle cx="372.8" cy="203.1" r="4" fill="#7F77DD"/><circle cx="621.4" cy="264.1" r="4" fill="#7F77DD"/><circle cx="870.0" cy="309.9" r="4" fill="#7F77DD"/>
+
+  <path d="M62.0 211.1 L82.7 188.6 L103.4 168.8 L124.2 147.4 L144.9 137.5 L165.6 123.8 L186.3 111.6 L207.0 97.9 L227.7 86.4 L248.5 78.0 L269.2 73.5 L289.9 70.4 L310.6 68.9 L331.3 68.1 L352.1 69.7 L372.8 72.7 L393.5 74.2 L414.2 77.3" fill="none" stroke="#378ADD" stroke-width="2.5"/>
+
+  <circle cx="331.3" cy="68.1" r="5" fill="#E24B4A" stroke="#12100E" stroke-width="2"/>
+    <text x="331.3" y="55.1" text-anchor="middle" font-size="11" fill="#E24B4A">市场预期利率峰值 4.685%</text>
+
+  <text x="68.0" y="201.1" font-size="11" fill="#378ADD">近月 3.748%</text>
+  <text x="72" y="44" font-size="11" fill="#6F6A63">隐含联邦基金利率（%）</text>
+</svg>
+</div>
+<div class="legend">
+  <span><i style="border-color:#378ADD"></i>市场隐含路径（CME 期货反算，18 个合约）</span>
+  <span><i style="border-color:#7F77DD;border-top-style:dashed"></i>美联储 SEP 中值（人工补录）</span>
+  <span><i style="border-color:#E24B4A"></i>隐含峰值</span>
+</div>
+<div class="note">
+  横轴为合约到期月（YY-MM），纵轴为隐含联邦基金利率。市场路径仅保留有持仓（OI&gt;0）的合约，远月无成交者价格不可信已剔除。
+  反算公式：<code>隐含利率 = 100 − settle</code>。利率上行以红色标示（涨红跌绿）。
+</div>
+
+<h2>三、市场路径明细</h2>
+<div class="panel">
+<table>
+<thead><tr><th>合约</th><th class="n">结算价</th><th class="n">隐含利率</th><th class="n">较上月</th><th class="n">持仓量</th></tr></thead>
+<tbody>
+<tr>
+  <td>2026-09</td>
+  <td class="n">96.2525</td>
+  <td class="n"><b>3.748%</b></td>
+  <td class="n flat">—</td>
+  <td class="n">314,265</td></tr><tr>
+  <td>2026-10</td>
+  <td class="n">96.1050</td>
+  <td class="n"><b>3.895%</b></td>
+  <td class="n up">+14.7bp</td>
+  <td class="n">728,008</td></tr><tr>
+  <td>2026-11</td>
+  <td class="n">95.9750</td>
+  <td class="n"><b>4.025%</b></td>
+  <td class="n up">+13.0bp</td>
+  <td class="n">391,786</td></tr><tr>
+  <td>2026-12</td>
+  <td class="n">95.8350</td>
+  <td class="n"><b>4.165%</b></td>
+  <td class="n up">+14.0bp</td>
+  <td class="n">226,703</td></tr><tr>
+  <td>2027-01</td>
+  <td class="n">95.7700</td>
+  <td class="n"><b>4.230%</b></td>
+  <td class="n up">+6.5bp</td>
+  <td class="n">355,776</td></tr><tr>
+  <td>2027-02</td>
+  <td class="n">95.6800</td>
+  <td class="n"><b>4.320%</b></td>
+  <td class="n up">+9.0bp</td>
+  <td class="n">169,567</td></tr><tr>
+  <td>2027-03</td>
+  <td class="n">95.6000</td>
+  <td class="n"><b>4.400%</b></td>
+  <td class="n up">+8.0bp</td>
+  <td class="n">53,239</td></tr><tr>
+  <td>2027-04</td>
+  <td class="n">95.5100</td>
+  <td class="n"><b>4.490%</b></td>
+  <td class="n up">+9.0bp</td>
+  <td class="n">82,863</td></tr><tr>
+  <td>2027-05</td>
+  <td class="n">95.4350</td>
+  <td class="n"><b>4.565%</b></td>
+  <td class="n up">+7.5bp</td>
+  <td class="n">61,242</td></tr><tr>
+  <td>2027-06</td>
+  <td class="n">95.3800</td>
+  <td class="n"><b>4.620%</b></td>
+  <td class="n up">+5.5bp</td>
+  <td class="n">17,787</td></tr><tr>
+  <td>2027-07</td>
+  <td class="n">95.3500</td>
+  <td class="n"><b>4.650%</b></td>
+  <td class="n up">+3.0bp</td>
+  <td class="n">27,996</td></tr><tr>
+  <td>2027-08</td>
+  <td class="n">95.3300</td>
+  <td class="n"><b>4.670%</b></td>
+  <td class="n up">+2.0bp</td>
+  <td class="n">13,565</td></tr><tr>
+  <td>2027-09</td>
+  <td class="n">95.3200</td>
+  <td class="n"><b>4.680%</b></td>
+  <td class="n up">+1.0bp</td>
+  <td class="n">5,584</td></tr><tr>
+  <td>2027-10</td>
+  <td class="n">95.3150</td>
+  <td class="n"><b>4.685%</b></td>
+  <td class="n up">+0.5bp</td>
+  <td class="n">3,182</td></tr><tr>
+  <td>2027-11</td>
+  <td class="n">95.3250</td>
+  <td class="n"><b>4.675%</b></td>
+  <td class="n down">-1.0bp</td>
+  <td class="n">2,121</td></tr><tr>
+  <td>2027-12</td>
+  <td class="n">95.3450</td>
+  <td class="n"><b>4.655%</b></td>
+  <td class="n down">-2.0bp</td>
+  <td class="n">301</td></tr>
+</tbody>
+</table>
+</div>
+<div class="note">仅列前 16 个合约（近月至约 16 个月）。「较上月」为隐含利率相对前一合约的变动，反映市场对该时段政策变动的定价。</div>
+
+<h2>四、流动性与金融条件</h2>
+<div class="grid g3">
+  <div class="card"><div class="k">准备金余额</div>
+    <div class="v">3013.79T</div>
+    <div class="d">十亿美元 · FRED WRESBAL</div></div>
+  <div class="card"><div class="k">ON RRP</div>
+    <div class="v">0.6B</div>
+    <div class="d">隔夜逆回购余额</div></div>
+  <div class="card"><div class="k">TGA 财政部账户</div>
+    <div class="v">877.03T</div>
+    <div class="d">十亿美元 · FRED WTREGEN</div></div>
+  <div class="card"><div class="k">10Y 名义 / 实际</div>
+    <div class="v">5.01 / 2.68</div>
+    <div class="d">期限溢价代理</div></div>
+  <div class="card"><div class="k">IG / HY 信用利差</div>
+    <div class="v">0.77 / 2.68</div>
+    <div class="d">OAS，走阔示风险偏好下降</div></div>
+  <div class="card"><div class="k">VIX</div>
+    <div class="v">14.81</div>
+    <div class="d">金融条件指数 NFCI -0.56</div></div>
+</div>
+
+<h2>五、决议对照表</h2>
+<div class="panel">
+<table>
+<thead><tr><th>维度</th><th class="n">06-17</th><th class="n">07-29</th><th class="n">09-16</th><th class="n">变化方向</th></tr></thead>
+<tbody>
+<tr><td>目标区间上限</td><td class="n">3.75%</td><td class="n">3.75%</td><td class="n">4%</td><td class="n up">↑ 加息</td></tr>
+<tr><td>目标区间下限</td><td class="n">3.5%</td><td class="n">3.5%</td><td class="n">3.75%</td><td class="n up">↑</td></tr>
+<tr><td>票型</td><td class="n">10-3（3 票主张加息）</td><td class="n">10-3（3 票主张加息）</td><td class="n">12-0（全票通过）</td><td class="n up">转一致</td></tr>
+<tr><td>当年末点阵中值</td><td class="n">3.75%</td><td class="n">3.75%</td><td class="n">4.1%</td><td class="n up">↑ 35bp</td></tr>
+<tr><td>年内主张加息人数</td><td class="n">6</td><td class="n">6</td><td class="n">16</td><td class="n up">6 → 16</td></tr>
+</tbody>
+</table>
+</div>
+
+<footer>
+  <b>数据口径</b>：CME Group 30-Day Federal Funds Futures 官方结算价（productId 305）·
+  FRED（fredgraph.csv，无 key）· 美联储 SEP 官方 PDF<br>
+  <b>可复算</b>：核心图与路径表均可由原始结算价复算；CME FedWatch 概率无公开 API，仅作交叉校验，不计入本页数值<br>
+  <b>更新</b>：2026-09-22 13:49 SGT ·
+  期货曲线 CME 仅保留约 7 个交易日，每日采集留档<br>
+  <b>免责</b>：本页为数据分析产物，不构成投资建议。
+</footer>
+
+</body>
+</html>
