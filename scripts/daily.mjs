@@ -51,20 +51,34 @@ function main() {
     process.exit(1);
   }
 
-  // 1. 采集
+  // 1. 采集（CME 期货曲线 + FRED 现状层）
   const collect = run(nodeExe, [path.join(HERE, 'collect.mjs')]);
   log('--- collect 输出 ---');
   log(collect.out || '(空)');
   if (collect.err) log('stderr: ' + collect.err);
   if (collect.code !== 0) log(`⚠ collect 退出码 ${collect.code}`);
 
-  // 2. 重建看板
+  // 2. 长历史采集（L4 情景层的事件研究基座）
+  const hist = run(nodeExe, [path.join(HERE, 'collect-history.mjs')]);
+  log('--- collect-history 输出 ---');
+  log(hist.out || '(空)');
+  if (hist.err) log('stderr: ' + hist.err);
+  if (hist.code !== 0) log(`⚠ collect-history 退出码 ${hist.code}`);
+
+  // 3. 重算情景层
+  const scen = run(nodeExe, [path.join(HERE, 'build-scenarios.mjs')]);
+  log('--- build-scenarios 输出 ---');
+  log(scen.out || '(空)');
+  if (scen.err) log('stderr: ' + scen.err);
+  if (scen.code !== 0) log(`⚠ build-scenarios 退出码 ${scen.code}`);
+
+  // 4. 重建看板
   const build = run(nodeExe, [path.join(HERE, 'build-dashboard.mjs')]);
   log('--- build 输出 ---');
   log(build.out || '(空)');
   if (build.code !== 0) log(`⚠ build 退出码 ${build.code}`);
 
-  // 3. git 提交（失败不致命）
+  // 5. git 提交（失败不致命）
   run(git, ['config', 'gc.auto', '0']);
   const status = run(git, ['status', '--porcelain']);
   if (!status.out) {

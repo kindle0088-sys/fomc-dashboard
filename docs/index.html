@@ -37,6 +37,65 @@ tr:last-child td{border-bottom:none}
 .legend{display:flex;gap:20px;flex-wrap:wrap;font-size:12px;color:var(--tx2);margin:12px 0 0;padding-left:4px}
 .legend i{display:inline-block;width:16px;height:0;border-top-width:2px;border-top-style:solid;vertical-align:middle;margin-right:6px}
 .note{font-size:12px;color:var(--tx3);margin-top:10px;line-height:1.7}
+/* 锚点导航 */
+nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 2px}
+nav.toc a{font-size:12px;color:var(--tx2);text-decoration:none;padding:4px 11px;border:1px solid var(--line);border-radius:20px;transition:.15s}
+nav.toc a:hover{color:var(--tx);border-color:var(--amber)}
+/* 三轴 tab */
+.tabs>input{display:none}
+.tabs>label{display:inline-block;padding:6px 14px;font-size:12.5px;color:var(--tx2);cursor:pointer;
+  border:1px solid var(--line);border-bottom:none;border-radius:8px 8px 0 0;margin-right:4px;transition:.15s;position:relative;top:1px}
+.tabs>label:hover{color:var(--tx)}
+#axA:checked+label[for=axA],#axB:checked+label[for=axB],#axC:checked+label[for=axC]{
+  color:var(--tx);background:var(--panel);border-color:var(--amber);border-bottom-color:var(--panel);font-weight:500}
+.tabs>.panes{background:var(--panel);border:1px solid var(--line);border-radius:0 10px 10px 10px;padding:14px}
+.pane{display:none}
+#axA:checked~.panes .paneA,#axB:checked~.panes .paneB,#axC:checked~.panes .paneC{display:block}
+/* 情景卡 */
+.scg{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));margin-bottom:16px}
+.sc{background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:12px 14px}
+.sc .hd{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.sc .id{font-size:10.5px;color:var(--tx3);border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-variant-numeric:tabular-nums}
+.sc .nm{font-size:14px;font-weight:500}
+.sc .pb{margin-left:auto;font-size:14px;font-variant-numeric:tabular-nums;color:var(--amber)}
+.sc .bar{height:4px;border-radius:2px;background:#2A2724;margin:9px 0 0;overflow:hidden}
+.sc .bar>i{display:block;height:100%;background:linear-gradient(90deg,#854F0B,var(--amber));border-radius:2px}
+.sc .def{font-size:12px;color:var(--tx2);margin-top:9px;line-height:1.65}
+.sc .tr{margin-top:9px;font-size:11.5px;color:var(--tx2);line-height:1.85}
+.sc .tr b{color:var(--tx3);font-weight:400}
+.sc .vd{font-size:11.5px;color:var(--tx2);margin-top:9px;padding-top:8px;border-top:1px dashed var(--line);line-height:1.7}
+.sc .an{font-size:11.5px;color:var(--tx2);margin-top:9px;padding-top:8px;border-top:1px dashed var(--line);line-height:1.7}
+/* 矩阵表 */
+table.mx{font-size:12.5px}
+table.mx th.n,table.mx td.n{text-align:right;padding:7px 9px;white-space:nowrap}
+table.mx td.ast{font-weight:500;vertical-align:top;padding-top:10px;border-bottom:1px solid var(--line)}
+table.mx tbody{border-top:1px solid var(--line)}
+table.mx tbody:first-child{border-top:none}
+table.mx tr.gA td{background:rgba(55,138,221,.055)}
+table.mx tr.gB td{background:rgba(127,119,221,.055)}
+table.mx tr.gC td{background:rgba(239,159,39,.055)}
+table.mx tr.gD td{background:rgba(226,75,74,.055)}
+table.mx .sname{font-size:11px;color:var(--tx3);padding-right:4px}
+table.mx .yr{font-size:10px;color:var(--tx3);font-weight:400;margin-top:2px;white-space:nowrap}
+table.mx td.big{font-weight:500;font-variant-numeric:tabular-nums}
+table.mx td.miss{color:var(--tx3)}
+/* 当前实测对照 */
+.cur{background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:12px 14px;margin-bottom:16px}
+.cur .hd{font-size:12.5px;color:var(--tx2);margin-bottom:10px}
+.cur .hd b{color:var(--tx);font-weight:500}
+.cur .row{display:flex;flex-wrap:wrap;gap:10px}
+.cur .cell{flex:1 1 128px;background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:8px 10px}
+.cur .cell .k{font-size:10.5px;color:var(--tx3)}
+.cur .cell .v{font-size:16px;font-weight:500;margin-top:3px;font-variant-numeric:tabular-nums}
+.cur .cell .c{font-size:10.5px;color:var(--tx3);margin-top:2px}
+details{margin-top:12px}
+details>summary{cursor:pointer;font-size:12.5px;color:var(--tx2);padding:6px 0;user-select:none;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:'▸ ';color:var(--tx3)}
+details[open]>summary::before{content:'▾ '}
+details>summary:hover{color:var(--tx)}
+.warnbox{font-size:11.5px;color:var(--tx2);background:rgba(239,159,39,.08);border:1px solid #854F0B;
+  border-radius:7px;padding:9px 12px;line-height:1.75;margin-bottom:12px}
 footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--tx3);line-height:1.8}
 </style>
 </head>
@@ -48,8 +107,16 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
   <span class="badge">期货结算日 09/21/2026</span>
   <span class="badge">下一场会议 2026-10-28</span>
 </div>
+<nav class="toc">
+  <a href="#s1">一 · 政策位置</a>
+  <a href="#s2">二 · 核心图</a>
+  <a href="#s3">三 · 情景层</a>
+  <a href="#s4">四 · 路径明细</a>
+  <a href="#s5">五 · 流动性</a>
+  <a href="#s6">六 · 决议对照</a>
+</nav>
 
-<h2>一、政策位置</h2>
+<h2 id="s1">一、政策位置</h2>
 <div class="grid g4">
   <div class="card"><div class="k">联邦基金目标区间</div>
     <div class="v">3.75–4<span style="font-size:14px;color:var(--tx2)">%</span></div>
@@ -65,82 +132,319 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
     <div class="d">非农 3M 均值 +71.333k/月</div></div>
 </div>
 
-<h2>二、核心图：市场路径 vs 美联储路径</h2>
+<h2 id="s2">二、核心图：市场路径 vs 美联储路径</h2>
 <div class="panel">
 <svg viewBox="0 0 900 400" width="100%" style="display:block;min-width:760px">
   
-  <line x1="62" y1="325.1" x2="870" y2="325.1" stroke="#2A2724" stroke-width="1"/>
-  <text x="54" y="329.1" text-anchor="end" font-size="11" fill="#6F6A63">3.00</text>
-  <line x1="62" y1="287.0" x2="870" y2="287.0" stroke="#2A2724" stroke-width="1"/>
-  <text x="54" y="291.0" text-anchor="end" font-size="11" fill="#6F6A63">3.25</text>
-  <line x1="62" y1="248.9" x2="870" y2="248.9" stroke="#2A2724" stroke-width="1"/>
-  <text x="54" y="252.9" text-anchor="end" font-size="11" fill="#6F6A63">3.50</text>
-  <line x1="62" y1="210.7" x2="870" y2="210.7" stroke="#2A2724" stroke-width="1"/>
-  <text x="54" y="214.7" text-anchor="end" font-size="11" fill="#6F6A63">3.75</text>
-  <line x1="62" y1="172.6" x2="870" y2="172.6" stroke="#2A2724" stroke-width="1"/>
-  <text x="54" y="176.6" text-anchor="end" font-size="11" fill="#6F6A63">4.00</text>
-  <line x1="62" y1="134.5" x2="870" y2="134.5" stroke="#2A2724" stroke-width="1"/>
-  <text x="54" y="138.5" text-anchor="end" font-size="11" fill="#6F6A63">4.25</text>
-  <line x1="62" y1="96.3" x2="870" y2="96.3" stroke="#2A2724" stroke-width="1"/>
-  <text x="54" y="100.3" text-anchor="end" font-size="11" fill="#6F6A63">4.50</text>
-  <line x1="62" y1="58.2" x2="870" y2="58.2" stroke="#2A2724" stroke-width="1"/>
-  <text x="54" y="62.2" text-anchor="end" font-size="11" fill="#6F6A63">4.75</text>
+  <line x1="62" y1="334.9" x2="870" y2="334.9" stroke="#2A2724" stroke-width="1"/>
+  <text x="54" y="338.9" text-anchor="end" font-size="11" fill="#6F6A63">3.00</text>
+  <line x1="62" y1="313.2" x2="870" y2="313.2" stroke="#2A2724" stroke-width="1"/>
+  <text x="54" y="317.2" text-anchor="end" font-size="11" fill="#6F6A63">3.25</text>
+  <line x1="62" y1="291.4" x2="870" y2="291.4" stroke="#2A2724" stroke-width="1"/>
+  <text x="54" y="295.4" text-anchor="end" font-size="11" fill="#6F6A63">3.50</text>
+  <line x1="62" y1="269.6" x2="870" y2="269.6" stroke="#2A2724" stroke-width="1"/>
+  <text x="54" y="273.6" text-anchor="end" font-size="11" fill="#6F6A63">3.75</text>
+  <line x1="62" y1="247.8" x2="870" y2="247.8" stroke="#2A2724" stroke-width="1"/>
+  <text x="54" y="251.8" text-anchor="end" font-size="11" fill="#6F6A63">4.00</text>
+  <line x1="62" y1="226.0" x2="870" y2="226.0" stroke="#2A2724" stroke-width="1"/>
+  <text x="54" y="230.0" text-anchor="end" font-size="11" fill="#6F6A63">4.25</text>
+  <line x1="62" y1="204.2" x2="870" y2="204.2" stroke="#2A2724" stroke-width="1"/>
+  <text x="54" y="208.2" text-anchor="end" font-size="11" fill="#6F6A63">4.50</text>
+  <line x1="62" y1="182.5" x2="870" y2="182.5" stroke="#2A2724" stroke-width="1"/>
+  <text x="54" y="186.5" text-anchor="end" font-size="11" fill="#6F6A63">4.75</text>
+  <line x1="62" y1="160.7" x2="870" y2="160.7" stroke="#2A2724" stroke-width="1"/>
+  <text x="54" y="164.7" text-anchor="end" font-size="11" fill="#6F6A63">5.00</text>
+  <line x1="62" y1="138.9" x2="870" y2="138.9" stroke="#2A2724" stroke-width="1"/>
+  <text x="54" y="142.9" text-anchor="end" font-size="11" fill="#6F6A63">5.25</text>
+  <line x1="62" y1="117.1" x2="870" y2="117.1" stroke="#2A2724" stroke-width="1"/>
+  <text x="54" y="121.1" text-anchor="end" font-size="11" fill="#6F6A63">5.50</text>
+  <line x1="62" y1="95.3" x2="870" y2="95.3" stroke="#2A2724" stroke-width="1"/>
+  <text x="54" y="99.3" text-anchor="end" font-size="11" fill="#6F6A63">5.75</text>
+  <line x1="62" y1="73.6" x2="870" y2="73.6" stroke="#2A2724" stroke-width="1"/>
+  <text x="54" y="77.6" text-anchor="end" font-size="11" fill="#6F6A63">6.00</text>
+  <line x1="62" y1="51.8" x2="870" y2="51.8" stroke="#2A2724" stroke-width="1"/>
+  <text x="54" y="55.8" text-anchor="end" font-size="11" fill="#6F6A63">6.25</text>
+  <line x1="62" y1="30.0" x2="870" y2="30.0" stroke="#2A2724" stroke-width="1"/>
+  <text x="54" y="34.0" text-anchor="end" font-size="11" fill="#6F6A63">6.50</text>
   
   <line x1="62.0" y1="30" x2="62.0" y2="348" stroke="#211F1C" stroke-width="1"/>
   <text x="62.0" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">26-09</text>
-  <line x1="372.8" y1="30" x2="372.8" y2="348" stroke="#211F1C" stroke-width="1"/>
-  <text x="372.8" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">27-12</text>
+  <line x1="124.2" y1="30" x2="124.2" y2="348" stroke="#211F1C" stroke-width="1"/>
+  <text x="124.2" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">26-12</text>
   <line x1="186.3" y1="30" x2="186.3" y2="348" stroke="#211F1C" stroke-width="1"/>
   <text x="186.3" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">27-03</text>
   <line x1="248.5" y1="30" x2="248.5" y2="348" stroke="#211F1C" stroke-width="1"/>
   <text x="248.5" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">27-06</text>
   <line x1="310.6" y1="30" x2="310.6" y2="348" stroke="#211F1C" stroke-width="1"/>
   <text x="310.6" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">27-09</text>
-  <line x1="621.4" y1="30" x2="621.4" y2="348" stroke="#211F1C" stroke-width="1"/>
-  <text x="621.4" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">28-12</text>
+  <line x1="372.8" y1="30" x2="372.8" y2="348" stroke="#211F1C" stroke-width="1"/>
+  <text x="372.8" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">27-12</text>
   <line x1="434.9" y1="30" x2="434.9" y2="348" stroke="#211F1C" stroke-width="1"/>
   <text x="434.9" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">28-03</text>
   <line x1="497.1" y1="30" x2="497.1" y2="348" stroke="#211F1C" stroke-width="1"/>
   <text x="497.1" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">28-06</text>
   <line x1="559.2" y1="30" x2="559.2" y2="348" stroke="#211F1C" stroke-width="1"/>
   <text x="559.2" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">28-09</text>
-  <line x1="870.0" y1="30" x2="870.0" y2="348" stroke="#211F1C" stroke-width="1"/>
-  <text x="870.0" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">29-12</text>
+  <line x1="621.4" y1="30" x2="621.4" y2="348" stroke="#211F1C" stroke-width="1"/>
+  <text x="621.4" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">28-12</text>
   <line x1="683.5" y1="30" x2="683.5" y2="348" stroke="#211F1C" stroke-width="1"/>
   <text x="683.5" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">29-03</text>
   <line x1="745.7" y1="30" x2="745.7" y2="348" stroke="#211F1C" stroke-width="1"/>
   <text x="745.7" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">29-06</text>
   <line x1="807.8" y1="30" x2="807.8" y2="348" stroke="#211F1C" stroke-width="1"/>
   <text x="807.8" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">29-09</text>
-  <line x1="1118.6" y1="30" x2="1118.6" y2="348" stroke="#211F1C" stroke-width="1"/>
-  <text x="1118.6" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">30-12</text>
+  <line x1="870.0" y1="30" x2="870.0" y2="348" stroke="#211F1C" stroke-width="1"/>
+  <text x="870.0" y="366" text-anchor="middle" font-size="11" fill="#6F6A63">29-12</text>
 
   <line x1="62" y1="348" x2="870" y2="348" stroke="#4A4640" stroke-width="1"/>
   <line x1="62" y1="30" x2="62" y2="348" stroke="#4A4640" stroke-width="1"/>
 
-  <path d="M62.0 157.4 L372.8 203.1 L621.4 264.1 L870.0 309.9" fill="none" stroke="#7F77DD" stroke-width="2" stroke-dasharray="7 4"/>
-  <circle cx="62.0" cy="157.4" r="4" fill="#7F77DD"/><circle cx="372.8" cy="203.1" r="4" fill="#7F77DD"/><circle cx="621.4" cy="264.1" r="4" fill="#7F77DD"/><circle cx="870.0" cy="309.9" r="4" fill="#7F77DD"/>
+  <path d="M62.0 239.1 L372.8 265.2 L621.4 300.1 L870.0 326.2" fill="none" stroke="#7F77DD" stroke-width="2" stroke-dasharray="7 4"/>
+  <circle cx="62.0" cy="239.1" r="4" fill="#7F77DD"/><circle cx="372.8" cy="265.2" r="4" fill="#7F77DD"/><circle cx="621.4" cy="300.1" r="4" fill="#7F77DD"/><circle cx="870.0" cy="326.2" r="4" fill="#7F77DD"/>
 
-  <path d="M62.0 211.1 L82.7 188.6 L103.4 168.8 L124.2 147.4 L144.9 137.5 L165.6 123.8 L186.3 111.6 L207.0 97.9 L227.7 86.4 L248.5 78.0 L269.2 73.5 L289.9 70.4 L310.6 68.9 L331.3 68.1 L352.1 69.7 L372.8 72.7 L393.5 74.2 L414.2 77.3" fill="none" stroke="#378ADD" stroke-width="2.5"/>
+  <path d="M62.0 247.8 L124.2 226.0 L248.5 204.2 L372.8 182.5" fill="none" stroke="#639922" stroke-width="2" stroke-dasharray="2 3" opacity="0.9"/><circle cx="124.2" cy="226.0" r="3.2" fill="#639922"/><circle cx="248.5" cy="204.2" r="3.2" fill="#639922"/><circle cx="372.8" cy="182.5" r="3.2" fill="#639922"/>
+  <path d="M62.0 247.8 L124.2 226.0 L248.5 182.5 L372.8 138.9" fill="none" stroke="#EF9F27" stroke-width="2" stroke-dasharray="2 3" opacity="0.9"/><circle cx="124.2" cy="226.0" r="3.2" fill="#EF9F27"/><circle cx="248.5" cy="182.5" r="3.2" fill="#EF9F27"/><circle cx="372.8" cy="138.9" r="3.2" fill="#EF9F27"/>
+  <path d="M62.0 247.8 L124.2 204.2 L248.5 138.9 L372.8 51.8" fill="none" stroke="#E24B4A" stroke-width="2" stroke-dasharray="2 3" opacity="0.9"/><circle cx="124.2" cy="204.2" r="3.2" fill="#E24B4A"/><circle cx="248.5" cy="138.9" r="3.2" fill="#E24B4A"/><circle cx="372.8" cy="51.8" r="3.2" fill="#E24B4A"/>
 
-  <circle cx="331.3" cy="68.1" r="5" fill="#E24B4A" stroke="#12100E" stroke-width="2"/>
-    <text x="331.3" y="55.1" text-anchor="middle" font-size="11" fill="#E24B4A">市场预期利率峰值 4.685%</text>
+  <path d="M62.0 269.8 L82.7 257.0 L103.4 245.6 L124.2 233.4 L144.9 227.8 L165.6 219.9 L186.3 213.0 L207.0 205.1 L227.7 198.6 L248.5 193.8 L269.2 191.2 L289.9 189.4 L310.6 188.6 L331.3 188.1 L352.1 189.0 L372.8 190.7 L393.5 191.6 L414.2 193.4" fill="none" stroke="#378ADD" stroke-width="2.5"/>
 
-  <text x="68.0" y="201.1" font-size="11" fill="#378ADD">近月 3.748%</text>
-  <text x="72" y="44" font-size="11" fill="#6F6A63">隐含联邦基金利率（%）</text>
+  <circle cx="331.3" cy="188.1" r="5" fill="#E24B4A" stroke="#12100E" stroke-width="2"/>
+    <text x="331.3" y="175.1" text-anchor="middle" font-size="11" fill="#E24B4A">市场预期利率峰值 4.685%</text>
+
+  <text x="68.0" y="259.8" font-size="11" fill="#378ADD">近月 3.748%</text>
+  <text x="72" y="44" font-size="11" fill="#6F6A63">利率水平（%）</text>
+  <text x="380.8" y="186.0" font-size="10.5" fill="#639922">C1 4.75%</text><text x="380.8" y="142.4" font-size="10.5" fill="#EF9F27">C2 5.25%</text><text x="380.8" y="55.3" font-size="10.5" fill="#E24B4A">C3 6.25%</text>
 </svg>
 </div>
 <div class="legend">
   <span><i style="border-color:#378ADD"></i>市场隐含路径（CME 期货反算，18 个合约）</span>
   <span><i style="border-color:#7F77DD;border-top-style:dashed"></i>美联储 SEP 中值（人工补录）</span>
+  <span><i style="border-color:#639922;border-top-style:dotted"></i>C1 温和（终点 4.75%）</span>
+  <span><i style="border-color:#EF9F27;border-top-style:dotted"></i>C2 中性（终点 5.25%）</span>
+  <span><i style="border-color:#E24B4A;border-top-style:dotted"></i>C3 激进（终点 6.25%）</span>
   <span><i style="border-color:#E24B4A"></i>隐含峰值</span>
 </div>
 <div class="note">
-  横轴为合约到期月（YY-MM），纵轴为隐含联邦基金利率。市场路径仅保留有持仓（OI&gt;0）的合约，远月无成交者价格不可信已剔除。
+  横轴为合约到期月（YY-MM），纵轴为利率水平（%）。市场路径仅保留有持仓（OI&gt;0）的合约，远月无成交者价格不可信已剔除。
   反算公式：<code>隐含利率 = 100 − settle</code>。利率上行以红色标示（涨红跌绿）。
+  <b>口径提示</b>：市场隐含路径与会话 SEP 为<b>有效联邦基金利率</b>口径，C1–C3 情景路径为<b>目标区间上限</b>口径，两者存在约 12bp 的系统性差异（当前上限 4.00% vs EFFR 3.88%），对照时留意。
 </div>
 
-<h2>三、市场路径明细</h2>
+
+<h2 id="s3">三、L4 情景层（三轴）</h2>
+<div class="note" style="margin-top:-4px;margin-bottom:14px">
+  三轴共用同一套历史事件样本与同一计算口径，区别只在<b>事件如何分组</b>——它们回答的是三个不同层面的问题，因此可以同时成立。
+</div>
+
+<div class="tabs">
+  <input type="radio" name="ax" id="axA" checked>
+  <label for="axA">A · 本轮加息的性质</label>
+  <input type="radio" name="ax" id="axB">
+  <label for="axB">B · 单场会议结果</label>
+  <input type="radio" name="ax" id="axC">
+  <label for="axC">C · 本轮加息终点</label>
+
+  <div class="panes">
+    <section class="pane paneA">
+      <div class="note" style="margin:0 0 12px">A · 本轮加息的性质 —— 这是哪一种加息周期？　<span style="color:var(--tx2)">决定的是「市场怎么理解这次加息」，决定了资产反应的量级与方向</span></div>
+      <div class="cur">
+      <div class="hd">当前事件实测 · <b>2026-09-17 +25bp</b>（决议 2026-09-16）　
+        与三组历史分布的 1 日反应方向一致度：
+        <b>A1 4/7</b>　<b>A2 2/9</b>　<b>A3 2/9</b>
+        　→ 最接近 <b>A1 预防式</b>
+      </div>
+      <div class="row"><div class="cell"><div class="k">标普 500</div>
+        <div class="v up">+1.14</div>
+        <div class="c">% · 事件后 1 日</div></div><div class="cell"><div class="k">VIX</div>
+        <div class="v down">-2.27</div>
+        <div class="c">点 · 事件后 1 日</div></div><div class="cell"><div class="k">美元指数</div>
+        <div class="v down">-0.09</div>
+        <div class="c">% · 事件后 1 日</div></div><div class="cell"><div class="k">黄金</div>
+        <div class="v up">+0.28</div>
+        <div class="c">% · 事件后 1 日</div></div><div class="cell"><div class="k">10Y 国债收益率</div>
+        <div class="v down">-7</div>
+        <div class="c">bp · 事件后 1 日</div></div><div class="cell"><div class="k">2Y 国债收益率</div>
+        <div class="v down">-7</div>
+        <div class="c">bp · 事件后 1 日</div></div></div>
+    </div>
+      <div class="scg">
+    <div class="sc">
+      <div class="hd">
+        <span class="id">A1</span><span class="nm">预防式</span>
+        <span class="pb">50%</span>
+      </div>
+      <div class="bar"><i style="width:50%"></i></div>
+      <div class="def">通胀尚未失控，抢先收紧以防患于未然。加息本身是「好消息」——说明经济强到需要降温。</div>
+      
+      <div class="tr"><b>历史类比</b>：1994-1995 · 1997 · 1999-2000</div>
+      <div class="tr"><b>触发条件</b><br>· 核心 PCE 3M 年化 < 3.5%（当前 3.05% ✅）<br>· 10Y 盈亏平衡通胀稳在 2.0–2.5%（当前 2.34% ✅）<br>· 信用利差处低位：HY < 350bp（当前 268bp ✅）<br>· 收益率曲线正斜率，未倒挂（当前 10Y−2Y = +20bp ✅）</div>
+      
+      <div class="vd">四项全部满足。这是当前概率最高的一支。</div>
+      <div class="an">历史样本 <b>14</b> 次</div>
+    </div>
+    <div class="sc">
+      <div class="hd">
+        <span class="id">A2</span><span class="nm">正常化</span>
+        <span class="pb">35%</span>
+      </div>
+      <div class="bar"><i style="width:35%"></i></div>
+      <div class="def">从限制性水平向中性回归，路径可预期、幅度渐进。加息是「例行公事」。</div>
+      
+      <div class="tr"><b>历史类比</b>：2004-2006 · 2015-2018</div>
+      <div class="tr"><b>触发条件</b><br>· 政策利率已显著高于中性估计（4.00% vs 中性 3.0–3.5%）<br>· 就业温和而非过热：非农 3M 均值 50–150k（当前 +71k ✅）<br>· 市场能预判下一步（期货曲线给出的路径与点阵图接近）</div>
+      
+      <div class="vd">政策利率确已在限制性区域，且就业在走弱，符合「正常化尾声」。但与点阵图（2026 年末 4.10%）相比，市场的路径（峰值 2027-10、4.685%）明显更平缓——分歧就在这里。</div>
+      <div class="an">历史样本 <b>26</b> 次</div>
+    </div>
+    <div class="sc">
+      <div class="hd">
+        <span class="id">A3</span><span class="nm">追赶式</span>
+        <span class="pb">15%</span>
+      </div>
+      <div class="bar"><i style="width:15%"></i></div>
+      <div class="def">通胀已失控或通胀预期脱锚，被迫快速大幅加息。加息是「坏消息」。</div>
+      
+      <div class="tr"><b>历史类比</b>：2022-2023</div>
+      <div class="tr"><b>触发条件</b><br>· 核心 PCE 3M 年化 > 4% 且连续两月回升<br>· 10Y 盈亏平衡通胀 > 2.8%（当前 2.34%）<br>· 单次会议被迫加息 50bp 以上<br>· 长端收益率显著上行、曲线熊平</div>
+      
+      <div class="vd">当前均未触发。但这是尾部风险最需要盯的一支——一旦 3M 年化反弹破 4%，概率会迅速重估。</div>
+      <div class="an">历史样本 <b>11</b> 次</div>
+    </div></div>
+      <div class="panel" style="background:transparent;border:none;padding:0"><table class="mx"><thead><tr><th>资产</th><th>情景 · 样本</th><th class="n">1 日</th><th class="n">10 日</th><th class="n">1 月</th><th class="n">3 月</th><th class="n">6 月</th><th class="n">1 年</th></tr></thead><tbody><tr class="gA"><td class="ast" rowspan="3">标普 500</td><td class="sname">A1 · n=14</td><td class="n big up" title="样本 n=14 · Q1 -0.17 · Q3 +1.06">+0.15</td><td class="n big down" title="样本 n=14 · Q1 -2.14 · Q3 +2.67">-0.45</td><td class="n big down" title="样本 n=14 · Q1 -2.33 · Q3 +1.33">-0.90</td><td class="n big up" title="样本 n=14 · Q1 +0.32 · Q3 +3.71">+2.33</td><td class="n big up" title="样本 n=14 · Q1 -0.77 · Q3 +7.18">+4.22</td><td class="n big up" title="样本 n=14 · Q1 -2.41 · Q3 +20.70">+8.79</td></tr><tr class="gA"><td class="sname">A2 · n=26</td><td class="n big down" title="样本 n=26 · Q1 -0.58 · Q3 +0.41">-0.13</td><td class="n big down" title="样本 n=26 · Q1 -1.00 · Q3 +1.08">-0.15</td><td class="n big up" title="样本 n=26 · Q1 -2.19 · Q3 +2.50">+0.68</td><td class="n big up" title="样本 n=26 · Q1 -0.12 · Q3 +4.64">+2.44</td><td class="n big up" title="样本 n=26 · Q1 +1.74 · Q3 +7.01">+4.49</td><td class="n big up" title="样本 n=26 · Q1 +5.30 · Q3 +13.85">+9.64</td></tr><tr class="gA"><td class="sname">A3 · n=11</td><td class="n big down" title="样本 n=11 · Q1 -1.77 · Q3 +0.75">-0.72</td><td class="n big up" title="样本 n=11 · Q1 -1.17 · Q3 +4.27">+0.69</td><td class="n big up" title="样本 n=11 · Q1 -2.53 · Q3 +4.52">+0.80</td><td class="n big down" title="样本 n=11 · Q1 -3.77 · Q3 +6.48">-0.69</td><td class="n big up" title="样本 n=11 · Q1 +2.26 · Q3 +9.64">+5.42</td><td class="n big up" title="样本 n=11 · Q1 +13.94 · Q3 +19.96">+16.35</td></tr></tbody><tbody><tr class="gA"><td class="ast" rowspan="3">纳斯达克</td><td class="sname">A1 · n=14</td><td class="n big up" title="样本 n=14 · Q1 -0.01 · Q3 +1.56">+0.43</td><td class="n big up" title="样本 n=14 · Q1 -1.86 · Q3 +4.28">+2.51</td><td class="n big up" title="样本 n=14 · Q1 -2.01 · Q3 +5.10">+1.64</td><td class="n big up" title="样本 n=14 · Q1 -5.12 · Q3 +10.28">+3.47</td><td class="n big up" title="样本 n=14 · Q1 -7.74 · Q3 +27.30">+7.38</td><td class="n big up" title="样本 n=14 · Q1 -6.69 · Q3 +38.94">+17.68</td></tr><tr class="gA"><td class="sname">A2 · n=26</td><td class="n big down" title="样本 n=26 · Q1 -0.49 · Q3 +0.61">-0.01</td><td class="n big up" title="样本 n=26 · Q1 -2.42 · Q3 +1.51">+0.55</td><td class="n big up" title="样本 n=26 · Q1 -2.68 · Q3 +3.76">+0.56</td><td class="n big up" title="样本 n=26 · Q1 -3.33 · Q3 +7.80">+3.69</td><td class="n big up" title="样本 n=26 · Q1 -2.97 · Q3 +9.28">+6.97</td><td class="n big up" title="样本 n=26 · Q1 +4.13 · Q3 +18.39">+7.96</td></tr><tr class="gA"><td class="sname">A3 · n=11</td><td class="n big down" title="样本 n=11 · Q1 -2.48 · Q3 +1.05">-0.55</td><td class="n big up" title="样本 n=11 · Q1 -1.75 · Q3 +5.11">+2.15</td><td class="n big down" title="样本 n=11 · Q1 -2.89 · Q3 +4.25">-0.64</td><td class="n big up" title="样本 n=11 · Q1 -6.46 · Q3 +9.09">+1.77</td><td class="n big up" title="样本 n=11 · Q1 -1.83 · Q3 +14.79">+8.62</td><td class="n big up" title="样本 n=11 · Q1 +18.37 · Q3 +32.44">+23.34</td></tr></tbody><tbody><tr class="gA"><td class="ast" rowspan="3">美元指数</td><td class="sname">A1 · n=14</td><td class="n big flat" title="样本 n=14 · Q1 -0.17 · Q3 +0.50">0.00</td><td class="n big down" title="样本 n=14 · Q1 -0.81 · Q3 +0.89">-0.16</td><td class="n big down" title="样本 n=14 · Q1 -1.50 · Q3 +1.01">-0.93</td><td class="n big down" title="样本 n=14 · Q1 -4.13 · Q3 +0.55">-1.09</td><td class="n big down" title="样本 n=14 · Q1 -7.22 · Q3 +4.22">-0.84</td><td class="n big up" title="样本 n=14 · Q1 -8.52 · Q3 +6.19">+0.71</td></tr><tr class="gA"><td class="sname">A2 · n=26</td><td class="n big up" title="样本 n=26 · Q1 -0.38 · Q3 +0.25">+0.05</td><td class="n big up" title="样本 n=26 · Q1 -0.84 · Q3 +1.36">+0.20</td><td class="n big up" title="样本 n=26 · Q1 -1.06 · Q3 +1.07">+0.32</td><td class="n big down" title="样本 n=26 · Q1 -3.16 · Q3 +1.23">-0.63</td><td class="n big down" title="样本 n=26 · Q1 -4.65 · Q3 +3.12">-0.63</td><td class="n big down" title="样本 n=26 · Q1 -4.55 · Q3 +4.82">-1.23</td></tr><tr class="gA"><td class="sname">A3 · n=11</td><td class="n big up" title="样本 n=11 · Q1 -0.01 · Q3 +0.82">+0.52</td><td class="n big up" title="样本 n=11 · Q1 -0.54 · Q3 +1.36">+0.07</td><td class="n big up" title="样本 n=11 · Q1 -0.48 · Q3 +2.37">+1.97</td><td class="n big up" title="样本 n=11 · Q1 -0.01 · Q3 +4.30">+1.18</td><td class="n big up" title="样本 n=11 · Q1 -2.87 · Q3 +4.21">+1.30</td><td class="n big down" title="样本 n=11 · Q1 -3.63 · Q3 +3.04">-1.18</td></tr></tbody><tbody><tr class="gA"><td class="ast" rowspan="3">黄金<div class="yr">2000 起</div></td><td class="sname">A1 · n=14</td><td class="n miss" title="该资产在此事件组无足够历史数据">—</td><td class="n miss" title="该资产在此事件组无足够历史数据">—</td><td class="n miss" title="该资产在此事件组无足够历史数据">—</td><td class="n miss" title="该资产在此事件组无足够历史数据">—</td><td class="n miss" title="该资产在此事件组无足够历史数据">—</td><td class="n miss" title="该资产在此事件组无足够历史数据">—</td></tr><tr class="gA"><td class="sname">A2 · n=26</td><td class="n big up" title="样本 n=26 · Q1 -0.33 · Q3 +0.66">+0.04</td><td class="n big up" title="样本 n=26 · Q1 -1.84 · Q3 +2.45">+0.47</td><td class="n big up" title="样本 n=26 · Q1 -1.15 · Q3 +3.61">+1.69</td><td class="n big up" title="样本 n=26 · Q1 +1.75 · Q3 +7.47">+4.86</td><td class="n big up" title="样本 n=26 · Q1 +2.61 · Q3 +11.40">+8.25</td><td class="n big up" title="样本 n=26 · Q1 +7.50 · Q3 +25.23">+14.85</td></tr><tr class="gA"><td class="sname">A3 · n=11</td><td class="n big up" title="样本 n=11 · Q1 -0.89 · Q3 +1.73">+0.37</td><td class="n big up" title="样本 n=11 · Q1 -1.77 · Q3 +3.55">+0.40</td><td class="n big down" title="样本 n=11 · Q1 -2.81 · Q3 +3.24">-1.00</td><td class="n big down" title="样本 n=11 · Q1 -3.45 · Q3 +6.68">-1.33</td><td class="n big up" title="样本 n=11 · Q1 -1.47 · Q3 +10.33">+1.34</td><td class="n big up" title="样本 n=11 · Q1 +8.34 · Q3 +15.08">+12.44</td></tr></tbody><tbody><tr class="gA"><td class="ast" rowspan="3">VIX</td><td class="sname">A1 · n=14</td><td class="n big down" title="样本 n=14 · Q1 -0.91 · Q3 -0.17">-0.55</td><td class="n big down" title="样本 n=14 · Q1 -1.52 · Q3 +1.03">-0.53</td><td class="n big up" title="样本 n=14 · Q1 -2.27 · Q3 +2.48">+0.24</td><td class="n big up" title="样本 n=14 · Q1 -3.23 · Q3 +2.95">+0.05</td><td class="n big up" title="样本 n=14 · Q1 -2.16 · Q3 +1.77">+1.03</td><td class="n big down" title="样本 n=14 · Q1 -2.68 · Q3 +0.46">-0.93</td></tr><tr class="gA"><td class="sname">A2 · n=26</td><td class="n big down" title="样本 n=26 · Q1 -0.72 · Q3 +0.30">-0.36</td><td class="n big up" title="样本 n=26 · Q1 -0.95 · Q3 +0.69">+0.04</td><td class="n big down" title="样本 n=26 · Q1 -1.09 · Q3 +1.34">-0.23</td><td class="n big down" title="样本 n=26 · Q1 -2.84 · Q3 +0.51">-1.23</td><td class="n big down" title="样本 n=26 · Q1 -1.76 · Q3 +0.59">-0.78</td><td class="n big down" title="样本 n=26 · Q1 -2.48 · Q3 +1.58">-0.67</td></tr><tr class="gA"><td class="sname">A3 · n=11</td><td class="n big up" title="样本 n=11 · Q1 -0.60 · Q3 +1.72">+0.86</td><td class="n big down" title="样本 n=11 · Q1 -2.46 · Q3 +0.46">-0.91</td><td class="n big down" title="样本 n=11 · Q1 -4.15 · Q3 -0.01">-1.78</td><td class="n big down" title="样本 n=11 · Q1 -5.24 · Q3 +3.66">-2.42</td><td class="n big down" title="样本 n=11 · Q1 -6.49 · Q3 -0.93">-4.51</td><td class="n big down" title="样本 n=11 · Q1 -10.35 · Q3 -4.43">-8.86</td></tr></tbody><tbody><tr class="gA"><td class="ast" rowspan="3">高收益债 ETF<div class="yr">2007 起</div></td><td class="sname">A1 · n=14</td><td class="n miss" title="该资产在此事件组无足够历史数据">—</td><td class="n miss" title="该资产在此事件组无足够历史数据">—</td><td class="n miss" title="该资产在此事件组无足够历史数据">—</td><td class="n miss" title="该资产在此事件组无足够历史数据">—</td><td class="n miss" title="该资产在此事件组无足够历史数据">—</td><td class="n miss" title="该资产在此事件组无足够历史数据">—</td></tr><tr class="gA"><td class="sname">A2 · n=26</td><td class="n big down" title="样本 n=9 · Q1 -0.60 · Q3 +0.19">-0.29</td><td class="n big up" title="样本 n=9 · Q1 -0.27 · Q3 +0.19">+0.12</td><td class="n big up" title="样本 n=9 · Q1 +0.09 · Q3 +0.69">+0.33</td><td class="n big up" title="样本 n=9 · Q1 +0.78 · Q3 +2.84">+1.76</td><td class="n big up" title="样本 n=9 · Q1 +1.07 · Q3 +4.55">+3.16</td><td class="n big up" title="样本 n=9 · Q1 +3.13 · Q3 +6.57">+6.00</td></tr><tr class="gA"><td class="sname">A3 · n=11</td><td class="n big down" title="样本 n=11 · Q1 -0.75 · Q3 +0.13">-0.39</td><td class="n big down" title="样本 n=11 · Q1 -2.08 · Q3 +1.09">-0.23</td><td class="n big up" title="样本 n=11 · Q1 -1.25 · Q3 +0.97">+0.13</td><td class="n big down" title="样本 n=11 · Q1 -1.95 · Q3 +1.38">-0.09</td><td class="n big up" title="样本 n=11 · Q1 +0.15 · Q3 +3.44">+2.00</td><td class="n big up" title="样本 n=11 · Q1 +4.49 · Q3 +9.13">+6.73</td></tr></tbody><tbody><tr class="gA"><td class="ast" rowspan="3">10Y 国债收益率</td><td class="sname">A1 · n=14</td><td class="n big down" title="样本 n=14 · Q1 -10 · Q3 +3">-3</td><td class="n big down" title="样本 n=14 · Q1 -9 · Q3 +17">-3</td><td class="n big down" title="样本 n=14 · Q1 -14 · Q3 +16">-1</td><td class="n big up" title="样本 n=14 · Q1 -32 · Q3 +52">+1</td><td class="n big up" title="样本 n=14 · Q1 -65 · Q3 +61">+28</td><td class="n big down" title="样本 n=14 · Q1 -132 · Q3 -0">-68</td></tr><tr class="gA"><td class="sname">A2 · n=26</td><td class="n big flat" title="样本 n=26 · Q1 -2 · Q3 +2">0</td><td class="n big down" title="样本 n=26 · Q1 -10 · Q3 +7">-2</td><td class="n big down" title="样本 n=26 · Q1 -15 · Q3 +9">-6</td><td class="n big up" title="样本 n=26 · Q1 -30 · Q3 +21">+5</td><td class="n big down" title="样本 n=26 · Q1 -32 · Q3 +39">-4</td><td class="n big up" title="样本 n=26 · Q1 -13 · Q3 +38">+16</td></tr><tr class="gA"><td class="sname">A3 · n=11</td><td class="n big up" title="样本 n=11 · Q1 -5 · Q3 +8">+1</td><td class="n big up" title="样本 n=11 · Q1 -11 · Q3 +22">+14</td><td class="n big up" title="样本 n=11 · Q1 +4 · Q3 +48">+25</td><td class="n big up" title="样本 n=11 · Q1 -3 · Q3 +96">+16</td><td class="n big up" title="样本 n=11 · Q1 +19 · Q3 +104">+69</td><td class="n big up" title="样本 n=11 · Q1 +50 · Q3 +108">+64</td></tr></tbody><tbody><tr class="gA"><td class="ast" rowspan="3">2Y 国债收益率</td><td class="sname">A1 · n=14</td><td class="n big up" title="样本 n=14 · Q1 -4 · Q3 +6">+2</td><td class="n big up" title="样本 n=14 · Q1 -6 · Q3 +22">+5</td><td class="n big up" title="样本 n=14 · Q1 -13 · Q3 +36">+4</td><td class="n big up" title="样本 n=14 · Q1 -10 · Q3 +75">+18</td><td class="n big up" title="样本 n=14 · Q1 -50 · Q3 +109">+64</td><td class="n big down" title="样本 n=14 · Q1 -192 · Q3 +65">-1</td></tr><tr class="gA"><td class="sname">A2 · n=26</td><td class="n big up" title="样本 n=26 · Q1 0 · Q3 +4">+2</td><td class="n big up" title="样本 n=26 · Q1 -6 · Q3 +12">+4</td><td class="n big up" title="样本 n=26 · Q1 -8 · Q3 +18">+4</td><td class="n big up" title="样本 n=26 · Q1 0 · Q3 +44">+25</td><td class="n big up" title="样本 n=26 · Q1 +5 · Q3 +76">+48</td><td class="n big up" title="样本 n=26 · Q1 +1 · Q3 +128">+78</td></tr><tr class="gA"><td class="sname">A3 · n=11</td><td class="n big flat" title="样本 n=11 · Q1 -9 · Q3 +7">0</td><td class="n big up" title="样本 n=11 · Q1 -10 · Q3 +25">+11</td><td class="n big up" title="样本 n=11 · Q1 -3 · Q3 +50">+18</td><td class="n big up" title="样本 n=11 · Q1 +5 · Q3 +87">+37</td><td class="n big up" title="样本 n=11 · Q1 +16 · Q3 +123">+97</td><td class="n big up" title="样本 n=11 · Q1 +30 · Q3 +141">+93</td></tr></tbody><tbody><tr class="gA"><td class="ast" rowspan="3">10Y−2Y 利差</td><td class="sname">A1 · n=14</td><td class="n big down" title="样本 n=14 · Q1 -5 · Q3 -1">-3</td><td class="n big down" title="样本 n=14 · Q1 -10 · Q3 +3">-4</td><td class="n big up" title="样本 n=14 · Q1 -8 · Q3 +3">+1</td><td class="n big down" title="样本 n=14 · Q1 -27 · Q3 -6">-20</td><td class="n big down" title="样本 n=14 · Q1 -45 · Q3 -8">-38</td><td class="n big down" title="样本 n=14 · Q1 -76 · Q3 +19">-50</td></tr><tr class="gA"><td class="sname">A2 · n=26</td><td class="n big down" title="样本 n=26 · Q1 -4 · Q3 0">-3</td><td class="n big down" title="样本 n=26 · Q1 -8 · Q3 -0">-6</td><td class="n big down" title="样本 n=26 · Q1 -15 · Q3 -3">-10</td><td class="n big down" title="样本 n=26 · Q1 -37 · Q3 -4">-18</td><td class="n big down" title="样本 n=26 · Q1 -50 · Q3 -18">-35</td><td class="n big down" title="样本 n=26 · Q1 -83 · Q3 -20">-38</td></tr><tr class="gA"><td class="sname">A3 · n=11</td><td class="n big up" title="样本 n=11 · Q1 +1 · Q3 +9">+2</td><td class="n big down" title="样本 n=11 · Q1 -13 · Q3 +6">-6</td><td class="n big down" title="样本 n=11 · Q1 -25 · Q3 +11">-12</td><td class="n big down" title="样本 n=11 · Q1 -39 · Q3 +6">-17</td><td class="n big down" title="样本 n=11 · Q1 -59 · Q3 +7">-16</td><td class="n big up" title="样本 n=11 · Q1 -74 · Q3 +23">+11</td></tr></tbody><tbody><tr class="gA"><td class="ast" rowspan="3">3M 国库券收益率</td><td class="sname">A1 · n=14</td><td class="n big up" title="样本 n=14 · Q1 +1 · Q3 +10">+6</td><td class="n big up" title="样本 n=14 · Q1 -8 · Q3 +14">+2</td><td class="n big up" title="样本 n=14 · Q1 -9 · Q3 +20">+2</td><td class="n big up" title="样本 n=14 · Q1 +5 · Q3 +61">+33</td><td class="n big up" title="样本 n=14 · Q1 +28 · Q3 +120">+69</td><td class="n big up" title="样本 n=14 · Q1 -55 · Q3 +149">+99</td></tr><tr class="gA"><td class="sname">A2 · n=26</td><td class="n big flat" title="样本 n=26 · Q1 -2 · Q3 0">0</td><td class="n big up" title="样本 n=26 · Q1 -2 · Q3 +7">+3</td><td class="n big up" title="样本 n=26 · Q1 +3 · Q3 +15">+8</td><td class="n big up" title="样本 n=26 · Q1 +20 · Q3 +46">+33</td><td class="n big up" title="样本 n=26 · Q1 +29 · Q3 +94">+67</td><td class="n big up" title="样本 n=26 · Q1 +46 · Q3 +169">+104</td></tr><tr class="gA"><td class="sname">A3 · n=11</td><td class="n big down" title="样本 n=11 · Q1 -4 · Q3 -1">-2</td><td class="n big up" title="样本 n=11 · Q1 +5 · Q3 +12">+11</td><td class="n big up" title="样本 n=11 · Q1 +22 · Q3 +38">+33</td><td class="n big up" title="样本 n=11 · Q1 +35 · Q3 +135">+55</td><td class="n big up" title="样本 n=11 · Q1 +72 · Q3 +237">+106</td><td class="n big up" title="样本 n=11 · Q1 +65 · Q3 +318">+125</td></tr></tbody></table></div>
+      <div class="note">按<b>周期性质</b>分组。样本 = 该性质全部周期内的加息事件。回答：「如果是这种性质的周期，每次加息后市场怎么动？」</div>
+    </section>
+
+    <section class="pane paneB">
+      <div class="note" style="margin:0 0 12px">B · 单场会议结果 —— 下一次决议（2026-10-28）会怎么走？　<span style="color:var(--tx2)">决定的是「这一夜的市场冲击」，是战术层面的</span></div>
+      <div class="warnbox">历史样本按单次加息幅度自动分组。注意：「按兵不动」无政策生效日，无法用同一事件口径度量，故不列——其资产反应可参考 A 轴 A2（正常化，即「可预期、无意外」的定价环境）。</div>
+      <div class="scg">
+    <div class="sc">
+      <div class="hd">
+        <span class="id">B1</span><span class="nm">加息 25bp</span>
+        <span class="pb">48%</span>
+      </div>
+      <div class="bar"><i style="width:48%"></i></div>
+      
+      <div class="an">2026-09 的延续，符合点阵图年内再一加的中值</div>
+      
+      
+      
+      
+      <div class="an">历史样本 <b>40</b> 次</div>
+    </div>
+    <div class="sc">
+      <div class="hd">
+        <span class="id">B2</span><span class="nm">加息 50bp 或更多</span>
+        <span class="pb">10%</span>
+      </div>
+      <div class="bar"><i style="width:10%"></i></div>
+      
+      <div class="an">鹰派意外。历史上 1994-11、1994-08、2022 系列属此类</div>
+      
+      
+      
+      
+      <div class="an">历史样本 <b>11</b> 次</div>
+    </div>
+    <div class="sc">
+      <div class="hd">
+        <span class="id">B3</span><span class="nm">按兵不动</span>
+        <span class="pb">42%</span>
+      </div>
+      <div class="bar"><i style="width:42%"></i></div>
+      
+      <div class="an">等待数据确认。市场隐含路径偏平缓，本身就隐含了这一可能</div>
+      
+      
+      
+      
+      <div class="an" style="color:var(--amber)">未列入反应矩阵 — 见下方说明</div>
+    </div>
+    <div class="sc">
+      <div class="hd">
+        <span class="id">B4</span><span class="nm">降息</span>
+        <span class="pb">0%</span>
+      </div>
+      <div class="bar"><i style="width:0%"></i></div>
+      
+      <div class="an">仅作尾部标注：若就业急剧恶化可能触发，但当前无信号</div>
+      
+      
+      
+      
+      <div class="an" style="color:var(--amber)">未列入反应矩阵 — 见下方说明</div>
+    </div></div>
+      <div class="panel" style="background:transparent;border:none;padding:0"><table class="mx"><thead><tr><th>资产</th><th>情景 · 样本</th><th class="n">1 日</th><th class="n">10 日</th><th class="n">1 月</th><th class="n">3 月</th><th class="n">6 月</th><th class="n">1 年</th></tr></thead><tbody><tr class="gB"><td class="ast" rowspan="2">标普 500</td><td class="sname">B1 · n=40</td><td class="n big down" title="样本 n=40 · Q1 -0.64 · Q3 +0.58">-0.05</td><td class="n big down" title="样本 n=40 · Q1 -1.19 · Q3 +1.31">-0.15</td><td class="n big up" title="样本 n=40 · Q1 -2.49 · Q3 +2.06">+0.21</td><td class="n big up" title="样本 n=40 · Q1 -1.09 · Q3 +4.61">+2.13</td><td class="n big up" title="样本 n=40 · Q1 +0.56 · Q3 +7.19">+4.49</td><td class="n big up" title="样本 n=40 · Q1 +4.51 · Q3 +14.33">+9.64</td></tr><tr class="gB"><td class="sname">B2 · n=11</td><td class="n big down" title="样本 n=11 · Q1 -1.77 · Q3 +0.88">-0.22</td><td class="n big down" title="样本 n=11 · Q1 -2.20 · Q3 +2.80">-0.12</td><td class="n big up" title="样本 n=11 · Q1 -1.24 · Q3 +3.38">+1.25</td><td class="n big up" title="样本 n=11 · Q1 -0.86 · Q3 +3.66">+2.70</td><td class="n big up" title="样本 n=11 · Q1 +2.47 · Q3 +10.20">+4.43</td><td class="n big up" title="样本 n=11 · Q1 +13.94 · Q3 +20.05">+16.35</td></tr></tbody><tbody><tr class="gB"><td class="ast" rowspan="2">纳斯达克</td><td class="sname">B1 · n=40</td><td class="n big up" title="样本 n=40 · Q1 -0.49 · Q3 +0.89">+0.21</td><td class="n big up" title="样本 n=40 · Q1 -1.81 · Q3 +2.95">+1.04</td><td class="n big up" title="样本 n=40 · Q1 -2.63 · Q3 +4.21">+0.13</td><td class="n big up" title="样本 n=40 · Q1 -6.56 · Q3 +8.86">+2.81</td><td class="n big up" title="样本 n=40 · Q1 -3.33 · Q3 +12.71">+7.11</td><td class="n big up" title="样本 n=40 · Q1 +1.68 · Q3 +23.77">+8.59</td></tr><tr class="gB"><td class="sname">B2 · n=11</td><td class="n big down" title="样本 n=11 · Q1 -2.48 · Q3 +0.39">-0.05</td><td class="n big down" title="样本 n=11 · Q1 -3.14 · Q3 +4.42">-0.63</td><td class="n big up" title="样本 n=11 · Q1 -3.04 · Q3 +5.07">+3.36</td><td class="n big up" title="样本 n=11 · Q1 +0.53 · Q3 +5.41">+3.99</td><td class="n big up" title="样本 n=11 · Q1 -1.83 · Q3 +14.64">+7.05</td><td class="n big up" title="样本 n=11 · Q1 +18.37 · Q3 +35.21">+23.34</td></tr></tbody><tbody><tr class="gB"><td class="ast" rowspan="2">美元指数</td><td class="sname">B1 · n=40</td><td class="n big up" title="样本 n=40 · Q1 -0.25 · Q3 +0.32">+0.06</td><td class="n big up" title="样本 n=40 · Q1 -0.73 · Q3 +1.29">+0.20</td><td class="n big up" title="样本 n=40 · Q1 -1.03 · Q3 +1.35">+0.32</td><td class="n big down" title="样本 n=40 · Q1 -2.88 · Q3 +1.29">-0.19</td><td class="n big up" title="样本 n=40 · Q1 -4.62 · Q3 +4.09">+1.32</td><td class="n big up" title="样本 n=40 · Q1 -3.99 · Q3 +5.47">+1.89</td></tr><tr class="gB"><td class="sname">B2 · n=11</td><td class="n big up" title="样本 n=11 · Q1 -0.10 · Q3 +0.72">+0.59</td><td class="n big down" title="样本 n=11 · Q1 -1.17 · Q3 +0.56">-0.45</td><td class="n big down" title="样本 n=11 · Q1 -1.81 · Q3 +1.96">-1.30</td><td class="n big down" title="样本 n=11 · Q1 -5.31 · Q3 +1.81">-0.06</td><td class="n big down" title="样本 n=11 · Q1 -7.33 · Q3 -0.93">-4.33</td><td class="n big down" title="样本 n=11 · Q1 -5.12 · Q3 -1.56">-4.24</td></tr></tbody><tbody><tr class="gB"><td class="ast" rowspan="2">黄金<div class="yr">2000 起</div></td><td class="sname">B1 · n=40</td><td class="n big up" title="样本 n=31 · Q1 -0.50 · Q3 +0.81">+0.05</td><td class="n big up" title="样本 n=31 · Q1 -2.21 · Q3 +2.45">+0.27</td><td class="n big up" title="样本 n=31 · Q1 -1.44 · Q3 +3.39">+1.21</td><td class="n big up" title="样本 n=31 · Q1 +0.69 · Q3 +6.52">+4.67</td><td class="n big up" title="样本 n=31 · Q1 -0.32 · Q3 +10.68">+4.91</td><td class="n big up" title="样本 n=31 · Q1 +7.13 · Q3 +21.87">+13.38</td></tr><tr class="gB"><td class="sname">B2 · n=11</td><td class="n big up" title="样本 n=6 · Q1 -0.79 · Q3 +1.34">+0.35</td><td class="n big up" title="样本 n=6 · Q1 -0.41 · Q3 +4.80">+1.55</td><td class="n big up" title="样本 n=6 · Q1 -1.99 · Q3 +4.52">+1.02</td><td class="n big up" title="样本 n=6 · Q1 -3.49 · Q3 +8.82">+2.60</td><td class="n big up" title="样本 n=6 · Q1 +2.06 · Q3 +17.40">+10.33</td><td class="n big up" title="样本 n=6 · Q1 +9.37 · Q3 +15.59">+13.24</td></tr></tbody><tbody><tr class="gB"><td class="ast" rowspan="2">VIX</td><td class="sname">B1 · n=40</td><td class="n big down" title="样本 n=40 · Q1 -0.81 · Q3 +0.48">-0.34</td><td class="n big up" title="样本 n=40 · Q1 -1.51 · Q3 +0.99">+0.04</td><td class="n big down" title="样本 n=40 · Q1 -1.47 · Q3 +2.65">-0.09</td><td class="n big down" title="样本 n=40 · Q1 -2.60 · Q3 +1.47">-0.13</td><td class="n big down" title="样本 n=40 · Q1 -2.13 · Q3 +0.70">-0.73</td><td class="n big down" title="样本 n=40 · Q1 -3.26 · Q3 +1.51">-0.94</td></tr><tr class="gB"><td class="sname">B2 · n=11</td><td class="n big down" title="样本 n=11 · Q1 -0.61 · Q3 +0.84">-0.52</td><td class="n big down" title="样本 n=11 · Q1 -1.44 · Q3 +0.03">-0.53</td><td class="n big down" title="样本 n=11 · Q1 -3.51 · Q3 -0.29">-1.78</td><td class="n big down" title="样本 n=11 · Q1 -5.88 · Q3 +2.15">-3.35</td><td class="n big down" title="样本 n=11 · Q1 -6.49 · Q3 +1.02">-4.48</td><td class="n big down" title="样本 n=11 · Q1 -10.35 · Q3 -1.72">-8.23</td></tr></tbody><tbody><tr class="gB"><td class="ast" rowspan="2">高收益债 ETF<div class="yr">2007 起</div></td><td class="sname">B1 · n=40</td><td class="n big down" title="样本 n=14 · Q1 -0.55 · Q3 +0.27">-0.29</td><td class="n big up" title="样本 n=14 · Q1 -0.42 · Q3 +0.83">+0.12</td><td class="n big up" title="样本 n=14 · Q1 -1.32 · Q3 +0.66">+0.32</td><td class="n big up" title="样本 n=14 · Q1 -1.18 · Q3 +1.79">+1.26</td><td class="n big up" title="样本 n=14 · Q1 +0.78 · Q3 +4.32">+2.88</td><td class="n big up" title="样本 n=14 · Q1 +3.78 · Q3 +10.08">+6.33</td></tr><tr class="gB"><td class="sname">B2 · n=11</td><td class="n big down" title="样本 n=6 · Q1 -1.37 · Q3 -0.43">-0.65</td><td class="n big down" title="样本 n=6 · Q1 -2.18 · Q3 +1.55">-0.87</td><td class="n big up" title="样本 n=6 · Q1 -0.43 · Q3 +1.16">+0.20</td><td class="n big down" title="样本 n=6 · Q1 -1.13 · Q3 +1.92">-0.06</td><td class="n big up" title="样本 n=6 · Q1 +1.78 · Q3 +3.51">+2.65</td><td class="n big up" title="样本 n=6 · Q1 +3.90 · Q3 +7.88">+6.15</td></tr></tbody><tbody><tr class="gB"><td class="ast" rowspan="2">10Y 国债收益率</td><td class="sname">B1 · n=40</td><td class="n big flat" title="样本 n=40 · Q1 -2 · Q3 +2">0</td><td class="n big up" title="样本 n=40 · Q1 -9 · Q3 +14">+3</td><td class="n big up" title="样本 n=40 · Q1 -13 · Q3 +23">+3</td><td class="n big up" title="样本 n=40 · Q1 -19 · Q3 +30">+6</td><td class="n big up" title="样本 n=40 · Q1 -30 · Q3 +50">+20</td><td class="n big up" title="样本 n=40 · Q1 -17 · Q3 +47">+16</td></tr><tr class="gB"><td class="sname">B2 · n=11</td><td class="n big down" title="样本 n=11 · Q1 -8 · Q3 +5">-4</td><td class="n big down" title="样本 n=11 · Q1 -9 · Q3 +1">-6</td><td class="n big down" title="样本 n=11 · Q1 -34 · Q3 +8">-14</td><td class="n big down" title="样本 n=11 · Q1 -48 · Q3 +14">-10</td><td class="n big up" title="样本 n=11 · Q1 -68 · Q3 +46">+10</td><td class="n big up" title="样本 n=11 · Q1 -86 · Q3 +58">+41</td></tr></tbody><tbody><tr class="gB"><td class="ast" rowspan="2">2Y 国债收益率</td><td class="sname">B1 · n=40</td><td class="n big up" title="样本 n=40 · Q1 -1 · Q3 +4">+2</td><td class="n big up" title="样本 n=40 · Q1 -4 · Q3 +20">+7</td><td class="n big up" title="样本 n=40 · Q1 -6 · Q3 +28">+6</td><td class="n big up" title="样本 n=40 · Q1 -1 · Q3 +50">+27</td><td class="n big up" title="样本 n=40 · Q1 -1 · Q3 +85">+54</td><td class="n big up" title="样本 n=40 · Q1 -10 · Q3 +123">+67</td></tr><tr class="gB"><td class="sname">B2 · n=11</td><td class="n big up" title="样本 n=11 · Q1 -6 · Q3 +6">+1</td><td class="n big down" title="样本 n=11 · Q1 -10 · Q3 +12">-2</td><td class="n big down" title="样本 n=11 · Q1 -18 · Q3 +23">-5</td><td class="n big up" title="样本 n=11 · Q1 -30 · Q3 +52">+22</td><td class="n big up" title="样本 n=11 · Q1 -82 · Q3 +102">+39</td><td class="n big up" title="样本 n=11 · Q1 -84 · Q3 +121">+21</td></tr></tbody><tbody><tr class="gB"><td class="ast" rowspan="2">10Y−2Y 利差</td><td class="sname">B1 · n=40</td><td class="n big down" title="样本 n=40 · Q1 -4 · Q3 +1">-2</td><td class="n big down" title="样本 n=40 · Q1 -9 · Q3 +1">-5</td><td class="n big down" title="样本 n=40 · Q1 -14 · Q3 +1">-8</td><td class="n big down" title="样本 n=40 · Q1 -31 · Q3 -5">-18</td><td class="n big down" title="样本 n=40 · Q1 -46 · Q3 -10">-32</td><td class="n big down" title="样本 n=40 · Q1 -83 · Q3 -9">-38</td></tr><tr class="gB"><td class="sname">B2 · n=11</td><td class="n big down" title="样本 n=11 · Q1 -6 · Q3 +1">-5</td><td class="n big down" title="样本 n=11 · Q1 -11 · Q3 +3">-5</td><td class="n big up" title="样本 n=11 · Q1 -22 · Q3 +6">+3</td><td class="n big down" title="样本 n=11 · Q1 -43 · Q3 -6">-17</td><td class="n big down" title="样本 n=11 · Q1 -59 · Q3 +7">-39</td><td class="n big down" title="样本 n=11 · Q1 -74 · Q3 +23">-41</td></tr></tbody><tbody><tr class="gB"><td class="ast" rowspan="2">3M 国库券收益率</td><td class="sname">B1 · n=40</td><td class="n big flat" title="样本 n=40 · Q1 -2 · Q3 +1">0</td><td class="n big up" title="样本 n=40 · Q1 -2 · Q3 +7">+3</td><td class="n big up" title="样本 n=40 · Q1 +3 · Q3 +18">+8</td><td class="n big up" title="样本 n=40 · Q1 +18 · Q3 +49">+34</td><td class="n big up" title="样本 n=40 · Q1 +28 · Q3 +94">+71</td><td class="n big up" title="样本 n=40 · Q1 +27 · Q3 +171">+101</td></tr><tr class="gB"><td class="sname">B2 · n=11</td><td class="n big up" title="样本 n=11 · Q1 -2 · Q3 +8">+2</td><td class="n big up" title="样本 n=11 · Q1 -1 · Q3 +13">+11</td><td class="n big up" title="样本 n=11 · Q1 +6 · Q3 +41">+29</td><td class="n big up" title="样本 n=11 · Q1 +23 · Q3 +123">+55</td><td class="n big up" title="样本 n=11 · Q1 +62 · Q3 +188">+123</td><td class="n big up" title="样本 n=11 · Q1 +55 · Q3 +253">+125</td></tr></tbody></table><div class="warnbox" style="margin-top:12px"><b>B3 按兵不动 未入表</b>：「按兵不动」没有政策生效日，无法套用本看板统一的事件口径（事件日 = 利率生效日）。若需要参考，可看 A 轴 A2「正常化」——那一组的市场特征正是「可预期、无意外」，与 hold 的定价环境最接近。</div><div class="warnbox" style="margin-top:12px"><b>B4 降息 未入表</b>：历史上现代框架内的降息事件（2001、2007–08、2019、2020、2024–25）几乎都发生在经济下行期，资产反应由衰退逻辑主导，与「加息周期中途掉头降息」的环境不可比。列出数字反而会误导，故不入表。</div></div>
+      <div class="note">按<b>单次幅度</b>分组。回答：「这一夜如果这样走，市场历史上给出什么反应？」</div>
+    </section>
+
+    <section class="pane paneC">
+      <div class="note" style="margin:0 0 12px">C · 本轮加息终点 —— 这轮最终加到哪？　<span style="color:var(--tx2)">决定的是「配置层面的久期与风险敞口」，战略层面的</span></div>
+      <div class="warnbox">历史样本按所属周期的「累计加息幅度」自动分组。样本分布：温和 7 次、中性 16 次、激进 28 次事件。</div>
+      <div class="scg">
+    <div class="sc">
+      <div class="hd">
+        <span class="id">C1</span><span class="nm">温和收尾</span>
+        <span class="pb">30%</span>
+      </div>
+      <div class="bar"><i style="width:30%"></i></div>
+      <div class="def">自 4.00% 起再加 ≤100bp，终点 ≤5.00%</div>
+      
+      <div class="tr"><b>历史类比</b>：1997 · 1999-2000</div>
+      
+      <div class="tr"><b>触发条件</b>：就业继续走弱（非农 3M < 50k）、核心通胀按当前 3.05% 的 3M 年化继续回落</div>
+      
+      <div class="an">历史样本 <b>7</b> 次</div>
+    </div>
+    <div class="sc">
+      <div class="hd">
+        <span class="id">C2</span><span class="nm">中性路径</span>
+        <span class="pb">45%</span>
+      </div>
+      <div class="bar"><i style="width:45%"></i></div>
+      <div class="def">自 4.00% 起再加 100–200bp，终点 5.00–6.00%</div>
+      
+      <div class="tr"><b>历史类比</b>：1994-1995 · 2015-2018</div>
+      
+      <div class="tr"><b>触发条件</b>：通胀黏在 3% 附近、就业不崩，政策按季度节奏推进</div>
+      
+      <div class="an">历史样本 <b>16</b> 次</div>
+    </div>
+    <div class="sc">
+      <div class="hd">
+        <span class="id">C3</span><span class="nm">激进加息</span>
+        <span class="pb">25%</span>
+      </div>
+      <div class="bar"><i style="width:25%"></i></div>
+      <div class="def">自 4.00% 起再加 >200bp，终点 >6.00%</div>
+      
+      <div class="tr"><b>历史类比</b>：2004-2006 · 2022-2023</div>
+      
+      <div class="tr"><b>触发条件</b>：通胀二次加速或通胀预期脱锚，被迫转入追赶式加息</div>
+      
+      <div class="an">历史样本 <b>28</b> 次</div>
+    </div></div>
+      <div class="panel" style="background:transparent;border:none;padding:0"><table class="mx"><thead><tr><th>资产</th><th>情景 · 样本</th><th class="n">1 日</th><th class="n">10 日</th><th class="n">1 月</th><th class="n">3 月</th><th class="n">6 月</th><th class="n">1 年</th></tr></thead><tbody><tr class="gC"><td class="ast" rowspan="3">标普 500</td><td class="sname">C1 · n=7</td><td class="n big up" title="样本 n=7 · Q1 +0.12 · Q3 +1.71">+0.94</td><td class="n big down" title="样本 n=7 · Q1 -1.39 · Q3 +1.50">-0.51</td><td class="n big down" title="样本 n=7 · Q1 -2.06 · Q3 +0.24">-1.03</td><td class="n big up" title="样本 n=7 · Q1 +1.29 · Q3 +3.62">+2.63</td><td class="n big up" title="样本 n=7 · Q1 -0.71 · Q3 +6.50">+2.05</td><td class="n big down" title="样本 n=7 · Q1 -8.53 · Q3 +8.79">-3.07</td></tr><tr class="gC"><td class="sname">C2 · n=16</td><td class="n big down" title="样本 n=16 · Q1 -0.81 · Q3 +0.26">-0.19</td><td class="n big down" title="样本 n=16 · Q1 -2.20 · Q3 +1.13">-0.42</td><td class="n big up" title="样本 n=16 · Q1 -2.50 · Q3 +2.01">+0.42</td><td class="n big up" title="样本 n=16 · Q1 +0.15 · Q3 +3.85">+2.34</td><td class="n big up" title="样本 n=16 · Q1 +0.99 · Q3 +7.74">+4.59</td><td class="n big up" title="样本 n=16 · Q1 +3.83 · Q3 +19.39">+13.79</td></tr><tr class="gC"><td class="sname">C3 · n=28</td><td class="n big down" title="样本 n=28 · Q1 -0.74 · Q3 +0.58">-0.13</td><td class="n big up" title="样本 n=28 · Q1 -0.36 · Q3 +1.86">+0.09</td><td class="n big up" title="样本 n=28 · Q1 -2.13 · Q3 +3.01">+0.94</td><td class="n big up" title="样本 n=28 · Q1 -2.32 · Q3 +6.26">+1.49</td><td class="n big up" title="样本 n=28 · Q1 +1.65 · Q3 +7.47">+4.39</td><td class="n big up" title="样本 n=28 · Q1 +6.80 · Q3 +16.03">+12.27</td></tr></tbody><tbody><tr class="gC"><td class="ast" rowspan="3">纳斯达克</td><td class="sname">C1 · n=7</td><td class="n big up" title="样本 n=7 · Q1 +0.88 · Q3 +2.29">+1.67</td><td class="n big up" title="样本 n=7 · Q1 -1.46 · Q3 +5.50">+3.62</td><td class="n big up" title="样本 n=7 · Q1 -0.66 · Q3 +8.88">+5.10</td><td class="n big up" title="样本 n=7 · Q1 -1.13 · Q3 +19.66">+6.71</td><td class="n big up" title="样本 n=7 · Q1 -12.54 · Q3 +43.15">+15.47</td><td class="n big down" title="样本 n=7 · Q1 -36.88 · Q3 +45.61">-7.85</td></tr><tr class="gC"><td class="sname">C2 · n=16</td><td class="n big down" title="样本 n=16 · Q1 -0.63 · Q3 +0.37">-0.08</td><td class="n big up" title="样本 n=16 · Q1 -2.44 · Q3 +1.59">+0.30</td><td class="n big up" title="样本 n=16 · Q1 -3.41 · Q3 +3.74">+0.67</td><td class="n big up" title="样本 n=16 · Q1 -1.65 · Q3 +6.46">+3.68</td><td class="n big up" title="样本 n=16 · Q1 -3.07 · Q3 +12.71">+7.97</td><td class="n big up" title="样本 n=16 · Q1 +1.51 · Q3 +28.58">+17.68</td></tr><tr class="gC"><td class="sname">C3 · n=28</td><td class="n big down" title="样本 n=28 · Q1 -0.67 · Q3 +0.65">-0.16</td><td class="n big up" title="样本 n=28 · Q1 -1.81 · Q3 +3.46">+0.88</td><td class="n big up" title="样本 n=28 · Q1 -3.00 · Q3 +4.21">+0.35</td><td class="n big up" title="样本 n=28 · Q1 -6.14 · Q3 +7.63">+2.01</td><td class="n big up" title="样本 n=28 · Q1 -3.03 · Q3 +8.94">+6.90</td><td class="n big up" title="样本 n=28 · Q1 +5.20 · Q3 +22.97">+12.06</td></tr></tbody><tbody><tr class="gC"><td class="ast" rowspan="3">美元指数</td><td class="sname">C1 · n=7</td><td class="n big up" title="样本 n=7 · Q1 -0.15 · Q3 +0.44">+0.10</td><td class="n big up" title="样本 n=7 · Q1 -0.52 · Q3 +1.05">+0.37</td><td class="n big down" title="样本 n=7 · Q1 -1.84 · Q3 +1.37">-0.03</td><td class="n big up" title="样本 n=7 · Q1 +0.04 · Q3 +2.27">+0.59</td><td class="n big up" title="样本 n=7 · Q1 +3.24 · Q3 +7.32">+4.32</td><td class="n big up" title="样本 n=7 · Q1 +5.29 · Q3 +9.26">+6.38</td></tr><tr class="gC"><td class="sname">C2 · n=16</td><td class="n big up" title="样本 n=16 · Q1 -0.25 · Q3 +0.66">+0.08</td><td class="n big down" title="样本 n=16 · Q1 -0.88 · Q3 +0.92">-0.42</td><td class="n big down" title="样本 n=16 · Q1 -1.39 · Q3 +0.64">-0.46</td><td class="n big down" title="样本 n=16 · Q1 -4.44 · Q3 -0.19">-2.56</td><td class="n big down" title="样本 n=16 · Q1 -7.29 · Q3 -0.04">-3.62</td><td class="n big down" title="样本 n=16 · Q1 -9.27 · Q3 +4.16">-3.24</td></tr><tr class="gC"><td class="sname">C3 · n=28</td><td class="n big up" title="样本 n=28 · Q1 -0.16 · Q3 +0.47">+0.07</td><td class="n big up" title="样本 n=28 · Q1 -0.62 · Q3 +1.32">+0.20</td><td class="n big up" title="样本 n=28 · Q1 -1.03 · Q3 +1.98">+0.83</td><td class="n big up" title="样本 n=28 · Q1 -1.12 · Q3 +3.22">+0.08</td><td class="n big up" title="样本 n=28 · Q1 -4.67 · Q3 +3.57">+0.33</td><td class="n big down" title="样本 n=28 · Q1 -4.55 · Q3 +2.85">-1.39</td></tr></tbody><tbody><tr class="gC"><td class="ast" rowspan="3">黄金<div class="yr">2000 起</div></td><td class="sname">C1 · n=7</td><td class="n miss" title="该资产在此事件组无足够历史数据">—</td><td class="n miss" title="该资产在此事件组无足够历史数据">—</td><td class="n miss" title="该资产在此事件组无足够历史数据">—</td><td class="n miss" title="该资产在此事件组无足够历史数据">—</td><td class="n miss" title="该资产在此事件组无足够历史数据">—</td><td class="n miss" title="该资产在此事件组无足够历史数据">—</td></tr><tr class="gC"><td class="sname">C2 · n=16</td><td class="n big up" title="样本 n=9 · Q1 +0.40 · Q3 +0.92">+0.55</td><td class="n big down" title="样本 n=9 · Q1 -1.50 · Q3 +2.44">-0.26</td><td class="n big up" title="样本 n=9 · Q1 +1.21 · Q3 +3.34">+2.69</td><td class="n big up" title="样本 n=9 · Q1 +3.98 · Q3 +6.06">+5.73</td><td class="n big up" title="样本 n=9 · Q1 -2.69 · Q3 +10.27">+8.26</td><td class="n big up" title="样本 n=9 · Q1 +0.16 · Q3 +9.27">+6.81</td></tr><tr class="gC"><td class="sname">C3 · n=28</td><td class="n big down" title="样本 n=28 · Q1 -0.63 · Q3 +0.78">-0.02</td><td class="n big up" title="样本 n=28 · Q1 -2.49 · Q3 +2.71">+0.73</td><td class="n big up" title="样本 n=28 · Q1 -1.70 · Q3 +3.51">+0.06</td><td class="n big up" title="样本 n=28 · Q1 -1.83 · Q3 +7.99">+3.22</td><td class="n big up" title="样本 n=28 · Q1 -0.07 · Q3 +12.76">+5.67</td><td class="n big up" title="样本 n=28 · Q1 +9.86 · Q3 +21.94">+14.85</td></tr></tbody><tbody><tr class="gC"><td class="ast" rowspan="3">VIX</td><td class="sname">C1 · n=7</td><td class="n big down" title="样本 n=7 · Q1 -1.34 · Q3 -0.43">-0.80</td><td class="n big down" title="样本 n=7 · Q1 -1.43 · Q3 +0.98">-0.53</td><td class="n big up" title="样本 n=7 · Q1 -1.55 · Q3 +2.33">+0.42</td><td class="n big up" title="样本 n=7 · Q1 -2.88 · Q3 +2.34">+0.18</td><td class="n big up" title="样本 n=7 · Q1 -1.12 · Q3 +2.67">+1.60</td><td class="n big down" title="样本 n=7 · Q1 -1.29 · Q3 +3.39">-0.71</td></tr><tr class="gC"><td class="sname">C2 · n=16</td><td class="n big down" title="样本 n=16 · Q1 -0.61 · Q3 +0.66">-0.12</td><td class="n big down" title="样本 n=16 · Q1 -0.87 · Q3 +1.57">-0.22</td><td class="n big down" title="样本 n=16 · Q1 -1.59 · Q3 +2.88">-0.35</td><td class="n big down" title="样本 n=16 · Q1 -4.67 · Q3 +1.35">-0.56</td><td class="n big down" title="样本 n=16 · Q1 -2.03 · Q3 +1.59">-0.68</td><td class="n big down" title="样本 n=16 · Q1 -2.98 · Q3 +1.69">-0.57</td></tr><tr class="gC"><td class="sname">C3 · n=28</td><td class="n big down" title="样本 n=28 · Q1 -0.67 · Q3 +0.59">-0.28</td><td class="n big down" title="样本 n=28 · Q1 -1.53 · Q3 +0.56">-0.23</td><td class="n big down" title="样本 n=28 · Q1 -2.88 · Q3 +0.64">-0.66</td><td class="n big down" title="样本 n=28 · Q1 -3.12 · Q3 +1.27">-1.53</td><td class="n big down" title="样本 n=28 · Q1 -4.56 · Q3 -0.15">-0.85</td><td class="n big down" title="样本 n=28 · Q1 -6.32 · Q3 -0.04">-2.14</td></tr></tbody><tbody><tr class="gC"><td class="ast" rowspan="3">高收益债 ETF<div class="yr">2007 起</div></td><td class="sname">C1 · n=7</td><td class="n miss" title="该资产在此事件组无足够历史数据">—</td><td class="n miss" title="该资产在此事件组无足够历史数据">—</td><td class="n miss" title="该资产在此事件组无足够历史数据">—</td><td class="n miss" title="该资产在此事件组无足够历史数据">—</td><td class="n miss" title="该资产在此事件组无足够历史数据">—</td><td class="n miss" title="该资产在此事件组无足够历史数据">—</td></tr><tr class="gC"><td class="sname">C2 · n=16</td><td class="n big down" title="样本 n=9 · Q1 -0.60 · Q3 +0.19">-0.29</td><td class="n big up" title="样本 n=9 · Q1 -0.27 · Q3 +0.19">+0.12</td><td class="n big up" title="样本 n=9 · Q1 +0.09 · Q3 +0.69">+0.33</td><td class="n big up" title="样本 n=9 · Q1 +0.78 · Q3 +2.84">+1.76</td><td class="n big up" title="样本 n=9 · Q1 +1.07 · Q3 +4.55">+3.16</td><td class="n big up" title="样本 n=9 · Q1 +3.13 · Q3 +6.57">+6.00</td></tr><tr class="gC"><td class="sname">C3 · n=28</td><td class="n big down" title="样本 n=11 · Q1 -0.75 · Q3 +0.13">-0.39</td><td class="n big down" title="样本 n=11 · Q1 -2.08 · Q3 +1.09">-0.23</td><td class="n big up" title="样本 n=11 · Q1 -1.25 · Q3 +0.97">+0.13</td><td class="n big down" title="样本 n=11 · Q1 -1.95 · Q3 +1.38">-0.09</td><td class="n big up" title="样本 n=11 · Q1 +0.15 · Q3 +3.44">+2.00</td><td class="n big up" title="样本 n=11 · Q1 +4.49 · Q3 +9.13">+6.73</td></tr></tbody><tbody><tr class="gC"><td class="ast" rowspan="3">10Y 国债收益率</td><td class="sname">C1 · n=7</td><td class="n big down" title="样本 n=7 · Q1 -5 · Q3 +1">-4</td><td class="n big down" title="样本 n=7 · Q1 -14 · Q3 +13">-6</td><td class="n big down" title="样本 n=7 · Q1 -18 · Q3 +10">-5</td><td class="n big down" title="样本 n=7 · Q1 -31 · Q3 +8">-18</td><td class="n big down" title="样本 n=7 · Q1 -64 · Q3 +47">-30</td><td class="n big down" title="样本 n=7 · Q1 -123 · Q3 -17">-99</td></tr><tr class="gC"><td class="sname">C2 · n=16</td><td class="n big up" title="样本 n=16 · Q1 -5 · Q3 +3">+1</td><td class="n big up" title="样本 n=16 · Q1 -8 · Q3 +7">+2</td><td class="n big down" title="样本 n=16 · Q1 -14 · Q3 +13">-1</td><td class="n big up" title="样本 n=16 · Q1 -36 · Q3 +30">+5</td><td class="n big up" title="样本 n=16 · Q1 -61 · Q3 +59">+1</td><td class="n big down" title="样本 n=16 · Q1 -86 · Q3 +37">-31</td></tr><tr class="gC"><td class="sname">C3 · n=28</td><td class="n big flat" title="样本 n=28 · Q1 -2 · Q3 +3">0</td><td class="n big down" title="样本 n=28 · Q1 -10 · Q3 +15">-1</td><td class="n big up" title="样本 n=28 · Q1 -13 · Q3 +26">+4</td><td class="n big up" title="样本 n=28 · Q1 -11 · Q3 +30">+12</td><td class="n big up" title="样本 n=28 · Q1 -7 · Q3 +55">+26</td><td class="n big up" title="样本 n=28 · Q1 +12 · Q3 +67">+40</td></tr></tbody><tbody><tr class="gC"><td class="ast" rowspan="3">2Y 国债收益率</td><td class="sname">C1 · n=7</td><td class="n big up" title="样本 n=7 · Q1 -2 · Q3 +4">+1</td><td class="n big up" title="样本 n=7 · Q1 -10 · Q3 +11">+3</td><td class="n big down" title="样本 n=7 · Q1 -14 · Q3 +10">-6</td><td class="n big down" title="样本 n=7 · Q1 -19 · Q3 +20">-3</td><td class="n big down" title="样本 n=7 · Q1 -49 · Q3 +69">-33</td><td class="n big down" title="样本 n=7 · Q1 -218 · Q3 +34">-67</td></tr><tr class="gC"><td class="sname">C2 · n=16</td><td class="n big up" title="样本 n=16 · Q1 -1 · Q3 +5">+3</td><td class="n big up" title="样本 n=16 · Q1 -5 · Q3 +15">+1</td><td class="n big up" title="样本 n=16 · Q1 -7 · Q3 +27">+2</td><td class="n big up" title="样本 n=16 · Q1 -3 · Q3 +49">+17</td><td class="n big up" title="样本 n=16 · Q1 -34 · Q3 +84">+31</td><td class="n big up" title="样本 n=16 · Q1 -80 · Q3 +94">+23</td></tr><tr class="gC"><td class="sname">C3 · n=28</td><td class="n big up" title="样本 n=28 · Q1 -2 · Q3 +6">+2</td><td class="n big up" title="样本 n=28 · Q1 -5 · Q3 +20">+8</td><td class="n big up" title="样本 n=28 · Q1 -5 · Q3 +31">+11</td><td class="n big up" title="样本 n=28 · Q1 +14 · Q3 +56">+38</td><td class="n big up" title="样本 n=28 · Q1 +26 · Q3 +89">+75</td><td class="n big up" title="样本 n=28 · Q1 +27 · Q3 +141">+88</td></tr></tbody><tbody><tr class="gC"><td class="ast" rowspan="3">10Y−2Y 利差</td><td class="sname">C1 · n=7</td><td class="n big down" title="样本 n=7 · Q1 -4 · Q3 -2">-3</td><td class="n big up" title="样本 n=7 · Q1 -9 · Q3 +4">+2</td><td class="n big up" title="样本 n=7 · Q1 -1 · Q3 +3">+1</td><td class="n big down" title="样本 n=7 · Q1 -17 · Q3 -6">-7</td><td class="n big down" title="样本 n=7 · Q1 -34 · Q3 +7">-16</td><td class="n big down" title="样本 n=7 · Q1 -48 · Q3 +72">-31</td></tr><tr class="gC"><td class="sname">C2 · n=16</td><td class="n big down" title="样本 n=16 · Q1 -4 · Q3 -1">-3</td><td class="n big down" title="样本 n=16 · Q1 -6 · Q3 +1">-5</td><td class="n big down" title="样本 n=16 · Q1 -13 · Q3 +3">-8</td><td class="n big down" title="样本 n=16 · Q1 -27 · Q3 -3">-19</td><td class="n big down" title="样本 n=16 · Q1 -44 · Q3 -22">-35</td><td class="n big down" title="样本 n=16 · Q1 -78 · Q3 -18">-42</td></tr><tr class="gC"><td class="sname">C3 · n=28</td><td class="n big flat" title="样本 n=28 · Q1 -4 · Q3 +3">0</td><td class="n big down" title="样本 n=28 · Q1 -12 · Q3 -1">-7</td><td class="n big down" title="样本 n=28 · Q1 -15 · Q3 +2">-11</td><td class="n big down" title="样本 n=28 · Q1 -40 · Q3 -7">-19</td><td class="n big down" title="样本 n=28 · Q1 -67 · Q3 -7">-36</td><td class="n big down" title="样本 n=28 · Q1 -87 · Q3 +11">-31</td></tr></tbody><tbody><tr class="gC"><td class="ast" rowspan="3">3M 国库券收益率</td><td class="sname">C1 · n=7</td><td class="n big up" title="样本 n=7 · Q1 -3 · Q3 +6">+2</td><td class="n big down" title="样本 n=7 · Q1 -13 · Q3 -1">-9</td><td class="n big down" title="样本 n=7 · Q1 -10 · Q3 +2">-9</td><td class="n big up" title="样本 n=7 · Q1 -5 · Q3 +28">+15</td><td class="n big up" title="样本 n=7 · Q1 +24 · Q3 +69">+37</td><td class="n big down" title="样本 n=7 · Q1 -110 · Q3 +102">-17</td></tr><tr class="gC"><td class="sname">C2 · n=16</td><td class="n big up" title="样本 n=16 · Q1 0 · Q3 +8">+2</td><td class="n big up" title="样本 n=16 · Q1 -1 · Q3 +13">+4</td><td class="n big up" title="样本 n=16 · Q1 +2 · Q3 +17">+8</td><td class="n big up" title="样本 n=16 · Q1 +15 · Q3 +53">+26</td><td class="n big up" title="样本 n=16 · Q1 +27 · Q3 +113">+44</td><td class="n big up" title="样本 n=16 · Q1 +22 · Q3 +118">+84</td></tr><tr class="gC"><td class="sname">C3 · n=28</td><td class="n big down" title="样本 n=28 · Q1 -3 · Q3 0">-1</td><td class="n big up" title="样本 n=28 · Q1 -0 · Q3 +10">+6</td><td class="n big up" title="样本 n=28 · Q1 +6 · Q3 +30">+17</td><td class="n big up" title="样本 n=28 · Q1 +33 · Q3 +55">+45</td><td class="n big up" title="样本 n=28 · Q1 +71 · Q3 +105">+89</td><td class="n big up" title="样本 n=28 · Q1 +67 · Q3 +190">+153</td></tr></tbody></table></div>
+      <div class="note">按<b>所属周期的累计加息幅度</b>分组。回答：「如果是这种终点的周期，中途每次加息的市场反应如何？」</div>
+    </section>
+  </div>
+</div>
+
+
+<details>
+  <summary>方法论与口径（点击展开）</summary>
+  <div class="note">
+    <b>事件日 t0</b>：目标利率生效日，由 FRED <code>DFEDTAR</code>（1982–2008）+ <code>DFEDTARU</code>（2008–今）自动探测，非人工录入。<br>
+    <b>基准</b>：t0 前一交易日收盘——保证基准尚未反映新政。反应 = 第 n 个交易日后的值与基准之差。<br>
+    <b>窗口</b>：按交易日计 1 日=1 / 10 日=10 / 1 月=21 / 3 月=63 / 6 月=126 / 1 年=252 日。<br>
+    <b>统计量</b>：组内<b>中位数</b>（比均值稳健，避免单个极端事件主导）；鼠标悬停单元格可见 Q1/Q3 与有效样本数。<br>
+    <b>单位</b>：价格类资产为 % 变化；国债收益率为 bp 变化；VIX 为绝对点数变化。<br>
+    <b>样本池</b>：1994 年至今共 <b>51</b> 次加息（1985–1989 年碎步调整（6.25/12.5/43.75bp）已排除：幅度制式与 1994 年后的 25bp 框架不可比）。<br>
+    <b>主观 vs 客观</b>：概率与触发条件为人工判断，<b>需定期复核</b>；反应矩阵为自动计算的客观结果。
+  </div>
+</details>
+
+<h2 id="s4">四、市场路径明细</h2>
 <div class="panel">
 <table>
 <thead><tr><th>合约</th><th class="n">结算价</th><th class="n">隐含利率</th><th class="n">较上月</th><th class="n">持仓量</th></tr></thead>
@@ -231,7 +535,7 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
 </div>
 <div class="note">仅列前 16 个合约（近月至约 16 个月）。「较上月」为隐含利率相对前一合约的变动，反映市场对该时段政策变动的定价。</div>
 
-<h2>四、流动性与金融条件</h2>
+<h2 id="s5">五、流动性与金融条件</h2>
 <div class="grid g3">
   <div class="card"><div class="k">准备金余额</div>
     <div class="v">3013.79T</div>
@@ -253,7 +557,7 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
     <div class="d">金融条件指数 NFCI -0.56</div></div>
 </div>
 
-<h2>五、决议对照表</h2>
+<h2 id="s6">六、决议对照表</h2>
 <div class="panel">
 <table>
 <thead><tr><th>维度</th><th class="n">06-17</th><th class="n">07-29</th><th class="n">09-16</th><th class="n">变化方向</th></tr></thead>
@@ -269,9 +573,13 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
 
 <footer>
   <b>数据口径</b>：CME Group 30-Day Federal Funds Futures 官方结算价（productId 305）·
-  FRED（fredgraph.csv，无 key）· 美联储 SEP 官方 PDF<br>
-  <b>可复算</b>：核心图与路径表均可由原始结算价复算；CME FedWatch 概率无公开 API，仅作交叉校验，不计入本页数值<br>
-  <b>更新</b>：2026-09-22 13:52 SGT ·
+  FRED（fredgraph.csv，无 key）· 美联储 SEP 官方 PDF ·
+  长历史资产序列来自 Yahoo v8 chart API（<code>period1=0&amp;interval=1d</code>）<br>
+  <b>可复算</b>：核心图、路径表与 L4 情景矩阵均可由原始数据复算
+  （<code>collect-history.mjs</code> → <code>build-scenarios.mjs</code>）；
+  加息事件日由 FRED DFEDTAR / DFEDTARU 自动探测，非人工录入；CME FedWatch 概率无公开 API，仅作交叉校验，不计入本页数值<br>
+  <b>主观部分</b>：三轴情景的概率与触发条件为人工判断（见 <code>config/scenarios.json</code>），需定期复核<br>
+  <b>更新</b>：2026-09-22 20:11 SGT ·
   期货曲线 CME 仅保留约 7 个交易日，每日采集留档<br>
   <b>免责</b>：本页为数据分析产物，不构成投资建议。
 </footer>

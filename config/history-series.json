@@ -1,0 +1,32 @@
+{
+  "_note": "L4 情景层所需的长历史日频序列。用于事件研究（event study）：计算加息事件后 1d/10d/1M/3M/6M/1Y 的资产反应。",
+  "_startDate": "1985-01-01",
+  "_startNote": "1985 起可覆盖 1987 年以来全部加息周期。1994–95 周期是「预防式加息」的经典样本，必须覆盖。",
+  "_kindNote": "kind=price → 反应记为百分比变化；kind=yield → 反应记为基点(bp)变化；kind=level → 反应记为绝对水平变化。",
+  "_reactionNote": "事件日 t0 = 目标利率生效日（据 FRED DFEDTAR/DFEDTARU 探测）。基准 = t0 前一交易日收盘（标准 event study 口径，保证基准尚未反映新政）。",
+
+  "yahoo": [
+    { "key": "sp500",  "symbol": "^GSPC",    "label": "标普 500",     "kind": "price", "unit": "%",  "group": "股票" },
+    { "key": "nasdaq", "symbol": "^IXIC",    "label": "纳斯达克",     "kind": "price", "unit": "%",  "group": "股票" },
+    { "key": "dxy",    "symbol": "DX-Y.NYB", "label": "美元指数",     "kind": "price", "unit": "%",  "group": "汇率" },
+    { "key": "gold",   "symbol": "GC=F",     "label": "黄金",         "kind": "price", "unit": "%",  "group": "商品" },
+    { "key": "vix",    "symbol": "^VIX",     "label": "VIX",          "kind": "level", "unit": "点", "group": "波动率" },
+    { "key": "hyg",    "symbol": "HYG",      "label": "高收益债 ETF", "kind": "price", "unit": "%",  "group": "信用" }
+  ],
+
+  "fred": [
+    { "key": "dgs10",   "id": "DGS10",   "label": "10Y 国债收益率", "kind": "yield", "unit": "bp", "group": "利率" },
+    { "key": "dgs2",    "id": "DGS2",    "label": "2Y 国债收益率",  "kind": "yield", "unit": "bp", "group": "利率" },
+    { "key": "t10y2y",  "id": "T10Y2Y",  "label": "10Y−2Y 利差",    "kind": "yield", "unit": "bp", "group": "利率" },
+    { "key": "dtb3",    "id": "DTB3",    "label": "3M 国库券收益率","kind": "yield", "unit": "bp", "group": "利率" }
+  ],
+
+  "rateEvents": {
+    "_note": "加息事件自动检测源。DFEDTAR 覆盖 1982-09-27 → 2008-12-15，DFEDTARU 覆盖 2008-12-16 至今，两段拼接得到 1982 年至今完整的目标区间上限序列。",
+    "segments": [
+      { "id": "DFEDTAR",  "from": "1982-09-27", "to": "2008-12-15" },
+      { "id": "DFEDTARU", "from": "2008-12-16", "to": null }
+    ],
+    "detect": "upward" 
+  }
+}

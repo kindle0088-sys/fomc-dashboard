@@ -4,6 +4,10 @@ node_modules/
 # 日志（本地运行记录，不入库）
 logs/
 
+# 长历史原始序列（约 2.2MB，可由 collect-history.mjs 从源头重建，故不入库）
+# 只提交派生结果 data/derived/scenarios.json
+data/history/
+
 # 临时文件
 .tmp/
 *.tmp
