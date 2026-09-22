@@ -1,0 +1,17 @@
+# 依赖
+node_modules/
+
+# 日志（本地运行记录，不入库）
+logs/
+
+# 临时文件
+.tmp/
+*.tmp
+
+# 系统文件
+Thumbs.db
+.DS_Store
+
+# 编辑器
+.vscode/
+.idea/

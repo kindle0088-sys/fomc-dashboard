@@ -1,0 +1,76 @@
+{
+  "_note": "FOMC 会议日历 + 票委名单。手工维护：日历每年底更新一次，票委每年轮换一次。",
+  "meetings": [
+    { "date": "2026-01-28", "sep": false, "label": "2026 年 1 月" },
+    { "date": "2026-03-18", "sep": true,  "label": "2026 年 3 月（含 SEP）" },
+    { "date": "2026-04-29", "sep": false, "label": "2026 年 4 月" },
+    { "date": "2026-06-17", "sep": true,  "label": "2026 年 6 月（含 SEP）" },
+    { "date": "2026-07-29", "sep": false, "label": "2026 年 7 月" },
+    { "date": "2026-09-16", "sep": true,  "label": "2026 年 9 月（含 SEP）" },
+    { "date": "2026-10-28", "sep": false, "label": "2026 年 10 月" },
+    { "date": "2026-12-09", "sep": true,  "label": "2026 年 12 月（含 SEP）" },
+    { "date": "2027-01-27", "sep": false, "label": "2027 年 1 月" },
+    { "date": "2027-03-17", "sep": true,  "label": "2027 年 3 月（含 SEP）" },
+    { "date": "2027-04-28", "sep": false, "label": "2027 年 4 月" },
+    { "date": "2027-06-16", "sep": true,  "label": "2027 年 6 月（含 SEP）" }
+  ],
+  "_meetingNote": "决议结果公布于会议最后一日美东 14:00 = SGT 次日 02:00（夏令时）/ 03:00（冬令时）。2026 年 3/9/12 月带 SEP（经济预测摘要 + 点阵图）。",
+  "decisions": [
+    {
+      "date": "2026-06-17",
+      "action": "hold",
+      "targetUpper": 3.75,
+      "targetLower": 3.50,
+      "vote": "10-3（3 票主张加息）",
+      "dotMedian2026": 3.75,
+      "dotsFavoringHikesThisYear": 6,
+      "note": "6 月维持不变，点阵图显示年内多数官员不急于加息"
+    },
+    {
+      "date": "2026-07-29",
+      "action": "hold",
+      "targetUpper": 3.75,
+      "targetLower": 3.50,
+      "vote": "10-3（3 票主张加息）",
+      "dotMedian2026": 3.75,
+      "dotsFavoringHikesThisYear": 6,
+      "note": "7 月继续按兵不动，但反对票持续存在"
+    },
+    {
+      "date": "2026-09-16",
+      "action": "hike25",
+      "targetUpper": 4.00,
+      "targetLower": 3.75,
+      "vote": "12-0（全票通过）",
+      "dotMedian2026": 4.10,
+      "dotsFavoringHikesThisYear": 16,
+      "note": "2023-07 以来首次加息；点阵图 2026 年末中值 3.75% → 4.10% 大幅上移；19 名官员 18 人提交，沃什未提交个人点阵"
+    }
+  ],
+  "_decisionNote": "投票结果与 SEP 需人工从 Fed 官方声明和 SEP PDF 补录。dotMedian2026 = 当年末联邦基金利率中值。",
+  "voters2026": {
+    "_note": "2026 年 FOMC 投票委员（12 票）。主席 + 副主席 + 5 位理事 + 纽约联储主席（永久）+ 4 位轮值地区联储主席。",
+    "permanent": [
+      { "name": "Kevin Warsh", "role": "主席", "stance": "待观察（2026-05 上任）" },
+      { "name": "理事（副主席，待补）", "role": "副主席", "stance": "待补" },
+      { "name": "纽约联储主席（待补）", "role": "永久票委", "stance": "待补" }
+    ],
+    "rotation2026": {
+      "_note": "2026 年 4 位轮值票委（地区联储主席轮换）。需按 Fed 官方公布补录。",
+      "members": [
+        { "name": "待补录", "fed": "待补" },
+        { "name": "待补录", "fed": "待补" },
+        { "name": "待补录", "fed": "待补" },
+        { "name": "待补录", "fed": "待补" }
+      ]
+    }
+  },
+  "_voterNote": "票委阵营（鹰/鸽/中性）需人工判读，来源为公开发言与 SEP 点阵分布。",
+  "project": {
+    "name": "FOMC 前瞻看板",
+    "positioning": "循环运行的验证型看板（非一次性快照）",
+    "startMeeting": "2026-10-28",
+    "fullCycleMeeting": "2026-12-09",
+    "phases": ["T-30d 开盘定位", "T-10d 预期快照", "T-6d 情景构建", "决议夜 冻结预测", "T+2d 归因回写"]
+  }
+}

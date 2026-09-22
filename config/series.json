@@ -1,0 +1,36 @@
+{
+  "_note": "FRED 序列清单。key = 本地字段名，id = FRED series id，group = 归属层。free=true 表示无需 API key（fredgraph.csv 直连）。",
+  "fred": [
+    { "key": "fedTargetUpper", "id": "DFEDTARU",  "label": "联邦基金目标利率上限", "group": "L2", "unit": "pct" },
+    { "key": "fedTargetLower", "id": "DFEDTARL",  "label": "联邦基金目标利率下限", "group": "L2", "unit": "pct" },
+    { "key": "effr",           "id": "EFFR",      "label": "有效联邦基金利率 (EFFR)", "group": "L2", "unit": "pct" },
+    { "key": "sofr",           "id": "SOFR",      "label": "有担保隔夜融资利率 (SOFR)", "group": "L2", "unit": "pct" },
+    { "key": "corePce",        "id": "PCEPILFE",  "label": "核心 PCE 物价指数", "group": "L2", "unit": "index" },
+    { "key": "cpi",            "id": "CPIAUCSL",  "label": "CPI 同比（季调）", "group": "L2", "unit": "index" },
+    { "key": "unrate",         "id": "UNRATE",    "label": "失业率", "group": "L2", "unit": "pct" },
+    { "key": "payrolls",       "id": "PAYEMS",    "label": "非农就业人数", "group": "L2", "unit": "thousands" },
+    { "key": "t10y2y",         "id": "T10Y2Y",    "label": "10Y-2Y 期限利差", "group": "L2", "unit": "pct" },
+    { "key": "dgs10",          "id": "DGS10",     "label": "10 年期国债收益率", "group": "L2", "unit": "pct" },
+    { "key": "dgs2",           "id": "DGS2",      "label": "2 年期国债收益率", "group": "L2", "unit": "pct" },
+    { "key": "dfii10",         "id": "DFII10",    "label": "10 年期 TIPS 实际收益率", "group": "L2", "unit": "pct" },
+    { "key": "t10yie",         "id": "T10YIE",    "label": "10 年期通胀预期 (breakeven)", "group": "L2", "unit": "pct" },
+    { "key": "reserves",       "id": "WRESBAL",   "label": "存款机构准备金余额", "group": "L2", "unit": "billions" },
+    { "key": "rrp",            "id": "RRPONTSYD", "label": "隔夜逆回购 (ON RRP)", "group": "L2", "unit": "billions" },
+    { "key": "tga",            "id": "WTREGEN",   "label": "财政部一般账户 (TGA)", "group": "L2", "unit": "billions" },
+    { "key": "igSpread",       "id": "BAMLC0A0CM",   "label": "投资级公司债利差 (OAS)", "group": "L2", "unit": "pct" },
+    { "key": "hySpread",       "id": "BAMLH0A0HYM2", "label": "高收益公司债利差 (OAS)", "group": "L2", "unit": "pct" },
+    { "key": "nfci",           "id": "NFCI",         "label": "芝加哥联储全国金融条件指数", "group": "L2", "unit": "index" },
+    { "key": "vix",            "id": "VIXCLS",       "label": "VIX 波动率指数", "group": "L2", "unit": "index" },
+    { "key": "sp500",          "id": "SP500",     "label": "标普 500", "group": "L4", "unit": "index" },
+    { "key": "dxy",            "id": "DTWEXBGS",  "label": "美元指数（广义贸易加权）", "group": "L4", "unit": "index" }
+  ],
+  "_note2": "黄金序列 GOLDPMGBD228NLBM / GOLDFIX 均已从 FRED 下架（404），黄金改由其他源或人工维护",
+  "cme": {
+    "productId": 305,
+    "name": "30 Day Federal Funds Futures",
+    "endpoint": "https://www.cmegroup.com/CmeWS/mvc/Settlements/Futures/Settlements/{productId}/FUT?tradeDate={MM/DD/YYYY}",
+    "invertFormula": "100 - settle",
+    "retentionDays": 7,
+    "_note": "CME 只保留约 7 个交易日，必须每日抓取。当日未结算时返回 empty:true"
+  }
+}
