@@ -58,7 +58,13 @@ function main() {
   if (collect.err) log('stderr: ' + collect.err);
   if (collect.code !== 0) log(`⚠ collect 退出码 ${collect.code}`);
 
-  // 2. git 提交（失败不致命）
+  // 2. 重建看板
+  const build = run(nodeExe, [path.join(HERE, 'build-dashboard.mjs')]);
+  log('--- build 输出 ---');
+  log(build.out || '(空)');
+  if (build.code !== 0) log(`⚠ build 退出码 ${build.code}`);
+
+  // 3. git 提交（失败不致命）
   run(git, ['config', 'gc.auto', '0']);
   const status = run(git, ['status', '--porcelain']);
   if (!status.out) {
