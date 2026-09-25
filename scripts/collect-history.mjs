@@ -20,7 +20,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, '..');
@@ -199,4 +199,9 @@ async function main() {
   return report.errors.length ? 1 : 0;
 }
 
-main().then(c => process.exit(c)).catch(e => { console.error('FATAL', e); process.exit(1); });
+export { main };
+
+// 仅在被直接执行时自运行；被 import 时由调用方 await main()
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().then(c => process.exit(c)).catch(e => { console.error('FATAL', e); process.exit(1); });
+}
