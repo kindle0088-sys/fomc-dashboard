@@ -1,0 +1,187 @@
+{
+  "date": "20220921",
+  "ok": true,
+  "url": "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20220921.htm",
+  "horizons": [
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+    "Longer run"
+  ],
+  "points": [
+    {
+      "horizon": "2023",
+      "rate": 4.875,
+      "count": 6
+    },
+    {
+      "horizon": "2022",
+      "rate": 4.625,
+      "count": 1
+    },
+    {
+      "horizon": "2023",
+      "rate": 4.625,
+      "count": 6
+    },
+    {
+      "horizon": "2024",
+      "rate": 4.625,
+      "count": 2
+    },
+    {
+      "horizon": "2025",
+      "rate": 4.625,
+      "count": 1
+    },
+    {
+      "horizon": "2022",
+      "rate": 4.375,
+      "count": 9
+    },
+    {
+      "horizon": "2023",
+      "rate": 4.375,
+      "count": 6
+    },
+    {
+      "horizon": "2024",
+      "rate": 4.375,
+      "count": 2
+    },
+    {
+      "horizon": "2022",
+      "rate": 4.125,
+      "count": 8
+    },
+    {
+      "horizon": "2024",
+      "rate": 4.125,
+      "count": 2
+    },
+    {
+      "horizon": "2022",
+      "rate": 3.875,
+      "count": 1
+    },
+    {
+      "horizon": "2023",
+      "rate": 3.875,
+      "count": 1
+    },
+    {
+      "horizon": "2024",
+      "rate": 3.875,
+      "count": 4
+    },
+    {
+      "horizon": "2024",
+      "rate": 3.625,
+      "count": 3
+    },
+    {
+      "horizon": "2025",
+      "rate": 3.625,
+      "count": 2
+    },
+    {
+      "horizon": "2024",
+      "rate": 3.375,
+      "count": 3
+    },
+    {
+      "horizon": "2025",
+      "rate": 3.375,
+      "count": 2
+    },
+    {
+      "horizon": "2024",
+      "rate": 3.125,
+      "count": 1
+    },
+    {
+      "horizon": "2025",
+      "rate": 3.125,
+      "count": 4
+    },
+    {
+      "horizon": "Longer run",
+      "rate": 3,
+      "count": 2
+    },
+    {
+      "horizon": "2024",
+      "rate": 2.875,
+      "count": 1
+    },
+    {
+      "horizon": "2025",
+      "rate": 2.875,
+      "count": 3
+    },
+    {
+      "horizon": "2024",
+      "rate": 2.625,
+      "count": 1
+    },
+    {
+      "horizon": "2025",
+      "rate": 2.625,
+      "count": 3
+    },
+    {
+      "horizon": "Longer run",
+      "rate": 2.625,
+      "count": 1
+    },
+    {
+      "horizon": "Longer run",
+      "rate": 2.5,
+      "count": 8
+    },
+    {
+      "horizon": "2025",
+      "rate": 2.375,
+      "count": 4
+    },
+    {
+      "horizon": "Longer run",
+      "rate": 2.375,
+      "count": 1
+    },
+    {
+      "horizon": "Longer run",
+      "rate": 2.25,
+      "count": 6
+    }
+  ],
+  "median": [
+    4.4,
+    4.6,
+    3.9,
+    2.9,
+    2.5
+  ],
+  "medianHorizons": [
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+    "Longer run"
+  ],
+  "range": [
+    "3.9–4.6",
+    "3.9–4.9",
+    "2.6–4.6",
+    "2.4–4.6",
+    "2.3–3.0"
+  ],
+  "totalByHorizon": {
+    "2022": 19,
+    "2023": 19,
+    "2024": 19,
+    "2025": 19,
+    "Longer run": 18
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "date": "20220316",
+  "ok": true,
+  "source": "pdf: fomcprojtabl20220316.pdf (page 4), 63 dots",
+  "horizons": [
+    "2022",
+    "2023",
+    "2024",
+    "Longer run"
+  ],
+  "median": [
+    1.9,
+    2.8,
+    2.8,
+    2.4
+  ],
+  "medianHorizons": [
+    "2022",
+    "2023",
+    "2024",
+    "Longer run"
+  ],
+  "points": [
+    {
+      "horizon": "2022",
+      "rate": 1.375,
+      "count": 1
+    },
+    {
+      "horizon": "2022",
+      "rate": 1.625,
+      "count": 3
+    },
+    {
+      "horizon": "2022",
+      "rate": 1.875,
+      "count": 5
+    },
+    {
+      "horizon": "2022",
+      "rate": 2.125,
+      "count": 2
+    },
+    {
+      "horizon": "2022",
+      "rate": 2.375,
+      "count": 3
+    },
+    {
+      "horizon": "2022",
+      "rate": 2.625,
+      "count": 1
+    },
+    {
+      "horizon": "2022",
+      "rate": 3.125,
+      "count": 1
+    },
+    {
+      "horizon": "2023",
+      "rate": 2.125,
+      "count": 1
+    },
+    {
+      "horizon": "2023",
+      "rate": 2.375,
+      "count": 4
+    },
+    {
+      "horizon": "2023",
+      "rate": 2.625,
+      "count": 3
+    },
+    {
+      "horizon": "2023",
+      "rate": 2.875,
+      "count": 3
+    },
+    {
+      "horizon": "2023",
+      "rate": 3.125,
+      "count": 2
+    },
+    {
+      "horizon": "2023",
+      "rate": 3.375,
+      "count": 1
+    },
+    {
+      "horizon": "2023",
+      "rate": 3.625,
+      "count": 2
+    },
+    {
+      "horizon": "2024",
+      "rate": 2.125,
+      "count": 2
+    },
+    {
+      "horizon": "2024",
+      "rate": 2.25,
+      "count": 1
+    },
+    {
+      "horizon": "2024",
+      "rate": 2.375,
+      "count": 3
+    },
+    {
+      "horizon": "2024",
+      "rate": 2.625,
+      "count": 2
+    },
+    {
+      "horizon": "2024",
+      "rate": 2.875,
+      "count": 3
+    },
+    {
+      "horizon": "2024",
+      "rate": 3.125,
+      "count": 1
+    },
+    {
+      "horizon": "2024",
+      "rate": 3.375,
+      "count": 2
+    },
+    {
+      "horizon": "2024",
+      "rate": 3.625,
+      "count": 2
+    },
+    {
+      "horizon": "Longer run",
+      "rate": 2,
+      "count": 1
+    },
+    {
+      "horizon": "Longer run",
+      "rate": 2.25,
+      "count": 6
+    },
+    {
+      "horizon": "Longer run",
+      "rate": 2.375,
+      "count": 1
+    },
+    {
+      "horizon": "Longer run",
+      "rate": 2.5,
+      "count": 5
+    },
+    {
+      "horizon": "Longer run",
+      "rate": 3,
+      "count": 2
+    }
+  ],
+  "via": "pdf",
+  "note": "HTML 版缺失，由官方 PDF 矢量点阵解析（scripts/parse-sep-pdf.py）"
+}

@@ -26,15 +26,37 @@ function parseMonth(label) {
   return { y, m, key: `${y}-${String(m).padStart(2, '0')}` };
 }
 
-/** 美联储 SEP 中值轨迹（人工维护，来源为官方 SEP PDF） */
+/**
+ * 美联储 SEP 中值轨迹（自动读取官方数据）
+ * 数据源：data/derived/sep-series.json（由 collect-sep.mjs 从 Fed 官方 SEP 抓取）
+ * 取最新一期，把 «年份 → 中值» 映射到统一时间轴
+ */
 function sepPath() {
-  return [
-    { date: '2026-09', rate: 4.10, label: '2026 年末' },
-    { date: '2027-12', rate: 3.80, label: '2027 年末' },
-    { date: '2028-12', rate: 3.40, label: '2028 年末' },
-    { date: '2029-12', rate: 3.10, label: '长期' },
-  ];
+  const series = readJson(path.join(DATA, 'derived', 'sep-series.json'));
+  if (!series?.series?.length) return FALLBACK_SEP;
+  const last = series.series[series.series.length - 1];
+  const y = Number(last.date.slice(0, 4));
+  const out = [];
+  (last.horizons || []).forEach((h, i) => {
+    const rate = last.median?.[i];
+    if (!Number.isFinite(rate)) return;
+    if (/longer/i.test(h)) {
+      out.push({ date: `${y + (last.horizons.length - 1)}-12`, rate, label: '长期' });
+    } else {
+      out.push({ date: `${h}-12`, rate, label: `${h} 年末` });
+    }
+  });
+  return out.length ? out : FALLBACK_SEP;
 }
+
+/** 兜底：官方数据缺失时使用（2026-09 SEP 实测值） */
+const FALLBACK_SEP = [
+  { date: '2026-12', rate: 4.1, label: '2026 年末' },
+  { date: '2027-12', rate: 4.1, label: '2027 年末' },
+  { date: '2028-12', rate: 3.9, label: '2028 年末' },
+  { date: '2029-12', rate: 3.6, label: '2029 年末' },
+  { date: '2030-12', rate: 3.2, label: '长期' },
+];
 
 function build() {
   const cme = readJson(path.join(DATA, 'raw', 'cme-zq.json'));
@@ -52,16 +74,17 @@ function build() {
     .sort((a, b) => a.key.localeCompare(b.key));
 
   const sep = sepPath();
+  const sepSeries = readJson(path.join(DATA, 'derived', 'sep-series.json'));
 
   const latest = meetings.decisions[meetings.decisions.length - 1];
   const nextMeeting = meetings.meetings.find(m => m.date > '2026-09-16');
   const today = derived.date;
 
-  const html = render({ market, sep, derived, cme, latest, nextMeeting, today, meetings, scenarios });
+  const html = render({ market, sep, sepSeries, derived, cme, latest, nextMeeting, today, meetings, scenarios });
 
   fs.mkdirSync(DOCS, { recursive: true });
   fs.writeFileSync(path.join(DOCS, 'index.html'), html, 'utf8');
-  console.log(`✓ docs/index.html 已生成（市场 ${market.length} 点 / SEP ${sep.length} 点${scenarios ? ` / 情景样本 ${scenarios.totalHikes} 次` : ' / ⚠ 无情景数据'}）`);
+  console.log(`✓ docs/index.html 已生成（市场 ${market.length} 点 / SEP ${sep.length} 点${sepSeries ? ` / 点阵 ${sepSeries.series.length} 期` : ''}${scenarios ? ` / 情景样本 ${scenarios.totalHikes} 次` : ' / ⚠ 无情景数据'}）`);
 }
 
 // ═══════════════ 票委名单渲染 ═══════════════
@@ -110,7 +133,128 @@ ${[...perms, ...rots].join('\n')}
 `;
 }
 
-function render({ market, sep, derived, cme, latest, nextMeeting, today, meetings, scenarios }) {
+// ═══════════════ 点阵图渲染 ═══════════════
+
+/**
+ * 点阵图（dot plot）
+ * 每个圆点 = 一位参与者；x 轴 = 预测视界，y 轴 = 联邦基金利率档位
+ * 叠加中值线（红），便于一眼看出「中值被谁拉高/拉低」
+ */
+function renderDotPlot(series) {
+  if (!series?.series?.length) return '';
+
+  const all = series.series;
+  const latest = all[all.length - 1];
+  // 近 6 期（约 1.5 年）用于小倍数排列
+  const recent = all.slice(-6);
+
+  const W = 200, H = 150, PADL = 30, PADR = 8, PADT = 12, PADB = 20;
+
+  const drawOne = (s) => {
+    const hz = s.horizons || [];
+    const pts = s.points || [];
+    if (!hz.length || !pts.length) return '';
+    const rates = pts.map(p => p.rate);
+    const yMin = Math.min(...rates) - 0.2;
+    const yMax = Math.max(...rates) + 0.2;
+
+    const sx = hz.length > 1 ? (W - PADL - PADR) / (hz.length - 1) : 0;
+    const sy = (H - PADT - PADB) / (yMax - yMin);
+
+    const X = i => PADL + i * sx;
+    const Y = r => PADT + (yMax - r) * sy;
+
+    // 圆点：按档位聚合，人数 → 垂直堆叠
+    let dots = '';
+    hz.forEach((h, i) => {
+      const col = pts.filter(p => p.horizon === h).sort((a, b) => b.rate - a.rate);
+      col.forEach(p => {
+        for (let k = 0; k < p.count; k++) {
+          dots += `<circle cx="${(X(i) + k * 4.2).toFixed(1)}" cy="${Y(p.rate).toFixed(1)}" r="1.9" fill="#8A8A8A" opacity=".85"/>`;
+        }
+      });
+    });
+
+    // 中值线
+    const mline = hz.map((h, i) => {
+      const r = s.median?.[i];
+      return Number.isFinite(r) ? `${i ? 'L' : 'M'}${X(i).toFixed(1)},${Y(r).toFixed(1)}` : null;
+    }).filter(Boolean).join(' ');
+
+    // 网格
+    let grid = '';
+    const step = (yMax - yMin) > 3 ? 1 : 0.5;
+    for (let r = Math.ceil(yMin / step) * step; r <= yMax; r += step) {
+      grid += `<line x1="${PADL}" y1="${Y(r).toFixed(1)}" x2="${W - PADR}" y2="${Y(r).toFixed(1)}" stroke="#2E2B27" stroke-width=".6"/>
+        <text x="${PADL - 4}" y="${(Y(r) + 3).toFixed(1)}" font-size="8" fill="#6B6862" text-anchor="end">${r.toFixed(1)}</text>`;
+    }
+
+    const labels = hz.map((h, i) =>
+      `<text x="${X(i).toFixed(1)}" y="${H - 6}" font-size="8.5" fill="#9A968F" text-anchor="middle">${/longer/i.test(h) ? '长期' : String(h).slice(2)}</text>`
+    ).join('');
+
+    const d = s.date;
+    const title = `${d.slice(0, 4)}-${d.slice(4, 6)}`;
+
+    return `<div class="dp-item">
+      <div class="dp-t">${title}</div>
+      <svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">
+        ${grid}
+        <line x1="${PADL}" y1="${PADT}" x2="${PADL}" y2="${H - PADB}" stroke="#3A3631" stroke-width=".8"/>
+        <line x1="${PADL}" y1="${H - PADB}" x2="${W - PADR}" y2="${H - PADB}" stroke="#3A3631" stroke-width=".8"/>
+        ${dots}
+        ${mline ? `<path d="${mline}" fill="none" stroke="#D4593B" stroke-width="1.6" stroke-dasharray="3 2"/>` : ''}
+        ${labels}
+      </svg>
+    </div>`;
+  };
+
+  // ── 中值变迁矩阵 ──
+  // 正确布局：行 = 发布期（时间向上），列 = 被预测的年份。
+  // 这样「同一行的横向」= 该期对各年的展望；「同一列的纵向」= 美联储对该年的预期如何被逐期修正。
+  const recentAll = all.slice(-8);
+  const allH = [...new Set(all.flatMap(s => s.horizons || []))]
+    .filter(h => !/longer/i.test(h)).sort();
+  const hasLonger = all.some(s => (s.horizons || []).some(h => /longer/i.test(h)));
+
+  const cols = [...allH, ...(hasLonger ? ['Longer run'] : [])];
+  const head = cols.map(h => `<th class="n">${/longer/i.test(h) ? '长期' : h}</th>`).join('');
+
+  const matrix = recentAll.map(s => {
+    const cells = cols.map(h => {
+      const i = (s.horizons || []).indexOf(h);
+      const v = i >= 0 ? s.median?.[i] : null;
+      return `<td class="n">${Number.isFinite(v) ? v.toFixed(2) : '—'}</td>`;
+    }).join('');
+    return `<tr><td>${s.date.slice(0, 4)}-${s.date.slice(4, 6)}</td>${cells}</tr>`;
+  }).join('');
+
+  return `
+<h2 id="s8">八、点阵图 · 近 6 期</h2>
+<div class="note">
+  每点 = 一位 FOMC 参与者对「合适联邦基金利率」的判断（中点，四舍五入至 1/8 个百分点）；
+  <span style="color:#D4593B">红色虚线</span> = 中值路径。
+  数据由 <code>collect-sep.mjs</code> 从美联储官方 SEP 抓取（HTML 表优先，缺失期回退解析官方 PDF 矢量点阵）。
+</div>
+<div class="dp-grid">
+${recent.map(drawOne).join('')}
+</div>
+
+<h2 id="s9">九、SEP 中值变迁（近 8 期）</h2>
+<div class="panel">
+<table class="mx">
+<thead><tr><th>发布期</th>${head}</tr></thead>
+<tbody>${matrix}</tbody>
+</table>
+</div>
+<div class="note">
+  单位为百分比。行 = SEP 发布期，列 = 被预测的年份。<b>横向读</b>该期对各年的展望；<b>纵向读</b>美联储对某年的预期如何被逐期修正（「长期」= Longer run 中性利率估计）。
+  共收录 <b>${all.length} 期</b>（${all[0].date.slice(0, 4)}-${all[0].date.slice(4, 6)} → ${latest.date.slice(0, 4)}-${latest.date.slice(4, 6)}）。
+</div>
+`;
+}
+
+function render({ market, sep, sepSeries, derived, cme, latest, nextMeeting, today, meetings, scenarios }) {
   const P = derived.policy, I = derived.inflation, L = derived.labor, F = derived.financial;
   const liquidity = derived.liquidity;
 
@@ -242,6 +386,11 @@ table.mx tr.gC td{background:rgba(239,159,39,.055)}
 .vw-hawk{color:#E8734A}
 .vw-dove{color:#4FA3D1}
 .vw-mid{color:var(--tx2)}
+/* 点阵图 */
+.dp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:18px}
+.dp-item{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:8px 6px 4px;text-align:center}
+.dp-item .dp-t{font-size:12px;color:var(--tx3);margin-bottom:4px;font-variant-numeric:tabular-nums}
+.dp-item svg{display:block;margin:0 auto}
 table.mx tr.gD td{background:rgba(226,75,74,.055)}
 table.mx .sname{font-size:11px;color:var(--tx3);padding-right:4px}
 table.mx .yr{font-size:10px;color:var(--tx3);font-weight:400;margin-top:2px;white-space:nowrap}
@@ -283,6 +432,8 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
   <a href="#s5">五 · 流动性</a>
   <a href="#s6">六 · 决议对照</a>
   <a href="#s7">七 · 票委名单</a>
+  <a href="#s8">八 · 点阵图</a>
+  <a href="#s9">九 · 中值变迁</a>
 </nav>
 
 <h2 id="s1">一、政策位置</h2>
@@ -416,14 +567,17 @@ ${market.slice(0, 16).map((m, i) => {
 
 ${renderVoters(meetings)}
 
+${renderDotPlot(sepSeries)}
+
 <footer>
   <b>数据口径</b>：CME Group 30-Day Federal Funds Futures 官方结算价（productId 305）·
-  FRED（fredgraph.csv，无 key）· 美联储 SEP 官方 PDF ·
+  FRED（fredgraph.csv，无 key）· 美联储 SEP 官方页（<code>fomcprojtablYYYYMMDD.htm</code>，缺失期回退官方 PDF 矢量点阵）·
   长历史资产序列来自 Yahoo v8 chart API（<code>period1=0&amp;interval=1d</code>）<br>
   <b>可复算</b>：核心图、路径表与 L4 情景矩阵均可由原始数据复算
   （<code>collect-history.mjs</code> → <code>build-scenarios.mjs</code>）；
   加息事件日由 FRED DFEDTAR / DFEDTARU 自动探测，非人工录入；CME FedWatch 概率无公开 API，仅作交叉校验，不计入本页数值<br>
   <b>主观部分</b>：三轴情景的概率与触发条件为人工判断（见 <code>config/scenarios.json</code>），需定期复核<br>
+  <b>点阵数据</b>：<code>collect-sep.mjs</code> 自动抓取，收录 2021-03 起全部 SEP 期次 ·
   <b>更新</b>：${new Date(Date.now() + 8 * 3600 * 1000).toISOString().replace('T', ' ').slice(0, 16)} SGT ·
   期货曲线 CME 仅保留约 7 个交易日，每日采集留档<br>
   <b>免责</b>：本页为数据分析产物，不构成投资建议。

@@ -91,14 +91,22 @@ async function main() {
   }
 
   // 各步骤失败即终止：宁可任务报红，也不要静默产出空数据
+  // 注意：collect-sep 仅在新 SEP 发布时需要更新，故设为「非致命」——
+  // 失败只告警不中止，避免上游 404 拖垮整个日更流程。
   const steps = [
-    ['1/4 collect（现状层：CME + FRED）', path.join(HERE, 'collect.mjs')],
-    ['2/4 collect-history（长历史 + 加息事件探测）', path.join(HERE, 'collect-history.mjs')],
-    ['3/4 build-scenarios（L4 情景层）', path.join(HERE, 'build-scenarios.mjs')],
-    ['4/4 build-dashboard（看板）', path.join(HERE, 'build-dashboard.mjs')],
+    ['1/5 collect（现状层：CME + FRED）', path.join(HERE, 'collect.mjs')],
+    ['2/5 collect-history（长历史 + 加息事件探测）', path.join(HERE, 'collect-history.mjs')],
+    ['3/5 build-scenarios（L4 情景层）', path.join(HERE, 'build-scenarios.mjs')],
+    ['4/5 collect-sep（SEP 点阵，非致命）', path.join(HERE, 'collect-sep.mjs'), { optional: true }],
+    ['5/5 build-dashboard（看板）', path.join(HERE, 'build-dashboard.mjs')],
   ];
-  for (const [label, script] of steps) {
-    if (!(await step(label, script))) {
+  for (const [label, script, opt] of steps) {
+    const ok = await step(label, script);
+    if (!ok) {
+      if (opt?.optional) {
+        log(`⚠ ${label} 失败（非致命，继续）——看板将沿用上一次的 SEP 数据`);
+        continue;
+      }
       log('✗ 作业中止（数据可能不完整，未提交）');
       process.exit(1);
     }

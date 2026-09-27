@@ -1,0 +1,117 @@
+{
+  "date": "20210616",
+  "ok": true,
+  "url": "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20210616.htm",
+  "horizons": [
+    "2021",
+    "2022",
+    "2023",
+    "Longer run"
+  ],
+  "points": [
+    {
+      "horizon": "Longer run",
+      "rate": 3,
+      "count": 2
+    },
+    {
+      "horizon": "Longer run",
+      "rate": 2.75,
+      "count": 1
+    },
+    {
+      "horizon": "Longer run",
+      "rate": 2.5,
+      "count": 8
+    },
+    {
+      "horizon": "Longer run",
+      "rate": 2.375,
+      "count": 1
+    },
+    {
+      "horizon": "Longer run",
+      "rate": 2.25,
+      "count": 4
+    },
+    {
+      "horizon": "Longer run",
+      "rate": 2,
+      "count": 1
+    },
+    {
+      "horizon": "2023",
+      "rate": 1.625,
+      "count": 2
+    },
+    {
+      "horizon": "2023",
+      "rate": 1.125,
+      "count": 3
+    },
+    {
+      "horizon": "2023",
+      "rate": 0.875,
+      "count": 3
+    },
+    {
+      "horizon": "2022",
+      "rate": 0.625,
+      "count": 2
+    },
+    {
+      "horizon": "2023",
+      "rate": 0.625,
+      "count": 3
+    },
+    {
+      "horizon": "2022",
+      "rate": 0.375,
+      "count": 5
+    },
+    {
+      "horizon": "2023",
+      "rate": 0.375,
+      "count": 2
+    },
+    {
+      "horizon": "2021",
+      "rate": 0.125,
+      "count": 18
+    },
+    {
+      "horizon": "2022",
+      "rate": 0.125,
+      "count": 11
+    },
+    {
+      "horizon": "2023",
+      "rate": 0.125,
+      "count": 5
+    }
+  ],
+  "median": [
+    0.1,
+    0.1,
+    0.6,
+    2.5
+  ],
+  "medianHorizons": [
+    "2021",
+    "2022",
+    "2023",
+    "Longer run"
+  ],
+  "range": [
+    "0.1",
+    "0.1-0.6",
+    "0.1-1.6",
+    "2.0-3.0"
+  ],
+  "totalByHorizon": {
+    "2021": 18,
+    "2022": 18,
+    "2023": 18,
+    "Longer run": 17
+  }
+}
