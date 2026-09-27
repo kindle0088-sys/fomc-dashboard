@@ -74,6 +74,10 @@ table.mx tbody:first-child{border-top:none}
 table.mx tr.gA td{background:rgba(55,138,221,.055)}
 table.mx tr.gB td{background:rgba(127,119,221,.055)}
 table.mx tr.gC td{background:rgba(239,159,39,.055)}
+/* 票委立场标签 */
+.vw-hawk{color:#E8734A}
+.vw-dove{color:#4FA3D1}
+.vw-mid{color:var(--tx2)}
 table.mx tr.gD td{background:rgba(226,75,74,.055)}
 table.mx .sname{font-size:11px;color:var(--tx3);padding-right:4px}
 table.mx .yr{font-size:10px;color:var(--tx3);font-weight:400;margin-top:2px;white-space:nowrap}
@@ -114,6 +118,7 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
   <a href="#s4">四 · 路径明细</a>
   <a href="#s5">五 · 流动性</a>
   <a href="#s6">六 · 决议对照</a>
+  <a href="#s7">七 · 票委名单</a>
 </nav>
 
 <h2 id="s1">一、政策位置</h2>
@@ -571,6 +576,107 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
 </table>
 </div>
 
+
+<h2 id="s7">七、2026 年票委名单</h2>
+<div class="panel">
+<table>
+<thead><tr><th class="n">#</th><th>姓名</th><th>职务 / 地区联储</th><th>票委类型</th><th>立场判读</th></tr></thead>
+<tbody>
+<tr>
+    <td class="n">1</td>
+    <td><b>Kevin Warsh</b></td>
+    <td>主席</td>
+    <td>理事/常任</td>
+    <td><span class="vw-mid">2026-05-22 就任主席</span></td>
+  </tr>
+<tr>
+    <td class="n">2</td>
+    <td><b>Philip N. Jefferson</b></td>
+    <td>理事会副主席</td>
+    <td>理事/常任</td>
+    <td><span class="vw-dove">偏鸽 / 中间派</span></td>
+  </tr>
+<tr>
+    <td class="n">3</td>
+    <td><b>Michelle W. Bowman</b></td>
+    <td>理事（监管副主席）</td>
+    <td>理事/常任</td>
+    <td><span class="vw-hawk">偏鹰</span></td>
+  </tr>
+<tr>
+    <td class="n">4</td>
+    <td><b>Michael S. Barr</b></td>
+    <td>理事</td>
+    <td>理事/常任</td>
+    <td><span class="vw-dove">偏鸽 / 中间派</span></td>
+  </tr>
+<tr>
+    <td class="n">5</td>
+    <td><b>Lisa D. Cook</b></td>
+    <td>理事</td>
+    <td>理事/常任</td>
+    <td><span class="vw-dove">偏鸽 / 中间派</span></td>
+  </tr>
+<tr>
+    <td class="n">6</td>
+    <td><b>Jerome H. Powell</b></td>
+    <td>理事（2026-05 卸任主席后留任理事）</td>
+    <td>理事/常任</td>
+    <td><span class="vw-mid">中间派</span></td>
+  </tr>
+<tr>
+    <td class="n">7</td>
+    <td><b>Christopher J. Waller</b></td>
+    <td>理事</td>
+    <td>理事/常任</td>
+    <td><span class="vw-dove">偏鸽</span></td>
+  </tr>
+<tr>
+    <td class="n">8</td>
+    <td><b>John C. Williams</b></td>
+    <td>纽约联储主席（永久票委，兼 FOMC 副主席）</td>
+    <td>永久票委</td>
+    <td><span class="vw-mid">中间派</span></td>
+  </tr>
+<tr>
+    <td class="n">9</td>
+    <td><b>Beth M. Hammack</b></td>
+    <td>Cleveland</td>
+    <td>轮值票委</td>
+    <td><span class="vw-hawk">表面温和、分析普遍视其偏鹰</span></td>
+  </tr>
+<tr>
+    <td class="n">10</td>
+    <td><b>Neel Kashkari</b></td>
+    <td>Minneapolis</td>
+    <td>轮值票委</td>
+    <td><span class="vw-hawk">历史上偏鹰，近年居中</span></td>
+  </tr>
+<tr>
+    <td class="n">11</td>
+    <td><b>Anna Paulson</b></td>
+    <td>Philadelphia</td>
+    <td>轮值票委</td>
+    <td><span class="vw-hawk">偏鹰（主张限制性政策维持更久）</span></td>
+  </tr>
+<tr>
+    <td class="n">12</td>
+    <td><b>Lorie K. Logan</b></td>
+    <td>Dallas</td>
+    <td>轮值票委</td>
+    <td><span class="vw-hawk">偏鹰（2023 曾主张加息至 6%+）</span></td>
+  </tr>
+</tbody>
+</table>
+</div>
+<div class="note">
+  共 <b>12 票</b>：7 位理事会理事（含主席）+ 纽约联储主席（永久票委）+ 4 位轮值地区联储主席。
+  轮值票委任期自 <b>2026-01-27</b> 起，接替卸任的波士顿 Collins / 芝加哥 Goolsbee / 圣路易斯 Musalem / 堪萨斯城 Schmid。
+  <br><b>立场为人工判读</b>（依据公开发言与 SEP 点阵分布），非官方标签，会随数据变化，需定期复核。
+  来源：federalreserve.gov/monetarypolicy/fomc.htm（2026 Committee Members）+ 2026-01-28 会议纪要「年度组织事项」的轮值票委选举公告；核对日 2026-09-27。
+</div>
+
+
 <footer>
   <b>数据口径</b>：CME Group 30-Day Federal Funds Futures 官方结算价（productId 305）·
   FRED（fredgraph.csv，无 key）· 美联储 SEP 官方 PDF ·
@@ -579,7 +685,7 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
   （<code>collect-history.mjs</code> → <code>build-scenarios.mjs</code>）；
   加息事件日由 FRED DFEDTAR / DFEDTARU 自动探测，非人工录入；CME FedWatch 概率无公开 API，仅作交叉校验，不计入本页数值<br>
   <b>主观部分</b>：三轴情景的概率与触发条件为人工判断（见 <code>config/scenarios.json</code>），需定期复核<br>
-  <b>更新</b>：2026-09-25 13:10 SGT ·
+  <b>更新</b>：2026-09-27 17:08 SGT ·
   期货曲线 CME 仅保留约 7 个交易日，每日采集留档<br>
   <b>免责</b>：本页为数据分析产物，不构成投资建议。
 </footer>

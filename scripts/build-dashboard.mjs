@@ -64,6 +64,52 @@ function build() {
   console.log(`✓ docs/index.html 已生成（市场 ${market.length} 点 / SEP ${sep.length} 点${scenarios ? ` / 情景样本 ${scenarios.totalHikes} 次` : ' / ⚠ 无情景数据'}）`);
 }
 
+// ═══════════════ 票委名单渲染 ═══════════════
+
+function renderVoters(mt) {
+  const v = mt.voters2026;
+  if (!v) return '';
+
+  const stance = s => {
+    const t = String(s || '');
+    if (t.includes('鹰')) return `<span class="vw-hawk">${t}</span>`;
+    if (t.includes('鸽')) return `<span class="vw-dove">${t}</span>`;
+    return `<span class="vw-mid">${t}</span>`;
+  };
+
+  const row = (p, idx, kind) => `<tr>
+    <td class="n">${idx}</td>
+    <td><b>${p.name}</b></td>
+    <td>${p.fed || p.role}</td>
+    <td>${kind}</td>
+    <td>${stance(p.stance)}</td>
+  </tr>`;
+
+  const perms = (v.permanent || []).map((p, i) =>
+    row(p, i + 1, (p.role.includes('永久') || p.role.includes('纽约')) ? '永久票委' : '理事/常任'));
+  const permsLen = (v.permanent || []).length;
+  const rots = (v.rotation2026?.members || []).map((p, i) =>
+    row(p, permsLen + i + 1, '轮值票委'));
+
+  return `
+<h2 id="s7">七、2026 年票委名单</h2>
+<div class="panel">
+<table>
+<thead><tr><th class="n">#</th><th>姓名</th><th>职务 / 地区联储</th><th>票委类型</th><th>立场判读</th></tr></thead>
+<tbody>
+${[...perms, ...rots].join('\n')}
+</tbody>
+</table>
+</div>
+<div class="note">
+  共 <b>12 票</b>：7 位理事会理事（含主席）+ 纽约联储主席（永久票委）+ 4 位轮值地区联储主席。
+  轮值票委任期自 <b>2026-01-27</b> 起，接替卸任的波士顿 Collins / 芝加哥 Goolsbee / 圣路易斯 Musalem / 堪萨斯城 Schmid。
+  <br><b>立场为人工判读</b>（依据公开发言与 SEP 点阵分布），非官方标签，会随数据变化，需定期复核。
+  来源：${v._source || '美联储官网'}
+</div>
+`;
+}
+
 function render({ market, sep, derived, cme, latest, nextMeeting, today, meetings, scenarios }) {
   const P = derived.policy, I = derived.inflation, L = derived.labor, F = derived.financial;
   const liquidity = derived.liquidity;
@@ -192,6 +238,10 @@ table.mx tbody:first-child{border-top:none}
 table.mx tr.gA td{background:rgba(55,138,221,.055)}
 table.mx tr.gB td{background:rgba(127,119,221,.055)}
 table.mx tr.gC td{background:rgba(239,159,39,.055)}
+/* 票委立场标签 */
+.vw-hawk{color:#E8734A}
+.vw-dove{color:#4FA3D1}
+.vw-mid{color:var(--tx2)}
 table.mx tr.gD td{background:rgba(226,75,74,.055)}
 table.mx .sname{font-size:11px;color:var(--tx3);padding-right:4px}
 table.mx .yr{font-size:10px;color:var(--tx3);font-weight:400;margin-top:2px;white-space:nowrap}
@@ -232,6 +282,7 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
   <a href="#s4">四 · 路径明细</a>
   <a href="#s5">五 · 流动性</a>
   <a href="#s6">六 · 决议对照</a>
+  <a href="#s7">七 · 票委名单</a>
 </nav>
 
 <h2 id="s1">一、政策位置</h2>
@@ -362,6 +413,8 @@ ${market.slice(0, 16).map((m, i) => {
 </tbody>
 </table>
 </div>
+
+${renderVoters(meetings)}
 
 <footer>
   <b>数据口径</b>：CME Group 30-Day Federal Funds Futures 官方结算价（productId 305）·

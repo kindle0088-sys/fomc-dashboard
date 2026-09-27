@@ -49,23 +49,29 @@
   ],
   "_decisionNote": "投票结果与 SEP 需人工从 Fed 官方声明和 SEP PDF 补录。dotMedian2026 = 当年末联邦基金利率中值。",
   "voters2026": {
-    "_note": "2026 年 FOMC 投票委员（12 票）。主席 + 副主席 + 5 位理事 + 纽约联储主席（永久）+ 4 位轮值地区联储主席。",
+    "_note": "2026 年 FOMC 投票委员（12 票）= 7 位理事会理事（含主席）+ 纽约联储主席（永久票委）+ 4 位轮值地区联储主席。",
+    "_source": "federalreserve.gov/monetarypolicy/fomc.htm（2026 Committee Members）+ 2026-01-28 会议纪要「年度组织事项」的轮值票委选举公告；核对日 2026-09-27。",
     "permanent": [
-      { "name": "Kevin Warsh", "role": "主席", "stance": "待观察（2026-05 上任）" },
-      { "name": "理事（副主席，待补）", "role": "副主席", "stance": "待补" },
-      { "name": "纽约联储主席（待补）", "role": "永久票委", "stance": "待补" }
+      { "name": "Kevin Warsh", "role": "主席", "stance": "2026-05-22 就任主席" },
+      { "name": "Philip N. Jefferson", "role": "理事会副主席", "stance": "偏鸽 / 中间派" },
+      { "name": "Michelle W. Bowman", "role": "理事（监管副主席）", "stance": "偏鹰" },
+      { "name": "Michael S. Barr", "role": "理事", "stance": "偏鸽 / 中间派" },
+      { "name": "Lisa D. Cook", "role": "理事", "stance": "偏鸽 / 中间派" },
+      { "name": "Jerome H. Powell", "role": "理事（2026-05 卸任主席后留任理事）", "stance": "中间派" },
+      { "name": "Christopher J. Waller", "role": "理事", "stance": "偏鸽" },
+      { "name": "John C. Williams", "role": "纽约联储主席（永久票委，兼 FOMC 副主席）", "stance": "中间派" }
     ],
     "rotation2026": {
-      "_note": "2026 年 4 位轮值票委（地区联储主席轮换）。需按 Fed 官方公布补录。",
+      "_note": "2026 年 4 位轮值票委，任期自 2026-01-27 起，接替卸任的波士顿 Collins / 芝加哥 Goolsbee / 圣路易斯 Musalem / 堪萨斯城 Schmid。",
       "members": [
-        { "name": "待补录", "fed": "待补" },
-        { "name": "待补录", "fed": "待补" },
-        { "name": "待补录", "fed": "待补" },
-        { "name": "待补录", "fed": "待补" }
+        { "name": "Beth M. Hammack", "fed": "Cleveland", "stance": "表面温和、分析普遍视其偏鹰", "alt": "Austan D. Goolsbee（Chicago）" },
+        { "name": "Neel Kashkari", "fed": "Minneapolis", "stance": "历史上偏鹰，近年居中", "alt": "Mary C. Daly（San Francisco）" },
+        { "name": "Anna Paulson", "fed": "Philadelphia", "stance": "偏鹰（主张限制性政策维持更久）", "alt": "Thomas I. Barkin（Richmond）" },
+        { "name": "Lorie K. Logan", "fed": "Dallas", "stance": "偏鹰（2023 曾主张加息至 6%+）", "alt": "Raphael W. Bostic（Atlanta）" }
       ]
     }
   },
-  "_voterNote": "票委阵营（鹰/鸽/中性）需人工判读，来源为公开发言与 SEP 点阵分布。",
+  "_voterNote": "票委阵营（鹰/鸽/中性）为人工判读，依据公开发言与 SEP 点阵分布，非官方标签；立场随数据变化，需定期复核。7 位理事席位现满员（无空缺）。",
   "project": {
     "name": "FOMC 前瞻看板",
     "positioning": "循环运行的验证型看板（非一次性快照）",
