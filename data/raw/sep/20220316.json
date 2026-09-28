@@ -157,6 +157,5 @@
       "count": 2
     }
   ],
-  "via": "pdf",
-  "note": "HTML 版缺失，由官方 PDF 矢量点阵解析（scripts/parse-sep-pdf.py）"
+  "via": "pdf"
 }
