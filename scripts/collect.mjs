@@ -81,25 +81,31 @@ function cmeDateStr(d) {
  * 抓取某个结算日的 ZQ 全曲线。
  * CME 只在结算后（美东约 14:00 后 = SGT 次日凌晨）放出数据，且只保留约 7 个交易日。
  * 因此从指定日往前逐日回溯，直到拿到第一个非空结果。
+ *
+ * 返回 { found: bool, tradeDate?, updateTime?, rows?, diag: [{dateStr, status, empty?}] }
+ * diag 用于区分「休市无数据」与「被反爬拦截（403）」——两者处置方式完全不同。
  */
 async function fetchCmeCurve(endpointTpl, productId, startDate, maxBack = 7) {
+  const diag = [];
   for (let back = 0; back < maxBack; back++) {
     const d = new Date(startDate.getTime() - back * 86400000);
     const dateStr = cmeDateStr(d);
     const url = endpointTpl.replace('{productId}', productId).replace('{MM/DD/YYYY}', encodeURIComponent(dateStr));
-    const { status, json, raw } = await getJson(url);
+    const { status, json } = await getJson(url);
     if (status !== 200 || !json) {
       log(`    ${dateStr} → HTTP ${status}（跳过）`);
+      diag.push({ dateStr, status });
       continue;
     }
     const rows = Array.isArray(json.settlements) ? json.settlements : [];
     if (rows.length === 0 || json.empty === true) {
       log(`    ${dateStr} → 空（周末/未结算）`);
+      diag.push({ dateStr, status, empty: true });
       continue;
     }
-    return { tradeDate: json.tradeDate || dateStr, updateTime: json.updateTime || '', rows };
+    return { found: true, tradeDate: json.tradeDate || dateStr, updateTime: json.updateTime || '', rows, diag };
   }
-  return null;
+  return { found: false, diag };
 }
 
 /** 把 CME 原始行转成结构化曲线 */
@@ -202,6 +208,11 @@ async function main() {
 
   const report = { collectedAt: sgtStamp(now), date: today, cme: null, fred: null, errors: [] };
 
+  // 致命标记：CME 曲线与 FRED 全量都属"不可静默降级"的输入——
+  // 一旦缺失，下游会沿用陈旧数据并且毫无提示，必须让 job 报红中止（daily.mjs 见非 0 即退出、不提交）。
+  let cmeFailed = false;
+  let fredFailed = false;
+
   // ---- CME ----
   if (!fredOnly) {
     log('');
@@ -213,9 +224,18 @@ async function main() {
     }
     try {
       const res = await fetchCmeCurve(cfg.cme.endpoint, cfg.cme.productId, startDate, cfg.cme.retentionDays);
-      if (!res) {
-        log('  ✗ 回溯 7 天均无数据（可能长期休市或接口变更）');
-        report.errors.push('CME: 回溯窗口内无数据');
+      if (!res.found) {
+        // 区分「休市」与「被反爬拦截」——后者必须人工换出口 IP，静默降级会误导看板。
+        const blocked = res.diag.length > 0 && res.diag.every(x => x.status === 403);
+        if (blocked) {
+          log('  ✗ 全部回溯日返回 HTTP 403 —— CME 疑似对本机 IP 封禁（反爬）');
+          log('     处置：更换出口 IP（重启光猫/路由器换动态 IP）后重跑');
+          report.errors.push('CME: 全部回溯日 403（疑似 IP 封禁，需换出口 IP）');
+        } else {
+          log('  ✗ 回溯窗口内均无数据（可能长期休市或接口变更）');
+          report.errors.push('CME: 回溯窗口内无数据');
+        }
+        cmeFailed = true;
       } else {
         const curve = parseCurve(res.rows);
         const head = curve.slice(0, 4).map(x => `${x.month}=${x.impliedRate.toFixed(3)}%`).join('  ');
@@ -241,6 +261,7 @@ async function main() {
     } catch (e) {
       log('  ✗ 异常：' + e.message);
       report.errors.push('CME: ' + e.message);
+      cmeFailed = true;
     }
   }
 
@@ -273,14 +294,29 @@ async function main() {
       obs: (r.obs || []).filter(([d]) => d >= cutoff),
     }));
 
-    writeJson(path.join(DATA, 'raw', 'fred.json'), {
-      source: 'FRED (fredgraph.csv, no key)', fetchedAt: sgtStamp(now), series: trimmed,
-    });
-    writeJson(path.join(DATA, 'snapshots', today, 'fred.json'), {
-      source: 'FRED (fredgraph.csv, no key)', fetchedAt: sgtStamp(now), series: trimmed,
-    });
-    report.fred = { total: results.length, ok: results.filter(r => r.ok).length };
+    const fredOk = results.filter(r => r.ok).length;
+    report.fred = { total: results.length, ok: fredOk };
+    // 全量 FRED 失败 → 派生指标全为 null，等同无数据；部分失败可容忍（沿用原设计）
+    if (fredOk === 0) {
+      log('  ✗ FRED 全部序列失败 —— 派生指标将全为 null');
+      fredFailed = true;
+    }
 
+    // ⚠️ CME 已失败时不再落盘任何数据文件（含当日快照）：
+    // 否则会留下「只有 fred.json、没有 cme 部分」的半成品快照，
+    // 事后回看会误以为当天采集完整。诊断信息走 last-collect.json。
+    if (cmeFailed) {
+      log('  ⚠ CME 已失败 → 跳过 fred.json / current.json / 当日快照落盘，避免产出半成品数据');
+    } else if (!fredFailed) {
+      writeJson(path.join(DATA, 'raw', 'fred.json'), {
+        source: 'FRED (fredgraph.csv, no key)', fetchedAt: sgtStamp(now), series: trimmed,
+      });
+      writeJson(path.join(DATA, 'snapshots', today, 'fred.json'), {
+        source: 'FRED (fredgraph.csv, no key)', fetchedAt: sgtStamp(now), series: trimmed,
+      });
+    } else {
+      log('  ⚠ FRED 全量失败 → 跳过 fred.json / current.json / 当日快照落盘');
+    }
     // ---- 派生 ----
     const byKey = Object.fromEntries(results.map(r => [r.key, r]));
     const derived = {
@@ -326,7 +362,11 @@ async function main() {
         vix: byKey.vix?.latestValue ?? null,
       },
     };
-    writeJson(path.join(DATA, 'derived', 'current.json'), derived);
+    if (cmeFailed || fredFailed) {
+      log('  ⚠ 数据源缺失 → 跳过 derived/current.json 落盘（避免下游读到半成品）');
+    } else {
+      writeJson(path.join(DATA, 'derived', 'current.json'), derived);
+    }
 
     log('');
     log('▸ 派生指标');
@@ -337,16 +377,24 @@ async function main() {
   }
 
   // ---- 汇总 ----
-  report.status = report.errors.length === 0 ? 'ok' : (report.cme || report.fred ? 'partial' : 'failed');
+  // 关键输入缺失一律判 failed（而非按"是否全崩"降级为 partial），
+  // 否则 CME 被反爬拦截时会以 partial → 退出码 0 通过，看板静默沿用陈旧曲线。
+  const fatal = cmeFailed || fredFailed;
+  report.status = fatal ? 'failed' : (report.errors.length === 0 ? 'ok' : 'partial');
+  report.fatal = fatal;
   writeJson(path.join(DATA, 'last-collect.json'), report);
 
   log('');
   log('───────────────────────────────────────────');
   log(`  状态: ${report.status.toUpperCase()}   错误: ${report.errors.length}`);
   if (report.errors.length) report.errors.forEach(e => log('   · ' + e));
+  if (fatal) {
+    log('  ⚠ 致命：关键数据源缺失。已写入 last-collect.json，但【不应提交】。');
+    log('     CME 缺失时看板市场定价会沿用陈旧值 → 必须先修复数据源再重跑。');
+  }
   log('───────────────────────────────────────────');
   log('');
-  return report.status === 'failed' ? 1 : 0;
+  return fatal ? 1 : 0;
 }
 
 export { main };
