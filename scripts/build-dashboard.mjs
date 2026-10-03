@@ -621,6 +621,9 @@ function renderScenarioLayer(sc) {
       ${g.definition ? `<div class="def">${g.definition}</div>` : ''}
       ${g.analogy ? `<div class="an">${g.analogy}</div>` : ''}
       ${g.cycles ? `<div class="tr"><b>历史类比</b>：${g.cycles.join(' · ')}</div>` : ''}
+      ${g.sampleLevels && g.sampleLevels.length
+        ? `<div class="tr"><b>样本起止</b>（目标区间上限）：${g.sampleLevels.map(s => `${s.label} <b>${s.from == null ? '—' : s.from.toFixed(2)}%</b> → <b>${s.to == null ? '—' : s.to.toFixed(2)}%</b>`).join('　·　')}</div>`
+        : ''}
       ${g.triggers ? `<div class="tr"><b>触发条件</b><br>${g.triggers.map(t => '· ' + t).join('<br>')}</div>` : ''}
       ${g.trigger ? `<div class="tr"><b>触发条件</b>：${g.trigger}</div>` : ''}
       ${g.verdict ? `<div class="vd">${g.verdict}</div>` : ''}
@@ -719,11 +722,11 @@ function renderScenarioLayer(sc) {
 
 <div class="tabs">
   <input type="radio" name="ax" id="axA" checked>
-  <label for="axA">A · 本轮加息的性质</label>
+  <label for="axA">${sc.axisA.label}</label>
   <input type="radio" name="ax" id="axB">
-  <label for="axB">B · 单场会议结果</label>
+  <label for="axB">${sc.axisB.label}</label>
   <input type="radio" name="ax" id="axC">
-  <label for="axC">C · 本轮加息终点</label>
+  <label for="axC">${sc.axisC.label}</label>
 
   <div class="panes">
     <section class="pane paneA">
@@ -747,7 +750,7 @@ function renderScenarioLayer(sc) {
       ${sc.axisC.note ? `<div class="warnbox">${sc.axisC.note}</div>` : ''}
       ${cards(sc.axisC)}
       <div class="panel" style="background:transparent;border:none;padding:0">${matrix(sc.axisC)}</div>
-      <div class="note">按<b>所属周期的累计加息幅度</b>分组。回答：「如果是这种终点的周期，中途每次加息的市场反应如何？」</div>
+      <div class="note">按<b>所属周期的累计加息幅度</b>分组（与上述问法同口径）。回答：「如果是这种量级的周期，中途每次加息的市场反应如何？」终点水平见各卡片的「样本起止」。</div>
     </section>
   </div>
 </div>

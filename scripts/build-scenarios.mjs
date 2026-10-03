@@ -121,6 +121,17 @@ async function main() {
   const cycles = cfg.cycles || [];
   const findCycle = d => cycles.find(c => c.start <= d && d <= c.end) || null;
 
+  // 各历史周期的「起点 / 终点」目标区间上限 —— 用于 C 轴卡片亮出样本水平
+  // （C 轴问的是水平、却按累计幅度分组；把样本水平摊开才能让口径差异可见）
+  const upperSeries = evFile.upperSeries || [];
+  const rateBefore = d => { let v = null; for (const [dt, r] of upperSeries) { if (dt < d) v = r; else break; } return v; };
+  const rateAt = d => { let v = null; for (const [dt, r] of upperSeries) { if (dt <= d) v = r; else break; } return v; };
+  const cycleLevel = id => {
+    const c = cycles.find(x => x.id === id);
+    if (!c) return null;
+    return { id: c.id, label: c.label, totalBp: c.totalBp ?? null, from: rateBefore(c.start), to: rateAt(c.end) };
+  };
+
   // 当前事件与历史样本分离
   const currentEventDate = evFile.events?.[evFile.events.length - 1]?.date;
   const tagged = hikes
@@ -234,6 +245,7 @@ async function main() {
     const evs = tagged.filter(e => e.cycleTotalBp !== null && matchesRange(e.cycleTotalBp, g.filter));
     return { id: g.id, key: g.key, name: g.name, probability: g.probability, definition: g.definition,
              cycles: g.cycles, trigger: g.trigger, filter: g.filter,
+             sampleLevels: (g.cycles || []).map(cycleLevel).filter(Boolean),
              n: evs.length, eventDates: evs.map(e => e.date), matrix: computeGroup(evs) };
   }) };
 
