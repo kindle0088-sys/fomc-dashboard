@@ -132,7 +132,11 @@ async function main() {
   log('▸ 样本分组');
   for (const c of cycles) {
     const n = tagged.filter(e => e.cycleId === c.id).length;
-    log(`  ${c.id.padEnd(11)} ${c.nature.padEnd(15)} +${String(c.totalBp).padStart(3)}bp  样本 ${String(n).padStart(2)} 次`);
+    // totalBp 可为 null（进行中的周期，终点未定）→ 不能直接 String(null)
+    const bpTxt = c.totalBp == null ? '  +?bp' : `+${String(c.totalBp).padStart(3)}bp`;
+    const natTxt = (c.nature || '—').padEnd(15);
+    const openMark = (c.end && c.end > new Date().toISOString().slice(0, 10)) ? '（进行中）' : '';
+    log(`  ${c.id.padEnd(11)} ${natTxt} ${bpTxt}  样本 ${String(n).padStart(2)} 次${openMark}`);
   }
 
   // ---------- 3. 计算反应矩阵 ----------
