@@ -90,6 +90,11 @@ async function main() {
   const cfg = readJson(path.join(CONFIG, 'scenarios.json'));
   if (!hist || !evFile || !cfg) { log('✗ 缺数据。先跑 collect-history.mjs'); process.exit(1); }
 
+  // B 轴的「下一次决议」指针：从会议日历自动推导 —— 决议过后自动指向下一场，无需手改配置
+  const meetFile = readJson(path.join(CONFIG, 'meetings.json'));
+  const todaySGT = new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
+  const nextMeeting = (meetFile?.meetings || []).map(m => m.date).sort().find(d => d >= todaySGT) || null;
+
   // ---------- 1. 事件探测（升降都取） ----------
   const upper = evFile.upperSeries || [];
   const allEvents = [];
@@ -191,7 +196,11 @@ async function main() {
   }) };
 
   // ---------- B 轴 ----------
-  const axisB = { ...cfg.axisB, groups: cfg.axisB.groups.map(g => {
+  const axisB = { ...cfg.axisB,
+    // {next} 由会议日历填入；决议过后自动跟随到下一场（原先是手写死日期，会过期）
+    question: String(cfg.axisB.question || '').replace(/\{next\}/g, nextMeeting || '待定'),
+    nextMeeting,
+    groups: cfg.axisB.groups.map(g => {
     let evs = [];
     if (g.key === 'hike25') evs = tagged.filter(e => e.bp === 25);
     else if (g.key === 'hike50') evs = tagged.filter(e => e.bp >= 50);
@@ -201,6 +210,24 @@ async function main() {
              n: evs.length, matrixExcluded: excluded, matrixExcludeReason: g.matrixExcludeReason || null,
              eventDates: evs.map(e => e.date), matrix: (!excluded && evs.length) ? computeGroup(evs) : {} };
   }) };
+
+  // 概率与市场定价的偏离告警：config 里的 B 轴概率是「人工确认过」的值，
+  // 但市场会变 —— 偏离超过 10pp 就提示复核，避免看板静默沿用旧概率。
+  {
+    const mi = readJson(path.join(DATA, 'derived', 'market-implied.json'));
+    const cfgB1 = (cfg.axisB.groups.find(g => g.key === 'hike25') || {}).probability;
+    log('');
+    log(`▸ B 轴「下一次决议」指针：${nextMeeting || '（日历已用尽，请更新 config/meetings.json）'}`);
+    if (!mi?.nextMeeting) {
+      log('  ⚠ 缺 data/derived/market-implied.json → 无法与市场定价比对（先跑 market-implied.mjs）');
+    } else if (mi.nextMeeting.decision !== nextMeeting) {
+      log(`  ⚠ market-implied.json 记录的是 ${mi.nextMeeting.decision}，已过期 → 请重跑 market-implied.mjs`);
+    } else if (typeof cfgB1 === 'number') {
+      const gap = Math.abs(cfgB1 - mi.nextMeeting.p25);
+      log(`  市场隐含 P(25bp) = ${(mi.nextMeeting.p25 * 100).toFixed(0)}% ｜ 配置值 = ${(cfgB1 * 100).toFixed(0)}% ｜ 差 ${(gap * 100).toFixed(0)}pp`);
+      if (gap > 0.10) log(`  ⚠ 偏离 > 10pp —— 请复核 config/scenarios.json 的 B 轴概率（口径：以市场定价为准）`);
+    }
+  }
 
   // ---------- C 轴 ----------
   const axisC = { ...cfg.axisC, groups: cfg.axisC.groups.map(g => {

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-03T16:41:37.094+08:00",
+  "generatedAt": "2026-10-03T17:31:14.436+08:00",
   "method": {
     "eventDay": "目标利率生效日（FRED DFEDTAR / DFEDTARU 自动探测）",
     "baseline": "事件日前一交易日收盘",
@@ -180,7 +180,7 @@
         "id": "A1",
         "key": "preemptive",
         "name": "预防式",
-        "probability": 0.5,
+        "probability": 0.54,
         "definition": "通胀尚未失控，抢先收紧以防患于未然。加息本身是「好消息」——说明经济强到需要降温。",
         "cycles": [
           "1994-1995",
@@ -522,7 +522,7 @@
         "id": "A2",
         "key": "normalization",
         "name": "正常化",
-        "probability": 0.35,
+        "probability": 0.36,
         "definition": "从限制性水平向中性回归，路径可预期、幅度渐进。加息是「例行公事」。",
         "cycles": [
           "2004-2006",
@@ -950,7 +950,7 @@
         "id": "A3",
         "key": "catchup",
         "name": "追赶式",
-        "probability": 0.15,
+        "probability": 0.1,
         "definition": "通胀已失控或通胀预期脱锚，被迫快速大幅加息。加息是「坏消息」。",
         "cycles": [
           "2022-2023"
@@ -1364,15 +1364,16 @@
   "axisB": {
     "label": "B · 单场会议结果",
     "question": "下一次决议（2026-10-28）会怎么走？",
+    "_questionNote": "{next} 由 build-scenarios.mjs 从 config/meetings.json 自动填入（下一个未过的会议日），无需手改 —— 决议过后自动指向下一场。",
     "hint": "决定的是「这一夜的市场冲击」，是战术层面的",
-    "note": "历史样本按单次加息幅度自动分组。注意：「按兵不动」无政策生效日，无法用同一事件口径度量，故不列——其资产反应可参考 A 轴 A2（正常化，即「可预期、无意外」的定价环境）。",
+    "note": "历史样本按单次加息幅度自动分组。注意：「按兵不动」无政策生效日，无法用同一事件口径度量，故不列——其资产反应可参考 A 轴 A2（正常化，即「可预期、无意外」的定价环境）。概率口径＝市场定价（CME ZQ 曲线的月均隐含利率反推会后利率），推导见 _probabilityBasis。",
     "groups": [
       {
         "id": "B1",
         "key": "hike25",
         "name": "加息 25bp",
-        "probability": 0.48,
-        "analogy": "2026-09 的延续，符合点阵图年内再一加的中值",
+        "probability": 0.26,
+        "analogy": "市场隐含会后中点 3.940（当前 3.875）→ 幅度 6.0bp ÷ 25bp = 26%。历史上这一档占多数的形态是「可预期的渐进路径」（2004–06）",
         "filter": {
           "minBp": 25,
           "maxBp": 25
@@ -1809,8 +1810,8 @@
         "id": "B2",
         "key": "hike50",
         "name": "加息 50bp 或更多",
-        "probability": 0.1,
-        "analogy": "鹰派意外。历史上 1994-11、1994-08、2022 系列属此类",
+        "probability": 0,
+        "analogy": "市场零定价：2026-10-28 至 2027-11 的【全部】会议隐含步长均 < 25bp，无任何一场被定价为 ≥50bp。历史参照：1994-08、1994-11、2022 系列属此类",
         "filter": {
           "minBp": 50
         },
@@ -2217,8 +2218,8 @@
         "id": "B3",
         "key": "hold",
         "name": "按兵不动",
-        "probability": 0.42,
-        "analogy": "等待数据确认。市场隐含路径偏平缓，本身就隐含了这一可能",
+        "probability": 0.74,
+        "analogy": "市场主导预期。隐含会后中点 3.940 与当前 3.875 仅差 6.0bp ⇒ 市场认为 10-28 大概率按兵不动、等数据；更大的一次加息被定价在 2026-12-09（隐含 73%）",
         "filter": null,
         "n": 0,
         "matrixExcluded": true,
@@ -2231,7 +2232,7 @@
         "key": "cut",
         "name": "降息",
         "probability": 0,
-        "analogy": "仅作尾部标注：若就业急剧恶化可能触发，但当前无信号",
+        "analogy": "仅作尾部标注：市场对可预见的会议无任何降息定价；但单次降息不需要在均值路径里体现（见 _probabilityBasis 的「均值 vs 尾部」说明）",
         "filter": null,
         "n": 40,
         "matrixExcluded": true,
@@ -2280,7 +2281,8 @@
         ],
         "matrix": {}
       }
-    ]
+    ],
+    "nextMeeting": "2026-10-28"
   },
   "axisC": {
     "label": "C · 本轮加息终点",
@@ -2337,7 +2339,7 @@
         "id": "C1",
         "key": "mild",
         "name": "温和收尾",
-        "probability": 0.3,
+        "probability": 0.58,
         "definition": "自 4.00% 起再加 ≤100bp，终点 ≤5.00%",
         "cycles": [
           "1997",
@@ -2668,7 +2670,7 @@
         "id": "C2",
         "key": "mid",
         "name": "中性路径",
-        "probability": 0.45,
+        "probability": 0.31,
         "definition": "自 4.00% 起再加 100–200bp，终点 5.00–6.00%",
         "cycles": [
           "1994-1995",
@@ -3085,7 +3087,7 @@
         "id": "C3",
         "key": "aggressive",
         "name": "激进加息",
-        "probability": 0.25,
+        "probability": 0.11,
         "definition": "自 4.00% 起再加 >200bp，终点 >6.00%",
         "cycles": [
           "2004-2006",
