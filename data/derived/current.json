@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-02T23:30:01.081+08:00",
-  "date": "2026-10-02",
+  "generatedAt": "2026-10-05T23:30:00.912+08:00",
+  "date": "2026-10-05",
   "policy": {
     "targetUpper": 4,
     "targetLower": 3.75,
     "effr": 3.88,
-    "sofr": 3.87,
-    "effrAsOf": "2026-10-01"
+    "sofr": 3.88,
+    "effrAsOf": "2026-10-02"
   },
   "inflation": {
     "corePceIndex": 130.455,
@@ -21,23 +21,23 @@
     "payrollsLatest": 159044
   },
   "financial": {
-    "dgs10": 5.29,
-    "dgs2": 4.88,
-    "spread10y2y": 0.46,
-    "real10y": 2.93,
-    "igSpread": 0.86,
-    "hySpread": 3.24,
+    "dgs10": 5.24,
+    "dgs2": 4.78,
+    "spread10y2y": 0.45,
+    "real10y": 2.88,
+    "igSpread": 0.85,
+    "hySpread": 3.1,
     "nfci": -0.548,
-    "vix": 16.39
+    "vix": 15.31
   },
   "liquidity": {
     "reserves": 2948090,
-    "rrp": 0.35,
+    "rrp": 1.501,
     "tga": 948674
   },
   "markets": {
-    "sp500": 7666.45,
+    "sp500": 7722.72,
     "dxy": 120.33,
-    "vix": 16.39
+    "vix": 15.31
   }
 }
