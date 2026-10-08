@@ -11,7 +11,9 @@
       "note": "概率改由市场定价推导（口径与推导见 _probabilityBasis）：A 0.54/0.36/0.10 ｜ B 0.26/0.00/0.74/0.00 ｜ C 0.58/0.31/0.11。新增 scripts/market-implied.mjs（市场隐含政策路径求解器，已并入 daily.mjs 第 3/6 步）。B 轴 question 改为 {next} 模板，由会议日历自动填入并在决议过后自动指向下一场；build-scenarios 增加「配置概率 vs 市场隐含」偏离 > 10pp 的告警。",
       "pending": "（已于同日完成，见下条）" },
     { "date": "2026-10-03", "scope": "收尾二项待决：A2 第三条触发条件（选①修正表述）+ C 轴问法（选②改问法并亮出样本水平）", "by": "巴迪",
-      "note": "A2③：触发条件改为可判定措辞「12 月合约隐含利率与点阵同 horizon 中值相差 < 25bp」并判 ❌（2026 年末 +9.5bp ✅ / 2027 年末 +70.5bp ❌）；verdict 修正旧文的方向与口径错误——背离方向是【市场比点阵更鹰】，非「更平缓」。**概率未动（仍 0.36）**，与 2/3 触发条件一致。C 轴：question 改为「这轮还会再加多少？」，label 改为「C · 本轮还需加多少」，三条 definition 改以幅度口径为主（终点作括号注）；新增 sampleLevels 由 build-scenarios.mjs 从 rate-events.json 的 upperSeries 自动计算，在看板卡片上亮出各样本的「起点上限 → 终点上限」；build-dashboard 的三轴 tab 标签改为读 config（原先硬编码，会与 config 脱节）。" }
+      "note": "A2③：触发条件改为可判定措辞「12 月合约隐含利率与点阵同 horizon 中值相差 < 25bp」并判 ❌（2026 年末 +9.5bp ✅ / 2027 年末 +70.5bp ❌）；verdict 修正旧文的方向与口径错误——背离方向是【市场比点阵更鹰】，非「更平缓」。**概率未动（仍 0.36）**，与 2/3 触发条件一致。C 轴：question 改为「这轮还会再加多少？」，label 改为「C · 本轮还需加多少」，三条 definition 改以幅度口径为主（终点作括号注）；新增 sampleLevels 由 build-scenarios.mjs 从 rate-events.json 的 upperSeries 自动计算，在看板卡片上亮出各样本的「起点上限 → 终点上限」；build-dashboard 的三轴 tab 标签改为读 config（原先硬编码，会与 config 脱节）。" },
+    { "date": "2026-10-08", "scope": "A2 definition 事实性修正", "by": "巴迪",
+      "note": "「从**限制性**水平向中性回归」→「从**宽松**水平向中性回归」。A2 挂靠的两个周期都是**宽松起步**（2004–06 起点 1.00%、2015–18 起点 0.25%），原文写「限制性」与事实相反。仅改 definition，概率与触发条件未动。" }
   ],
 
   "_probabilityBasis": {
@@ -77,7 +79,7 @@
       },
       {
         "id": "A2", "key": "normalization", "name": "正常化", "probability": 0.36,
-        "definition": "从限制性水平向中性回归，路径可预期、幅度渐进。加息是「例行公事」。",
+        "definition": "从宽松水平向中性回归，路径可预期、幅度渐进。加息是「例行公事」。",
         "cycles": ["2004-2006", "2015-2018"],
         "triggers": [
           "政策利率已显著高于中性估计（4.00% vs 中性 3.0–3.5% ✅）",

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-07T23:30:08.799+08:00",
+  "generatedAt": "2026-10-08T13:54:30.305+08:00",
   "method": {
     "eventDay": "目标利率生效日（FRED DFEDTAR / DFEDTARU 自动探测）",
     "baseline": "事件日前一交易日收盘",
@@ -523,7 +523,7 @@
         "key": "normalization",
         "name": "正常化",
         "probability": 0.36,
-        "definition": "从限制性水平向中性回归，路径可预期、幅度渐进。加息是「例行公事」。",
+        "definition": "从宽松水平向中性回归，路径可预期、幅度渐进。加息是「例行公事」。",
         "cycles": [
           "2004-2006",
           "2015-2018"
