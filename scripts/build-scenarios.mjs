@@ -45,6 +45,14 @@ const MODERN_FROM = '1994-01-01';
 
 const r2 = x => Math.round(x * 100) / 100;
 
+/** 标准正态 CDF（Abramowitz & Stegun 7.1.26 erf 近似，|误差| < 7.5e-8） */
+function normCdf(z) {
+  const t = 1 / (1 + 0.2316419 * Math.abs(z));
+  const d = 0.3989422804014327 * Math.exp(-z * z / 2);
+  const p = d * t * (0.319381530 + t * (-0.356563782 + t * (1.781477937 + t * (-1.821255978 + t * 1.330274429))));
+  return z >= 0 ? 1 - p : p;
+}
+
 /** 二分：第一个 >= d 的索引 */
 function lowerBound(dates, d) {
   let lo = 0, hi = dates.length;
@@ -237,6 +245,38 @@ async function main() {
       const gap = Math.abs(cfgB1 - mi.nextMeeting.p25);
       log(`  市场隐含 P(25bp) = ${(mi.nextMeeting.p25 * 100).toFixed(0)}% ｜ 配置值 = ${(cfgB1 * 100).toFixed(0)}% ｜ 差 ${(gap * 100).toFixed(0)}pp`);
       if (gap > 0.10) log(`  ⚠ 偏离 > 10pp —— 请复核 config/scenarios.json 的 B 轴概率（口径：以市场定价为准）`);
+    }
+  }
+
+  // C 轴同款偏离告警：市场隐含终点（bp-to-go）→ 按 σ 分摊到三档 → 与配置概率比对
+  // 与 B 轴一致，config 里的 C 轴概率是「人工确认过」的值，市场会漂移 → >10pp 提示复核。
+  {
+    const mi = readJson(path.join(DATA, 'derived', 'market-implied.json'));
+    const pp = cfg._probabilityBasis?.axisC_params;
+    log('');
+    log('▸ C 轴「还会再加多少」与市场定价比对');
+    if (!mi?.terminal || !Array.isArray(pp?.boundariesBp)) {
+      log('  ⚠ 缺 market-implied.json 的 terminal 或 config 的 axisC_params → 跳过比对');
+    } else {
+      const mu = mi.terminal.addBp;                     // 自当前档位上限起还需加多少 bp
+      const sd = pp.sigmaPp * 100;                      // pp → bp
+      const [b1, b2] = pp.boundariesBp;
+      const c1 = normCdf((b1 - mu) / sd);
+      const c2 = normCdf((b2 - mu) / sd) - c1;
+      const c3 = 1 - normCdf((b2 - mu) / sd);
+      const implied = { C1: c1, C2: c2, C3: c3 };
+      log(`  市场隐含终点 ${mi.terminal.upperBasis}%（自 ${pp.refLevel}% 再加 ${mu}bp）｜分摊假设 σ = ${pp.sigmaPp.toFixed(2)}pp ｜ 分档界 ${b1}/${b2}bp`);
+      let worst = 0, worstId = null;
+      for (const g of cfg.axisC.groups) {
+        const im = implied[g.id];
+        if (im === undefined) continue;
+        const gap = Math.abs(g.probability - im);
+        if (gap > worst) { worst = gap; worstId = g.id; }
+        const mark = gap > 0.10 ? '⚠' : ' ';
+        log(`  ${mark} ${g.id} ${g.name.padEnd(5)}  配置 ${(g.probability * 100).toFixed(0).padStart(3)}%   市场隐含 ${(im * 100).toFixed(0).padStart(3)}%   差 ${(gap * 100).toFixed(0).padStart(2)}pp`);
+      }
+      if (worst > 0.10) log(`  ⚠ 最大偏离 ${(worst * 100).toFixed(0)}pp（${worstId}）> 10pp —— 请复核 config/scenarios.json 的 C 轴概率`);
+      else log(`  ✓ 最大偏离 ${(worst * 100).toFixed(0)}pp（${worstId}）≤ 10pp，无需复核`);
     }
   }
 

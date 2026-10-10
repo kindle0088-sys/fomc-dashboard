@@ -7,6 +7,10 @@
  *
  * 产出：data/raw/sep/<YYYYMMDD>.json（每期一个文件）
  *       data/derived/sep-series.json（多期汇总，供看板消费）
+ *
+ * 增量策略：SEP 一经发布即不再变更 → 已入库且内容有效（ok 且 points 非空）的期数直接跳过。
+ *   历史上每日全量重抓 23 期，既有 404 假告警（如 20220316 旧式 HTML 页已下线），
+ *   又给 federalreserve.gov 打无谓请求。
  */
 
 import fs from 'node:fs';
@@ -196,7 +200,19 @@ async function main() {
   fs.mkdirSync(RAW, { recursive: true });
   const out = [];
   const fail = [];
+  const skipped = [];
   for (const d of MEETINGS) {
+    // skip-if-exists：已入库且有效则跳过（见文件头「增量策略」）
+    const cached = path.join(RAW, `${d}.json`);
+    if (fs.existsSync(cached)) {
+      try {
+        const j = JSON.parse(fs.readFileSync(cached, 'utf8'));
+        if (j && j.ok === true && Array.isArray(j.points) && j.points.length > 0) {
+          skipped.push(d);
+          continue;
+        }
+      } catch { /* 文件损坏 → 落到下面重新抓取 */ }
+    }
     try {
       const res = await fetchOne(d);
       if (res.ok) {
@@ -233,6 +249,7 @@ async function main() {
   const viaHtml = series.filter(s => s.via === 'html').length;
   const viaPdf = series.filter(s => s.via === 'pdf').length;
   console.log(`\n本轮抓取：${out.length} 期成功 / ${fail.length} 期失败${fail.length ? ' → ' + fail.join(', ') : ''}`);
+  if (skipped.length) console.log(`已入库跳过：${skipped.length} 期${skipped.length === MEETINGS.length ? '（无新期，未发出任何请求）' : ''}`);
   console.log(`汇总入库：${series.length} 期（HTML ${viaHtml} / PDF 回退 ${viaPdf}）`);
   console.log(`覆盖：${series[0].date} → ${series[series.length - 1].date}`);
   console.log(`→ data/derived/sep-series.json`);

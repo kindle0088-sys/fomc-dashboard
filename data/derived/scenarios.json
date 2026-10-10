@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-09T23:30:08.314+08:00",
+  "generatedAt": "2026-10-10T19:10:25.918+08:00",
   "method": {
     "eventDay": "目标利率生效日（FRED DFEDTAR / DFEDTARU 自动探测）",
     "baseline": "事件日前一交易日收盘",
