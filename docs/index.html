@@ -342,11 +342,11 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
     <div class="sc">
       <div class="hd">
         <span class="id">B1</span><span class="nm">加息 25bp</span>
-        <span class="pb">15%</span>
+        <span class="pb">85%</span>
       </div>
-      <div class="bar"><i style="width:15%"></i></div>
+      <div class="bar"><i style="width:85%"></i></div>
       
-      <div class="an">市场隐含会后中点 3.911（当前 3.875）→ 幅度 4.0bp ÷ 25bp = 15%。⚠️ 该场无点阵、且台阶只覆盖 10 月最后 3 天（3/31 权重），近月合同的分辨力弱（OCT 结算价 1bp 误差 ≈ 会后利率 10bp）——15% 是噪声较大的点估计，真正的信息量在 12-09（80%）。历史上这一档占多数的形态是「可预期的渐进路径」（2004–06）</div>
+      <div class="an">市场隐含会后中点 4.097（当前 3.875）→ 幅度 21.2bp ÷ 25bp ≈ 85%。这一档是 12-09 的主流预期：9 月已加、10 月暂停后，市场把年内第二次加息几乎完全押在 12 月。历史上这一档占多数的形态是「可预期的渐进路径」（2004–06）</div>
       
       
       
@@ -361,7 +361,7 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
       </div>
       <div class="bar"><i style="width:0%"></i></div>
       
-      <div class="an">市场零定价：2026-10-28 至 2027-11 的【全部】会议隐含步长均 < 25bp（最大为 12-09 的 20bp），无任何一场被定价为 ≥50bp。历史参照：1994-08、1994-11、2022 系列属此类</div>
+      <div class="an">市场零定价：2026-12-09 至 2027-11 的【全部】会议隐含步长均 < 25bp（最大即 12-09 的 21bp，次高 2027-03 的 16bp），无任何一场被定价为 ≥50bp。历史参照：1994-08、1994-11、2022 系列属此类</div>
       
       
       
@@ -372,11 +372,11 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
     <div class="sc">
       <div class="hd">
         <span class="id">B3</span><span class="nm">按兵不动</span>
-        <span class="pb">85%</span>
+        <span class="pb">15%</span>
       </div>
-      <div class="bar"><i style="width:85%"></i></div>
+      <div class="bar"><i style="width:15%"></i></div>
       
-      <div class="an">市场主导预期。隐含会后中点 3.911 与当前 3.875 仅差 4.0bp ⇒ 市场认为 10-28 大概率按兵不动、等 12-09；年内链条 15% + 85%×80% ≈ 83% 的「至少一加」，折合 0.83 次 × 25bp ≈ 20.8bp，与市场隐含 DEC26 中点较当前 +23.5bp 同阶</div>
+      <div class="an">剩余 15% 归入此档：市场并非完全排除 12-09 继续等（会后隐含中点 4.097 与当前 3.875 差 21.2bp ⇒ 0.85 次 25bp），另一半可能是「12-09 不加但 2027 年初加」的均值混合。故 hold 的 15% 不等于「加息周期结束」，只是「这场不加」</div>
       
       
       
@@ -820,7 +820,7 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
   加息事件日由 FRED DFEDTAR / DFEDTARU 自动探测，非人工录入；CME FedWatch 概率无公开 API，仅作交叉校验，不计入本页数值<br>
   <b>主观部分</b>：三轴情景的概率与触发条件为人工判断（见 <code>config/scenarios.json</code>），需定期复核<br>
   <b>点阵数据</b>：<code>collect-sep.mjs</code> 自动抓取，收录 2021-03 起全部 SEP 期次 ·
-  <b>更新</b>：2026-10-29 14:37 SGT ·
+  <b>更新</b>：2026-10-29 14:39 SGT ·
   期货曲线 CME 仅保留约 7 个交易日，每日采集留档<br>
   <b>免责</b>：本页为数据分析产物，不构成投资建议。
 </footer>
