@@ -3,7 +3,7 @@
   "endpoint": "https://www.cmegroup.com/CmeWS/mvc/Settlements/Futures/Settlements/305/FUT?tradeDate=10/28/2026",
   "tradeDate": "10/28/2026",
   "updateTime": "Wednesday, 28 Oct 2026 11:55 PM",
-  "fetchedAt": "2026-10-29T14:37:11.346+08:00",
+  "fetchedAt": "2026-10-29T23:30:00.799+08:00",
   "formula": "impliedRate = 100 - settle",
   "contractCount": 60,
   "curve": [
