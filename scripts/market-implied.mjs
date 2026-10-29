@@ -184,10 +184,13 @@ async function main() {
   }
 
   const near = series.slice(1, 4);
+  // ⚠️ 「下一场」不能写死 series[1]：决议日过后 series[1] 已是刚开完的那场，
+  //    必须按今天（SGT）过滤出第一个尚未举行的会议，否则 B 轴指针会滞后一天。
+  const todaySGT = new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
+  const nxt = series.slice(1).find((s) => s.decision >= todaySGT) || series[series.length - 1];
   log('');
-  log('▸ 下一场（10-28）概率');
-  const p1028 = series[1];
-  log(`  加息 25bp ${(p1028.p25 * 100).toFixed(0)}% ｜ 按兵不动 ${((1 - p1028.p25) * 100).toFixed(0)}% ｜ ≥50bp ${(Math.max(0, p1028.d - STEP) > 0 ? ((p1028.d - STEP) / STEP * 100).toFixed(0) : 0)}% ｜ 降息 0%`);
+  log(`▸ 下一场（${nxt.decision}）概率`);
+  log(`  加息 25bp ${(nxt.p25 * 100).toFixed(0)}% ｜ 按兵不动 ${((1 - nxt.p25) * 100).toFixed(0)}% ｜ ≥50bp ${(Math.max(0, nxt.d - STEP) > 0 ? ((nxt.d - STEP) / STEP * 100).toFixed(0) : 0)}% ｜ 降息 0%`);
 
   const peak = series.slice(1).reduce((a, c) => c.mid > a.mid ? c : a, series[1]);
   log('');
@@ -202,7 +205,7 @@ async function main() {
     fitQuality: { maxResidBp: r2(maxAbs), meanAbsResidBp: r2(resid.reduce((a, c) => a + Math.abs(c), 0) / resid.length), nObs: obs.length, nUnknown: unk.length },
     caveat: '2027 H2 会议日为推测（官方日历未发布），仅影响 JUL–NOV 27 观测月，不影响 2027-06 之前的路径',
     path: series,
-    nextMeeting: { decision: series[1].decision, mid: series[1].mid, p25: series[1].p25 },
+    nextMeeting: { decision: nxt.decision, mid: nxt.mid, p25: nxt.p25 },
     terminal: { mid: peak.mid, decision: peak.decision, upperBasis: r3(peak.mid + STEP / 2), addBp: r2((peak.mid - midNow) * 100) },
   });
 
