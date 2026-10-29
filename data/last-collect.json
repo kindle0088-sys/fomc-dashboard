@@ -1,12 +1,15 @@
 {
-  "collectedAt": "2026-10-28T11:01:27.696+08:00",
-  "date": "2026-10-28",
+  "collectedAt": "2026-10-29T14:37:11.346+08:00",
+  "date": "2026-10-29",
   "cme": {
-    "tradeDate": "10/26/2026",
+    "tradeDate": "10/28/2026",
     "contractCount": 60,
-    "front": 3.885
+    "front": 3.8825
   },
-  "fred": null,
+  "fred": {
+    "total": 22,
+    "ok": 22
+  },
   "errors": [],
   "status": "ok",
   "fatal": false

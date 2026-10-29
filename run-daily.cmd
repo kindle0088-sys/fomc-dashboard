@@ -22,7 +22,18 @@ REM --- log immediately: tells "ran but died early" apart from "never started" -
 echo [%DATE% %TIME%] launcher start >> "%LLOG%"
 
 REM --- inject bundled git into PATH (scheduled env often lacks git) ---
-set "GITBIN=C:\Users\jiali\.workbuddy\binaries\PortableGit\versions\1.2.0\cmd"
+REM --- resolve PortableGit dynamically (version rotation DELETES old dirs) ---
+set "GITBIN="
+set "PGBASE=C:\Users\jiali\.workbuddy\binaries\PortableGit\versions"
+if exist "%PGBASE%\current" (
+  set /p PGVER=<"%PGBASE%\current"
+  if exist "%PGBASE%\!PGVER!\cmd\git.exe" set "GITBIN=%PGBASE%\!PGVER!\cmd"
+)
+if not defined GITBIN (
+  for /d %%D in ("%PGBASE%\*") do (
+    if exist "%%~fD\cmd\git.exe" set "GITBIN=%%~fD\cmd"
+  )
+)
 if exist "%GITBIN%\git.exe" set "PATH=%GITBIN%;%PATH%"
 
 REM --- resolve node ---

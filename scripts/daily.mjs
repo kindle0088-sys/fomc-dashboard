@@ -24,13 +24,30 @@ function log(line) {
   process.stdout.write(msg);
 }
 
-/** 找可用的 git（禁止硬编码 node 版本路径；git 用内置 PortableGit） */
+/** 找可用的 git。
+ *  ⚠️ PortableGit 会随版本轮换**删除旧版本目录**（2026-10-27 1.2.0 → 1.3.0，
+ *     硬编码版本号直接让 10-27 / 10-28 两次日更在第一步就死掉）。
+ *  故：先读 versions/current 指针 → 失败则扫描版本目录取最高 → 再退 Program Files → 最后 PATH。
+ */
 function findGit() {
-  const candidates = [
-    'C:/Users/jiali/.workbuddy/binaries/PortableGit/versions/1.2.0/cmd/git.exe',
-    'C:/Program Files/Git/cmd/git.exe',
-  ];
-  for (const c of candidates) if (fs.existsSync(c)) return c;
+  const base = 'C:/Users/jiali/.workbuddy/binaries/PortableGit/versions';
+  const sufs = ['cmd/git.exe', 'mingw64/bin/git.exe'];
+  const cands = [];
+  try {
+    const ver = fs.readFileSync(path.join(base, 'current'), 'utf8').trim();
+    if (ver) for (const s of sufs) cands.push(`${base}/${ver}/${s}`);
+  } catch { /* current 指针缺失 → 走目录扫描 */ }
+  try {
+    const vers = fs.readdirSync(base, { withFileTypes: true })
+      .filter((d) => d.isDirectory() && /^\d+(\.\d+)+$/.test(d.name))
+      .map((d) => d.name)
+      .sort((a, b) => b.localeCompare(a, undefined, { numeric: true }));
+    for (const v of vers) for (const s of sufs) cands.push(`${base}/${v}/${s}`);
+  } catch { /* 目录不可读 → 继续看 Program Files */ }
+  cands.push('C:/Program Files/Git/cmd/git.exe');
+  for (const c of cands) if (fs.existsSync(c)) return c;
+  const probe = spawnSync('git', ['--version'], { encoding: 'utf8' });
+  if (!probe.error && probe.status === 0) return 'git';
   return null;
 }
 
