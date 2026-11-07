@@ -106,6 +106,10 @@ details>summary:hover{color:var(--tx)}
 .warnbox{font-size:11.5px;color:var(--tx2);background:rgba(239,159,39,.08);border:1px solid #854F0B;
   border-radius:7px;padding:9px 12px;line-height:1.75;margin-bottom:12px}
 footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--tx3);line-height:1.8}
+.arch{display:inline-block;font-size:12px;color:var(--blue);text-decoration:none;
+      padding:2px 10px;border-radius:20px;border:1px solid #2C4A6B;background:rgba(55,138,221,.08);
+      vertical-align:middle;transition:background .15s,border-color .15s}
+.arch:hover{background:rgba(55,138,221,.16);border-color:#3D6591}
 </style>
 </head>
 <body>
@@ -115,6 +119,7 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
   <span class="badge ok">数据 2026-11-07</span>
   <span class="badge">期货结算日 11/06/2026</span>
   <span class="badge">下一场会议 2026-10-28</span>
+  <a class="arch" href="archive/">复盘档案 →</a>
 </div>
 <nav class="toc">
   <a href="#s1">一 · 政策位置</a>
@@ -818,8 +823,10 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
   （<code>collect-history.mjs</code> → <code>build-scenarios.mjs</code>）；
   加息事件日由 FRED DFEDTAR / DFEDTARU 自动探测，非人工录入；CME FedWatch 概率无公开 API，仅作交叉校验，不计入本页数值<br>
   <b>主观部分</b>：三轴情景的概率与触发条件为人工判断（见 <code>config/scenarios.json</code>），需定期复核<br>
+  <b>复盘档案</b>：每期决议的冻结值与事后复盘独立归档于 <a href="archive/" style="color:var(--blue)">archive/</a>，
+  自包含、不被新周期覆盖 · 本页三轴概率随指针滚动，<b>同一数值在决议前后可能指向不同会议</b>，读历史请以档案页的会议标注为准<br>
   <b>点阵数据</b>：<code>collect-sep.mjs</code> 自动抓取，收录 2021-03 起全部 SEP 期次 ·
-  <b>更新</b>：2026-11-07 23:30 SGT ·
+  <b>更新</b>：2026-11-07 23:34 SGT ·
   期货曲线 CME 仅保留约 7 个交易日，每日采集留档<br>
   <b>免责</b>：本页为数据分析产物，不构成投资建议。
 </footer>
