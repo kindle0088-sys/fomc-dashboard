@@ -1,0 +1,199 @@
+{
+  "schema": 1,
+  "meeting": "2026-10-28",
+  "decision": {
+    "action": "hold",
+    "targetRange": "3.75–4.00%",
+    "vote": "10 : 2",
+    "dissenters": [
+      {
+        "name": "库克 (Lisa Cook)",
+        "role": "理事",
+        "preferred": "+25bp",
+        "note": "被视为中间派，本次为其首次投反对票"
+      },
+      {
+        "name": "哈马克 (Beth Hammack)",
+        "role": "克利夫兰联储主席",
+        "preferred": "+25bp"
+      }
+    ],
+    "statementChanges": [
+      {
+        "item": "经济评估",
+        "from": "稳健扩张 (moderate)",
+        "to": "强劲扩张 (strong)"
+      },
+      {
+        "item": "政策指引句",
+        "from": "今天的政策行动将有助于通胀更及时地回到 2%",
+        "to": "更多信息的积累将帮助委员会确定适当的政策立场，以确保通胀及时回到 2%（删除具体行动承诺，保留紧缩倾向）"
+      },
+      {
+        "item": "就业表述",
+        "from": "维持不变",
+        "to": "就业增长与劳动力供给保持同步，失业率变化不大"
+      }
+    ],
+    "presserHighlights": [
+      "承认上次加息以来金融条件趋于收紧，但拒绝定性为「紧张」",
+      "强调通胀高于目标已持续近六年，降通胀是美联储职责",
+      "对增长乐观：上半年 GDP 由 1.8% 上修至 2.4%，三季度更强；失业率低、薪资加快、初请接近历史低位",
+      "「多数官员认为经济并未过热」——潜在增长率无法精确测量，生产率已提升数年",
+      "「政策目标并非给经济运转撒沙子、让人们失业」",
+      "拒绝就 12 月是否加息给出前瞻指引，但未否认 12 月加息是多数委员共识"
+    ],
+    "structuralChanges": [
+      "2027 年起：每年仍 8 次会议，其中 1 场聚焦宏观策略、不投票、不发声明",
+      "2028 年起：2 场聚焦宏观策略",
+      "政策会议实质频次下降，降低前端利率的尾部风险"
+    ],
+    "marketRead": "会后市场对 12 月加息 25bp 的定价小幅回落，Warsh 表态被普遍解读为「略偏鸽派」"
+  },
+  "macroAtReview": {
+    "asOf": "2026-11-07",
+    "corePceYoY": 3.12,
+    "corePce3mAnn": 2.9,
+    "cpiYoY": 4.02,
+    "breakeven10y": 2.23,
+    "unrate": 4.1,
+    "payrolls3mAvg": 137,
+    "dgs10": 4.84,
+    "dgs2": 4.46,
+    "spread10y2y": 0.35,
+    "real10y": 2.6,
+    "hySpread": 3.48,
+    "nfci": -0.459,
+    "vix": 28.18,
+    "effr": 3.88
+  },
+  "marketPath": [
+    {
+      "cmeTradeDate": "10/28/2026",
+      "capturedAt": "10-29 23:30",
+      "commit": "7d9fbaf",
+      "p25Next": 0.85,
+      "nextMeeting": "2026-12-09",
+      "terminalMid": 4.627,
+      "terminalUpper": 4.752,
+      "addBp": 75.2,
+      "peak": "2027-09-15",
+      "maxResidBp": 1.45
+    },
+    {
+      "cmeTradeDate": "10/29/2026",
+      "capturedAt": "10-30 23:30",
+      "commit": "7f42445",
+      "p25Next": 0.79,
+      "nextMeeting": "2026-12-09",
+      "terminalMid": 4.526,
+      "terminalUpper": 4.651,
+      "addBp": 65.1,
+      "peak": "2027-09-15",
+      "maxResidBp": 1.24
+    },
+    {
+      "cmeTradeDate": "10/30/2026",
+      "capturedAt": "11-02 23:30",
+      "commit": "6bc503d",
+      "p25Next": 0.7,
+      "nextMeeting": "2026-12-09",
+      "terminalMid": 4.446,
+      "terminalUpper": 4.571,
+      "addBp": 57.1,
+      "peak": "2027-09-15",
+      "maxResidBp": 1.38
+    },
+    {
+      "cmeTradeDate": "11/02/2026",
+      "capturedAt": "11-03 23:30",
+      "commit": "157f021",
+      "p25Next": 0.74,
+      "nextMeeting": "2026-12-09",
+      "terminalMid": 4.45,
+      "terminalUpper": 4.575,
+      "addBp": 57.5,
+      "peak": "2027-09-15",
+      "maxResidBp": 1.18
+    },
+    {
+      "cmeTradeDate": "11/03/2026",
+      "capturedAt": "11-04 23:30",
+      "commit": "122ea15",
+      "p25Next": 0.77,
+      "nextMeeting": "2026-12-09",
+      "terminalMid": 4.486,
+      "terminalUpper": 4.611,
+      "addBp": 61.1,
+      "peak": "2027-09-15",
+      "maxResidBp": 1.21
+    },
+    {
+      "cmeTradeDate": "11/04/2026",
+      "capturedAt": "11-05 23:30",
+      "commit": "cf3fc2f",
+      "p25Next": 0.82,
+      "nextMeeting": "2026-12-09",
+      "terminalMid": 4.46,
+      "terminalUpper": 4.585,
+      "addBp": 58.5,
+      "peak": "2027-09-15",
+      "maxResidBp": 1.17
+    },
+    {
+      "cmeTradeDate": "11/05/2026",
+      "capturedAt": "11-06 23:30",
+      "commit": "a14fcb0",
+      "p25Next": 0.67,
+      "nextMeeting": "2026-12-09",
+      "terminalMid": 4.311,
+      "terminalUpper": 4.436,
+      "addBp": 43.6,
+      "peak": "2027-09-15",
+      "maxResidBp": 0.98
+    },
+    {
+      "cmeTradeDate": "11/06/2026",
+      "capturedAt": "11-07 23:30",
+      "commit": "46bedcc",
+      "p25Next": 0.77,
+      "nextMeeting": "2026-12-09",
+      "terminalMid": 4.35,
+      "terminalUpper": 4.475,
+      "addBp": 47.5,
+      "peak": "2027-09-15",
+      "maxResidBp": 0.98
+    }
+  ],
+  "verdict": {
+    "A": {
+      "frozen": {
+        "A1": 0.54,
+        "A2": 0.36,
+        "A3": 0.1
+      },
+      "status": "部分验证（需多期累计）",
+      "reasoning": "A 轴为纯主观判断，无市场价格可对照。决议后证据整体倾向 A1「预防式」：声明把经济评估由「稳健」上调为「强劲」，Warsh 明确「经济并未过热」「不给经济撒沙子」，同时 10y 盈亏平衡仅 2.23%（通胀预期未脱锚）而 CPI 仍 4.02%——正是「经济强、通胀未失控、抢在失控前收紧」的形态。A3「追赶式」证据不支持：通胀预期锚定、核心 PCE 3 个月年化 2.9% 低于同比 3.12%（动能减速）。矛盾信号：Warsh 拒绝前瞻指引 + 减少会议频次，削弱了 A2 定义中的「路径可预期」。"
+    },
+    "B": {
+      "frozen": {
+        "B1": 0.15,
+        "B2": 0,
+        "B3": 0.85,
+        "B4": 0
+      },
+      "marketImpliedHold": 0.85,
+      "status": "命中（但为市场口径，非独立判断）",
+      "reasoning": "冻结时 B3「按兵不动」85%，市场对 10-28 加息的定价仅 15%（即 hold 85%）——B 轴设计口径本就是「以市场定价为准」，因此该档 85% 等于照抄市场。实际 hold，命中只证明市场定价正确，不构成我们的独立判断被验证。"
+    },
+    "C": {
+      "frozen": {
+        "C1": 0.58,
+        "C2": 0.31,
+        "C3": 0.11
+      },
+      "status": "未完成（周期未结束，不可判定）",
+      "reasoning": "C 轴问「本轮还会再加多少」，答案要等加息周期真正结束才能定。截至 11/06 结算，市场隐含终点由决议后 4.752%（+75.2bp）降至 4.475%（+47.5bp），C1「≤100bp」的市场概率由 60% 升至 70%。方向支持 C1 占优，但我们的 58% 比市场当时的 60% 保守；换言之方向对、幅度判断不如市场激进。"
+    }
+  }
+}

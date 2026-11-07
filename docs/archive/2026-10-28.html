@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2026-10-28 FOMC 决议复盘 · 预测 vs 实际</title>
+<style>
+:root{
+  --bg:#12100E; --panel:#1B1917; --panel2:#221F1C; --line:#33302C;
+  --tx:#EDEAE6; --tx2:#A8A29A; --tx3:#6F6A63;
+  --red:#E24B4A; --green:#639922; --blue:#378ADD; --amber:#EF9F27; --purple:#7F77DD;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  font-size:14px;line-height:1.65;padding:28px 22px 70px;max-width:1100px;margin:0 auto}
+h1{font-size:21px;font-weight:500;letter-spacing:.3px}
+h2{font-size:15px;font-weight:500;margin:36px 0 14px;padding-left:10px;
+   border-left:3px solid var(--amber);letter-spacing:.2px}
+h3{font-size:13.5px;font-weight:600;margin:22px 0 9px;color:var(--tx);letter-spacing:.2px}
+p{margin:9px 0;color:var(--tx2)}
+p strong{color:var(--tx);font-weight:600}
+.sub{color:var(--tx2);font-size:13px;margin-top:7px}
+.badges{margin-top:13px;display:flex;flex-wrap:wrap;gap:7px}
+.badge{display:inline-block;padding:2.5px 10px;border-radius:20px;font-size:11.5px;
+  border:1px solid var(--line);color:var(--tx2);letter-spacing:.2px}
+.badge.hl{border-color:#5A4A22;color:var(--amber);background:rgba(239,159,39,.07)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;
+  background:var(--panel2);padding:1px 5px;border-radius:4px;color:var(--tx)}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.note{border:1px solid var(--line);background:var(--panel);border-radius:9px;
+  padding:13px 15px;margin:14px 0;font-size:12.5px;color:var(--tx2);line-height:1.7}
+.note.warn{border-left:3px solid var(--amber)}
+.note b{color:var(--tx)}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:11px;margin:16px 0 6px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 15px}
+.card .k{font-size:11px;color:var(--tx3);letter-spacing:.5px;text-transform:uppercase;margin-bottom:7px}
+.card .v{font-size:19px;font-weight:600;letter-spacing:.2px;line-height:1.3}
+.card .d{font-size:12px;color:var(--tx2);margin-top:6px;line-height:1.6}
+
+table{width:100%;border-collapse:collapse;margin:13px 0;font-size:12.8px}
+th,td{padding:9px 11px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--tx3);font-weight:500;font-size:11.5px;letter-spacing:.4px;text-transform:uppercase;
+   border-bottom:1px solid #3E3A35}
+tr:last-child td{border-bottom:none}
+tbody tr:hover{background:rgba(255,255,255,.018)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.up{color:var(--red);font-variant-numeric:tabular-nums}
+.down{color:var(--green);font-variant-numeric:tabular-nums}
+.muted{color:var(--tx3)}
+.tag{display:inline-block;padding:1.5px 8px;border-radius:5px;font-size:11.5px;
+  border:1px solid var(--line);color:var(--tx2);white-space:nowrap}
+.tag.solid{border-color:#4A4640;background:var(--panel2);color:var(--tx)}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:760px){.grid2{grid-template-columns:1fr}}
+
+ul{margin:8px 0 8px 19px;color:var(--tx2)}
+li{margin:4px 0}
+li strong{color:var(--tx)}
+
+.chartwrap{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+  padding:16px 12px 8px;margin:16px 0}
+.chartwrap .cap{font-size:11.5px;color:var(--tx3);text-align:center;padding:4px 0 8px}
+
+.pill{display:inline-block;font-size:11px;padding:1px 7px;border-radius:4px;
+  border:1px solid var(--line);color:var(--tx3);margin-left:6px}
+
+footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);
+  font-size:11.5px;color:var(--tx3);line-height:1.8}
+footer b{color:var(--tx2);font-weight:500}
+</style>
+</head>
+<body>
+
+<h1>2026-10-28 FOMC 决议复盘</h1>
+<div class="sub">预测 vs 实际 · 三轴复盘 · 市场如何重新定价</div>
+<div class="badges">
+  <span class="badge hl">决议日 2026-10-28</span>
+  <span class="badge">冻结提交 f514d3c（10-28 11:03 SGT）</span>
+  <span class="badge">数据时点 CME 11/06</span>
+  <span class="badge">复盘生成 2026-11-07</span>
+</div>
+
+<div class="note" style="margin-top:18px">
+  <b>配色说明</b>：本页红 = 上行 / 增加，绿 = 下行 / 减少。判定结果（命中 / 未完成 / 部分验证）<b>不使用颜色</b>区分，只用符号与文字标注——对错不是好坏，只是信息。
+</div>
+
+<h2>结论摘要</h2>
+
+<div class="cards">
+  <div class="card">
+    <div class="k">B 轴 · 单场结果</div>
+    <div class="v">命中，但含金量低</div>
+    <div class="d">冻结 B3「按兵不动」85%，实际 hold。但该档 85% 就是市场定价（市场给加息 15%），口径是「以市场定价为准」，<strong>不构成独立判断</strong>。</div>
+  </div>
+  <div class="card">
+    <div class="k">A 轴 · 加息性质</div>
+    <div class="v">部分验证</div>
+    <div class="d">A1「预防式」54% 是本次唯一的主观判断。决议后的声明与记者会证据整体支持它，但 A3「追赶式」被通胀预期锚定直接排除。</div>
+  </div>
+  <div class="card">
+    <div class="k">C 轴 · 周期幅度</div>
+    <div class="v">未完成</div>
+    <div class="d">「本轮还会再加多少」要等周期结束才有答案。方向支持 C1（≤100bp），但我们的 58% 比市场当时的 60% 保守。</div>
+  </div>
+</div>
+
+<p style="margin-top:16px">真正值得记住的不是命中率，而是这一条：<strong>决议后 8 个交易日内，市场把「本轮还能再加多少」从 75.2bp 砍到 47.5bp，收敛 36.8%</strong>——而这一切发生在美联储几乎没有给出任何新信息的情况下。决议偏鸽是「即时反应」，市场随后做出的才是「定价重估」。</p>
+
+<h2>L1 · 命中表</h2>
+
+<table>
+  <thead>
+    <tr><th style="width:15%">轴</th><th style="width:8%">问题</th><th style="width:26%">冻结值（10-28 11:03）</th><th style="width:20%">实际 / 市场基准</th><th>判定</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>A · 加息性质</strong></td>
+      <td class="muted">定性</td>
+      <td>A1 预防式 <b>54%</b> ／ A2 正常化 36% ／ A3 追赶式 10%</td>
+      <td>决议后证据支持 A1；A3 基本可排除</td>
+      <td><span class="tag solid">◐ 部分验证</span><div class="muted" style="margin-top:5px;font-size:11.5px">纯主观轴，一次会议裁不了</div></td>
+    </tr>
+    <tr>
+      <td><strong>B · 单场结果</strong></td>
+      <td class="muted">10-28</td>
+      <td>B1 加息 25bp 15% ／ <b>B3 按兵不动</b> <b>85%</b></td>
+      <td>实际 <b>hold</b>；市场当时给 hold <b>85%</b></td>
+      <td><span class="tag solid">✓ 命中</span><div class="muted" style="margin-top:5px;font-size:11.5px">但等于照抄市场，非独立判断</div></td>
+    </tr>
+    <tr>
+      <td><strong>C · 周期幅度</strong></td>
+      <td class="muted">整轮</td>
+      <td>C1 ≤100bp <b>58%</b> ／ C2 100–200bp 31% ／ C3 &gt;200bp 11%</td>
+      <td>市场 C1 由 60% 升至 <b>70%</b>；隐含再加 47.5bp</td>
+      <td><span class="tag">○ 未完成</span><div class="muted" style="margin-top:5px;font-size:11.5px">周期未结束，不可判定</div></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="note warn">
+  <b>⚠️ 读这张表的一个陷阱：同一个「85%」，决议前后指的不是同一场会议。</b><br>
+  B 轴的概率随指针（<code>nextMeeting</code>）自动滚动。决议前 85% 指的是 <b>10-28 那一场</b>；决议后指针跳到 <b>12-09</b>，配置值仍是 85%，但那已经是下一场的概率。日更日志里从 10-28 到 11-06 一直打印「配置值 = 85%」，若不区分会议日期，会得出「我们预测 10-28 加息 85%」这种完全相反的结论。
+</div>
+
+<h2>决议实况</h2>
+
+<div class="grid2">
+  <div>
+    <h3>票型与结论</h3>
+    <p>维持联邦基金利率目标区间 <strong>3.75%–4.00%</strong>，投票 <strong>10 : 2</strong>。这是 9 月加息 25bp 之后的首次暂停。</p>
+    <ul>
+      <li><strong>库克（Lisa Cook，理事）</strong>：主张 +25bp。<strong>被视为中间派，这是她首次投反对票</strong>——加息诉求已扩散到中间派。</li>
+      <li><strong>哈马克（Beth Hammack，克利夫兰联储主席）</strong>：主张 +25bp。</li>
+    </ul>
+    <p>9 月的加息决议是一致通过，本次出现两张反对票，说明委员会内部对「是否还要继续」的分歧公开化了。</p>
+  </div>
+  <div>
+    <h3>声明措辞的三处变化</h3>
+    <table style="margin-top:4px">
+      <tbody>
+        <tr><td style="width:26%" class="muted">经济评估</td><td>「稳健扩张」→ <strong>「强劲扩张」</strong></td></tr>
+        <tr><td class="muted">政策指引句</td><td>删除「今天的政策行动将有助于通胀更及时地回到 2%」，改为「<strong>更多信息的积累</strong>将帮助委员会确定适当立场」</td></tr>
+        <tr><td class="muted">紧缩倾向</td><td>保留，未删除</td></tr>
+      </tbody>
+    </table>
+    <p class="muted" style="font-size:12.5px">删除行动承诺、保留紧缩倾向，等于把「继续加」变成「看情况加」——这是典型的观察期措辞，不是终点措辞。</p>
+  </div>
+</div>
+
+<h3>Warsh 记者会的六个要点</h3>
+<table>
+  <tbody>
+    <tr><td style="width:30%" class="muted">金融条件</td><td>承认上次加息以来趋于收紧，但<b>拒绝定性为「紧张」</b></td></tr>
+    <tr><td class="muted">通胀立场</td><td>通胀高于目标已持续<b>近六年</b>，降通胀是美联储职责</td></tr>
+    <tr><td class="muted">增长判断</td><td>上半年 GDP 由 1.8% 上修至 <b>2.4%</b>，三季度更强；失业率低、薪资加快、初请接近历史低位</td></tr>
+    <tr><td class="muted">是否过热</td><td><b>「多数官员认为经济并未过热」</b>——潜在增长率无法精确测量，生产率已提升数年</td></tr>
+    <tr><td class="muted">政策目标</td><td>「并非给经济运转撒沙子、让人们失业」</td></tr>
+    <tr><td class="muted">前瞻指引</td><td><b>拒绝就 12 月是否加息给出指引</b>，但未否认 12 月加息是多数委员共识</td></tr>
+  </tbody>
+</table>
+
+<h3>机制改革：降低会议频次的实质</h3>
+<p>2027 年起每年仍开 8 次会，但其中 <strong>1 场聚焦宏观策略、不投票、不发声明</strong>；2028 年起增至 2 场。政策会议的实质频次下降，会降低前端利率的尾部风险——这是 Warsh 任内第一次结构性调整，分量不轻。</p>
+
+<p>市场即时解读：<strong>略偏鸽派</strong>。会后对 12 月加息 25bp 的定价小幅回落。</p>
+
+<h2>L2 · 逐轴复盘</h2>
+
+<h3>A 轴｜唯一真正的主观判断</h3>
+<p>A 轴没有市场价格可抄，54% 是我们自己设的。所以对它的检验，才是这次复盘唯一有含金量的部分。</p>
+
+<table>
+  <thead><tr><th style="width:16%">档位</th><th style="width:9%" class="num">冻结</th><th>决议后的证据</th><th style="width:16%">裁定</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>A1 预防式</strong><div class="muted" style="font-size:11.5px">通胀未失控，抢先收紧</div></td>
+      <td class="num"><strong>54%</strong></td>
+      <td>声明把经济从「稳健」上调为<b>「强劲」</b>；Warsh 明确「经济并未过热」「不给经济撒沙子」；10y 盈亏平衡通胀仅 <b>2.23%</b>（预期未脱锚）而 CPI 仍 <b>4.02%</b>。经济强 + 通胀高但不失控 + 抢在失控前收紧 = A1 的教科书形态。</td>
+      <td><span class="tag solid">证据支持</span></td>
+    </tr>
+    <tr>
+      <td><strong>A2 正常化</strong><div class="muted" style="font-size:11.5px">回归中性，渐进可预期</div></td>
+      <td class="num">36%</td>
+      <td>支持：删除行动承诺、进入观察期；NFCI −0.459 说明金融条件仍宽松，实际 10y 2.60% 尚有空间。<br><b>矛盾</b>：Warsh 拒绝前瞻指引 + 减少会议频次，直接削弱了 A2 定义中的「路径可预期」。</td>
+      <td><span class="tag">部分支持<br>含矛盾</span></td>
+    </tr>
+    <tr>
+      <td><strong>A3 追赶式</strong><div class="muted" style="font-size:11.5px">通胀失控，被迫快加</div></td>
+      <td class="num">10%</td>
+      <td>盈亏平衡 2.23% 说明通胀预期锚定；核心 PCE <b>3 个月年化 2.9% 低于同比 3.12%</b>，动能正在减速；Warsh 明说不过热。三条都不支持。</td>
+      <td><span class="tag">基本排除</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>结论</strong>：A1 大概率正确，A3 可以基本剔除。但必须说清楚——<strong>A 轴问的是「这一轮加息的性质」，一次暂停会议只能提供片段证据，真正的裁定要等本轮周期走完</strong>。这也是本期新增的明确口径：A 轴改为「多期累计判定」，不再期待单期定论。</p>
+
+<h3>B 轴｜命中了，但这不是我们的功劳</h3>
+<p>决议前最后四个交易日，市场对 10-28 加息的定价一路抬升：</p>
+<table>
+  <thead><tr><th>CME 结算日</th><th class="num">市场给加息概率</th><th class="num">折合 hold</th><th>我们的配置</th></tr></thead>
+  <tbody>
+    <tr><td>10/22</td><td class="num">9%</td><td class="num">91%</td><td class="muted">—</td></tr>
+    <tr><td>10/23</td><td class="num">12%</td><td class="num">88%</td><td class="muted">—</td></tr>
+    <tr><td>10/26（冻结时）</td><td class="num">15%</td><td class="num"><b>85%</b></td><td><b>B3 85%</b></td></tr>
+  </tbody>
+</table>
+<p>我们的 85% 和市场给的 85% <strong>完全重合</strong>。原因不神秘：B 轴在设计时就把口径定成「以市场定价为准」（<code>_probabilityBasis</code> 里写着）。所以这次命中只证明了一件事——<strong>市场的定价是对的</strong>，而不是我们的判断是对的。</p>
+<p>真正有信息量的是那条<b>趋势</b>：四个交易日里加息概率从 9% 抬到 15%，方向是「往加息走」，而结果是不加。<b>市场自己也不敢押注，只是概率在漂移。</b></p>
+
+<h3>C 轴｜方向对，幅度判断不如市场</h3>
+<p>C 轴问「本轮还会再加多少」，分档界 100bp / 200bp。冻结时我们给 C1（≤100bp）58%，市场给 60%——只差 2pp，看起来很像。</p>
+<p>但决议后的演化说明了差别：市场把 C1 一路推到 <strong>70%</strong>，隐含「还能再加」从 75.2bp 降到 47.5bp。<strong>也就是说市场比我们更早、更坚决地认为「这轮加不动多少了」。</strong>方向我们对了，幅度上我们保守了。</p>
+<div class="note">
+  <b>口径提醒</b>：C 轴是一个<b>开放式预测</b>——只要加息周期没结束，它就没有确定的答案。本期把它标为「未完成」，而不是硬凑成命中或落空。等本轮真正转向（或确认结束）后，再回头一次性裁定。
+</div>
+
+<h2>市场如何重新定价</h2>
+
+<div class="chartwrap">
+  <svg viewBox="0 0 680 268" width="100%" height="268" role="img" aria-label="决议后市场隐含本轮再加幅度走势">
+    <defs>
+      <linearGradient id="fillA" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#E24B4A" stop-opacity="0.20"/>
+        <stop offset="100%" stop-color="#E24B4A" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+
+    <!-- 网格 -->
+    <g stroke="#2A2724" stroke-width="1">
+      <line x1="56" y1="40"  x2="640" y2="40"/>
+      <line x1="56" y1="82"  x2="640" y2="82"/>
+      <line x1="56" y1="125" x2="640" y2="125"/>
+      <line x1="56" y1="167" x2="640" y2="167"/>
+      <line x1="56" y1="210" x2="640" y2="210"/>
+    </g>
+    <g fill="#6F6A63" font-size="10.5" text-anchor="end" font-family="ui-monospace,monospace">
+      <text x="48" y="44">80</text>
+      <text x="48" y="86">70</text>
+      <text x="48" y="129">60</text>
+      <text x="48" y="171">50</text>
+      <text x="48" y="214">40</text>
+    </g>
+    <text x="20" y="30" fill="#6F6A63" font-size="10.5">bp</text>
+
+    <!-- 决议前基准 72.1 -->
+    <line x1="56" y1="73.6" x2="640" y2="73.6" stroke="#7F77DD" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.85"/>
+    <text x="564" y="69" fill="#7F77DD" font-size="10.5" text-anchor="end">决议前 72.1bp</text>
+
+    <!-- 面积 -->
+    <path d="M56,60.4 L137,103.3 L218,137.3 L299,135.6 L380,120.3 L462,131.4 L543,194.7 L624,178.1 L624,210 L56,210 Z"
+          fill="url(#fillA)"/>
+
+    <!-- 折线 -->
+    <path d="M56,60.4 L137,103.3 L218,137.3 L299,135.6 L380,120.3 L462,131.4 L543,194.7 L624,178.1"
+          fill="none" stroke="#E24B4A" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+
+    <!-- 数据点 -->
+    <g fill="#12100E" stroke="#E24B4A" stroke-width="2">
+      <circle cx="56"  cy="60.4"  r="3.6"/>
+      <circle cx="137" cy="103.3" r="3.6"/>
+      <circle cx="218" cy="137.3" r="3.6"/>
+      <circle cx="299" cy="135.6" r="3.6"/>
+      <circle cx="380" cy="120.3" r="3.6"/>
+      <circle cx="462" cy="131.4" r="3.6"/>
+      <circle cx="543" cy="194.7" r="3.6"/>
+      <circle cx="624" cy="178.1" r="3.6"/>
+    </g>
+
+    <!-- 关键标注 -->
+    <g font-size="10.5" font-family="ui-monospace,monospace">
+      <text x="56"  y="50"  fill="#EDEAE6" text-anchor="start">75.2</text>
+      <text x="543" y="211" fill="#639922" text-anchor="middle">43.6</text>
+      <text x="624" y="168" fill="#EDEAE6" text-anchor="end">47.5</text>
+    </g>
+
+    <!-- 事件标记 -->
+    <g font-size="10" fill="#6F6A63">
+      <line x1="218" y1="137.3" x2="218" y2="152" stroke="#33302C" stroke-width="1" stroke-dasharray="2 2"/>
+      <text x="222" y="163">科技股抛售</text>
+      <line x1="543" y1="194.7" x2="543" y2="208" stroke="#33302C" stroke-width="1" stroke-dasharray="2 2"/>
+      <text x="547" y="219">非农前低点</text>
+    </g>
+
+    <!-- x 轴标签 -->
+    <g fill="#6F6A63" font-size="10.5" text-anchor="middle" font-family="ui-monospace,monospace">
+      <text x="56"  y="234">10/28</text>
+      <text x="137" y="234">10/29</text>
+      <text x="218" y="234">10/30</text>
+      <text x="299" y="234">11/02</text>
+      <text x="380" y="234">11/03</text>
+      <text x="462" y="234">11/04</text>
+      <text x="543" y="234">11/05</text>
+      <text x="624" y="234">11/06</text>
+      <text x="340" y="252" fill="#6F6A63">CME 结算日（决议后第 N 个交易日）</text>
+    </g>
+  </svg>
+  <div class="cap">市场隐含「本轮还能再加多少 bp」——由 ZQ 期货曲线反推的终点（目标上限 4.475% 减当前 4.00%）</div>
+</div>
+
+<table>
+  <thead>
+    <tr><th>CME 结算日</th><th class="num">本轮再加</th><th class="num">较决议前</th><th class="num">12-09 P(+25bp)</th><th>当日事件</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>10/26 <span class="pill">决议前</span></td><td class="num">72.1bp</td><td class="num muted">—</td><td class="num">15%<span class="muted">（对 10-28）</span></td><td class="muted">冻结基准</td></tr>
+    <tr><td>10/28 <span class="pill">决议日</span></td><td class="num">75.2bp</td><td class="num up">+3.1bp</td><td class="num">85%</td><td>维持不动，市场却把终点推高</td></tr>
+    <tr><td>10/29</td><td class="num">65.1bp</td><td class="num down">−7.0bp</td><td class="num">79%</td><td class="muted">—</td></tr>
+    <tr><td>10/30</td><td class="num">57.1bp</td><td class="num down">−15.0bp</td><td class="num">70%</td><td>科技股大跌，金融条件收紧</td></tr>
+    <tr><td>11/02</td><td class="num">57.5bp</td><td class="num down">−14.6bp</td><td class="num">74%</td><td class="muted">—</td></tr>
+    <tr><td>11/03</td><td class="num">61.1bp</td><td class="num down">−11.0bp</td><td class="num">77%</td><td class="muted">—</td></tr>
+    <tr><td>11/04</td><td class="num">58.5bp</td><td class="num down">−13.6bp</td><td class="num">82%</td><td class="muted">—</td></tr>
+    <tr><td>11/05</td><td class="num">43.6bp</td><td class="num down">−28.5bp</td><td class="num">67%</td><td>非农公布前</td></tr>
+    <tr><td>11/06</td><td class="num">47.5bp</td><td class="num down">−24.6bp</td><td class="num">77%</td><td>非农 +16.5 万（预期 6.5 万），概率反弹</td></tr>
+  </tbody>
+</table>
+
+<h3>三个值得单独说的观察</h3>
+<ul>
+  <li><strong>决议当天市场反而把终点推高了 3.1bp。</strong>这是一种「鸽派决议 + 鹰派定价」的错配：声明偏鸽（删除行动承诺、略偏鸽解读），但市场读出了「经济强劲意味着后面空间更大」。<b>即时反应与后续趋势方向相反</b>，这正是短线解读最容易翻车的地方。</li>
+  <li><strong>最低点出现在非农公布之前（11/05，43.6bp）。</strong>之后非农 +16.5 万（预期 6.5 万）把 12-09 加息概率从 67% 拉回 77%，终点也回升到 47.5bp。<b>单场概率与周期终点可以反向走</b>——短期更可能加，长期终点反而更低。</li>
+  <li><strong>从决议日的 75.2bp 到 11/06 的 47.5bp，收敛 36.8%。</strong>而这段时间美联储几乎没有发布新信息。所以这不是「政策驱动」，是<b>市场自己在重新校准对通胀和终端利率的判断</b>。</li>
+</ul>
+
+<h2>L3 · 方法论</h2>
+
+<h3>四条教训</h3>
+<table>
+  <thead><tr><th style="width:5%">#</th><th style="width:26%">教训</th><th>具体表现与改法</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="muted">1</td>
+      <td><strong>B 轴没有「我们的观点」</strong></td>
+      <td>口径是「以市场定价为准」，所以它永远和市场一致，命中也说明不了任何事。<b>改法</b>：B 轴保留（它的价值是展示市场在定价什么），但报告里必须明确标注它是镜像轴；真正要记录观点的是 A 轴与 C 轴的偏离。</td>
+    </tr>
+    <tr>
+      <td class="muted">2</td>
+      <td><strong>A 轴需要多期累计</strong></td>
+      <td>一次会议只能提供片段证据。本期开始，A 轴不再期待单期定论，改为「证据累积 + 状态机」：每期只更新「支持哪一档」的证据，不每期重设概率。</td>
+    </tr>
+    <tr>
+      <td class="muted">3</td>
+      <td><strong>C 轴是开放式预测</strong></td>
+      <td>「本轮还会再加多少」在周期结束前无解。不能被「命中 / 未命中」的二元框架强行处理，应标为「进行中」，等周期真正转向后一次性裁定。</td>
+    </tr>
+    <tr>
+      <td class="muted">4</td>
+      <td><strong>指针滚动会造成误读</strong></td>
+      <td>B 轴概率随 <code>nextMeeting</code> 自动滚到下一场，日志里同一串「85%」在决议前后指向不同会议。归档时必须显式记录「这个数字属于哪一场」，否则复盘会得出完全相反的结论。</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>本期新增的三个机制</h3>
+<ul>
+  <li><strong>显式归档</strong>：<code>archive/&lt;meeting&gt;/frozen.json</code> + <code>outcome.json</code>。此前冻结值只活在 git 对象里（本期从 <code>f514d3c</code> 才挖出来），一次 rebase 就会永久丢失。</li>
+  <li><strong>周期标签 + git tag</strong>：每期冻结打 <code>cycle-YYYY-MM-DD-frozen</code>，决议后不可改，可比可回溯。</li>
+  <li><strong>Brier score</strong>：每期记录分档概率，决议后打分。<b>累积 4 期后能回答一个真问题——我们的主观概率到底有没有跑赢市场定价？</b>一期看「感觉对了」，四期才看趋势。</li>
+</ul>
+
+<h2>下一期：2026-12-09</h2>
+
+<div class="cards">
+  <div class="card">
+    <div class="k">会议</div>
+    <div class="v">12-08 / 12-09</div>
+    <div class="d">美东时间。决议公布在新加坡时间 <strong>12-10 凌晨 03:00</strong>（冬令时），不是「12 月初」。</div>
+  </div>
+  <div class="card">
+    <div class="k">市场当前定价</div>
+    <div class="v">77%</div>
+    <div class="d">P(+25bp)，数据时点 CME 11/06。隐含本轮再加 47.5bp，终点上限 4.475%。</div>
+  </div>
+  <div class="card">
+    <div class="k">本次会议的特殊性</div>
+    <div class="v">带 SEP 点阵</div>
+    <div class="d">12 月会议发布经济预测摘要，是本期唯一能拿到官方路径的时间点。</div>
+  </div>
+</div>
+
+<h3>三个观察点</h3>
+<ul>
+  <li><strong>11 月 CPI</strong>（约 12 月中前）与 <strong>12/04 非农</strong>：这两个数据会决定会前最后的市场定价。</li>
+  <li><strong>库克与哈马克是否继续投反对票</strong>：10-28 是库克首次反对。若 12 月反对票扩大，说明委员会内部天平在移动。</li>
+  <li><strong>Warsh 是否延续「拒绝前瞻指引」</strong>：若 12 月会给出明确指引，等于收回 10 月的做法，对 A2（可预期路径）是加分。</li>
+</ul>
+
+<div class="note">
+  <b>本期校准窗口</b>：建议 <b>11 月底</b>做一次（10 月 CPI 与 11 月非农之间信息最全），<b>12-09 会前 24 小时</b>做最终冻结。冻结后立即打 tag，决议后不再改动。
+</div>
+
+<footer>
+  <b>数据与方法</b><br>
+  冻结值来源：git 提交 <code>f514d3c</code>（2026-10-28 11:03 SGT），CME 结算日 10/26，拟合残差 1.41bp。<br>
+  实际结果与声明措辞：美联储 10-28 声明与 Warsh 记者会，经新华财经、中国新闻网、大河财立方等公开报道交叉核对。<br>
+  市场路径：每日 23:30 SGT 日更采集 CME ZQ 期货结算价，隐含利率 = 100 − settle，逐笔由 <code>market-implied.mjs</code> 最小二乘反推（OI ≥ 2000、残差上限 1.5bp）。<br>
+  宏观指标：FRED，数据截至 2026-11-07。<br>
+  归档文件：<a href="https://github.com/kindle0088-sys/fomc-dashboard/tree/main/archive/2026-10-28">archive/2026-10-28/</a>（frozen.json / outcome.json）<br>
+  <span class="muted">本页数据全部内嵌，不依赖外部文件；即使归档 JSON 被清理，页面仍可完整回溯。</span>
+</footer>
+
+</body>
+</html>
