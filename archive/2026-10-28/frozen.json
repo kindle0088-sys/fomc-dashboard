@@ -1,0 +1,169 @@
+{
+  "schema": 1,
+  "cycle": "2026-10-28",
+  "meeting": "2026-10-28",
+  "frozenAt": "2026-11-07T15:30:28.711Z",
+  "frozenCommit": "f514d3c",
+  "sourceNote": "从 git 提交 f514d3c 抽取；该提交为该期决议前的最后一次冻结",
+  "current": {
+    "asOf": "2026-10-26",
+    "lastDecision": "2026-09-16",
+    "targetUpper": 4,
+    "targetLower": 3.75,
+    "effr": 3.88,
+    "note": "2026-09-16 决议加息 25bp 至 3.75–4.00%，为 2023-07 以来首次加息；点阵图 2026 年末中值由 3.75% 上移至 4.10%，19 名官员中 16 人主张年内继续加息",
+    "marketImplied": {
+      "source": "CME ZQ 期货曲线（隐含利率 = 100 − settle）· 结算日 2026-10-26",
+      "front": 3.885,
+      "dec2026": 4.11,
+      "peak": {
+        "month": "2027-09",
+        "rate": 4.596,
+        "liquidTo": "2027-11",
+        "note": "NOV 27 之后持仓量归零（DEC 27 = 250 手、FEB 28 = 40 手、其后全为 0）→ 远端结算价无流动性支撑，峰值只在流动性区间内取。目标上限口径 = 4.721。"
+      },
+      "reading": "市场定价自当前 EFFR 3.875% 起再加约 72bp（至目标上限 4.721%），峰值落在 2027 年秋季（2027-09，中点 4.596%）—— 比点阵图 2026 年末 4.10% 的路径更靠后、更平缓。结算日推进至 10-26 后幅度较 10-23 的 68.2bp 回升 3.9bp、峰值时点不变（仍 2027-09）；10-28 单场隐含加息概率 12%→15%。",
+      "_frontNote": "front 口径 = 近月主力合约。SEP 26 已到期，近月为 OCT 26 = 3.885（≈ 当前 EFFR 3.88）；10-28 会议的台阶只覆盖 10 月最后 3 天，故该合约对会后利率的分辨力弱，作价格参考而非概率来源。"
+    }
+  },
+  "marketImplied": {
+    "cmeTradeDate": "10/26/2026",
+    "effr": 3.88,
+    "maxResidBp": 1.41,
+    "nextMeeting": {
+      "decision": "2026-10-28",
+      "mid": 3.911,
+      "p25": 0.15
+    },
+    "terminal": {
+      "mid": 4.596,
+      "decision": "2027-09-15",
+      "upperBasis": 4.721,
+      "addBp": 72.1
+    }
+  },
+  "axes": {
+    "A": {
+      "label": "A · 本轮加息的性质",
+      "question": "这是哪一种加息周期？",
+      "hint": "决定的是「市场怎么理解这次加息」，决定了资产反应的量级与方向",
+      "nextMeeting": null,
+      "groups": [
+        {
+          "id": "A1",
+          "name": "预防式",
+          "probability": 0.54,
+          "analogy": null,
+          "range": null,
+          "matrixExcluded": false
+        },
+        {
+          "id": "A2",
+          "name": "正常化",
+          "probability": 0.36,
+          "analogy": null,
+          "range": null,
+          "matrixExcluded": false
+        },
+        {
+          "id": "A3",
+          "name": "追赶式",
+          "probability": 0.1,
+          "analogy": null,
+          "range": null,
+          "matrixExcluded": false
+        }
+      ]
+    },
+    "B": {
+      "label": "B · 单场会议结果",
+      "question": "下一次决议（{next}）会怎么走？",
+      "hint": "决定的是「这一夜的市场冲击」，是战术层面的",
+      "nextMeeting": null,
+      "groups": [
+        {
+          "id": "B1",
+          "name": "加息 25bp",
+          "probability": 0.15,
+          "analogy": "市场隐含会后中点 3.911（当前 3.875）→ 幅度 4.0bp ÷ 25bp = 15%。⚠️ 该场无点阵、且台阶只覆盖 10 月最后 3 天（3/31 权重），近月合同的分辨力弱（OCT 结算价 1bp 误差 ≈ 会后利率 10bp）——15% 是噪声较大的点估计，真正的信息量在 12-09（80%）。历史上这一档占多数的形态是「可预期的渐进路径」（2004–06）",
+          "range": null,
+          "matrixExcluded": false
+        },
+        {
+          "id": "B2",
+          "name": "加息 50bp 或更多",
+          "probability": 0,
+          "analogy": "市场零定价：2026-10-28 至 2027-11 的【全部】会议隐含步长均 < 25bp（最大为 12-09 的 20bp），无任何一场被定价为 ≥50bp。历史参照：1994-08、1994-11、2022 系列属此类",
+          "range": null,
+          "matrixExcluded": false
+        },
+        {
+          "id": "B3",
+          "name": "按兵不动",
+          "probability": 0.85,
+          "analogy": "市场主导预期。隐含会后中点 3.911 与当前 3.875 仅差 4.0bp ⇒ 市场认为 10-28 大概率按兵不动、等 12-09；年内链条 15% + 85%×80% ≈ 83% 的「至少一加」，折合 0.83 次 × 25bp ≈ 20.8bp，与市场隐含 DEC26 中点较当前 +23.5bp 同阶",
+          "range": null,
+          "matrixExcluded": true
+        },
+        {
+          "id": "B4",
+          "name": "降息",
+          "probability": 0,
+          "analogy": "仅作尾部标注：市场对可预见的会议无任何降息定价；但单次降息不需要在均值路径里体现（见 _probabilityBasis 的「均值 vs 尾部」说明）",
+          "range": null,
+          "matrixExcluded": true
+        }
+      ]
+    },
+    "C": {
+      "label": "C · 本轮还需加多少",
+      "question": "这轮还会再加多少？",
+      "hint": "决定的是「配置层面的久期与风险敞口」，战略层面的",
+      "nextMeeting": null,
+      "groups": [
+        {
+          "id": "C1",
+          "name": "温和收尾",
+          "probability": 0.58,
+          "analogy": null,
+          "range": null,
+          "matrixExcluded": false
+        },
+        {
+          "id": "C2",
+          "name": "中性路径",
+          "probability": 0.31,
+          "analogy": null,
+          "range": null,
+          "matrixExcluded": false
+        },
+        {
+          "id": "C3",
+          "name": "激进加息",
+          "probability": 0.11,
+          "analogy": null,
+          "range": null,
+          "matrixExcluded": false
+        }
+      ]
+    }
+  },
+  "frozenDisplay": {
+    "A": {
+      "A1": 0.54,
+      "A2": 0.36,
+      "A3": 0.1
+    },
+    "B": {
+      "B1": 0.15,
+      "B2": 0,
+      "B3": 0.85,
+      "B4": 0
+    },
+    "C": {
+      "C1": 0.58,
+      "C2": 0.31,
+      "C3": 0.11
+    }
+  }
+}
