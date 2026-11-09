@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-07T23:30:37.846+08:00",
-  "date": "2026-11-07",
+  "generatedAt": "2026-11-09T23:30:00.870+08:00",
+  "date": "2026-11-09",
   "policy": {
     "targetUpper": 4,
     "targetLower": 3.75,
     "effr": 3.88,
-    "sofr": 3.92,
-    "effrAsOf": "2026-11-05"
+    "sofr": 3.89,
+    "effrAsOf": "2026-11-06"
   },
   "inflation": {
     "corePceIndex": 130.902,
@@ -26,7 +26,7 @@
     "spread10y2y": 0.35,
     "real10y": 2.6,
     "igSpread": 0.93,
-    "hySpread": 3.48,
+    "hySpread": 3.42,
     "nfci": -0.459,
     "vix": 28.18
   },
