@@ -1,254 +1,230 @@
 {
   "source": "CME Group · 30 Day Federal Funds Futures (productId 305)",
-  "endpoint": "https://www.cmegroup.com/CmeWS/mvc/Settlements/Futures/Settlements/305/FUT?tradeDate=11/10/2026",
-  "tradeDate": "11/10/2026",
-  "updateTime": "Tuesday, 10 Nov 2026 11:55 PM",
-  "fetchedAt": "2026-11-11T23:30:00.824+08:00",
+  "endpoint": "https://www.cmegroup.com/CmeWS/mvc/Settlements/Futures/Settlements/305/FUT?tradeDate=11/11/2026",
+  "tradeDate": "11/11/2026",
+  "updateTime": "Wednesday, 11 Nov 2026 11:55 PM",
+  "fetchedAt": "2026-11-12T23:30:00.936+08:00",
   "formula": "impliedRate = 100 - settle",
   "contractCount": 60,
   "curve": [
     {
       "month": "NOV 26",
-      "settle": 96.12,
-      "impliedRate": 3.88,
+      "settle": 96.1175,
+      "impliedRate": 3.8825,
       "last": "96.1200",
-      "volume": 125832,
-      "openInterest": 706463
+      "volume": 10061,
+      "openInterest": 675124
     },
     {
       "month": "DEC 26",
-      "settle": 95.925,
-      "impliedRate": 4.075,
-      "last": "95.9250",
-      "volume": 138731,
-      "openInterest": 312920
+      "settle": 95.915,
+      "impliedRate": 4.085,
+      "last": "95.9200",
+      "volume": 26833,
+      "openInterest": 307113
     },
     {
       "month": "JAN 27",
-      "settle": 95.83,
-      "impliedRate": 4.17,
-      "last": "95.8250",
-      "volume": 602921,
-      "openInterest": 450309
+      "settle": 95.815,
+      "impliedRate": 4.185,
+      "last": "95.8200",
+      "volume": 69425,
+      "openInterest": 448792
     },
     {
       "month": "FEB 27",
-      "settle": 95.695,
-      "impliedRate": 4.305,
-      "last": "95.6900",
-      "volume": 283169,
-      "openInterest": 289914
+      "settle": 95.675,
+      "impliedRate": 4.325,
+      "last": "95.6800",
+      "volume": 51670,
+      "openInterest": 301201
     },
     {
       "month": "MAR 27",
-      "settle": 95.62,
-      "impliedRate": 4.38,
-      "last": "95.6150",
-      "volume": 45540,
-      "openInterest": 41023
+      "settle": 95.595,
+      "impliedRate": 4.405,
+      "last": "95.6000",
+      "volume": 7097,
+      "openInterest": 45635
     },
     {
       "month": "APR 27",
-      "settle": 95.53,
-      "impliedRate": 4.47,
-      "last": "95.5200",
-      "volume": 124708,
-      "openInterest": 150704
+      "settle": 95.5,
+      "impliedRate": 4.5,
+      "last": "95.5050",
+      "volume": 35284,
+      "openInterest": 157352
     },
     {
       "month": "MAY 27",
-      "settle": 95.47,
-      "impliedRate": 4.53,
-      "last": "95.4600",
-      "volume": 64249,
-      "openInterest": 99013
+      "settle": 95.435,
+      "impliedRate": 4.565,
+      "last": "95.4450",
+      "volume": 17981,
+      "openInterest": 101210
     },
     {
       "month": "JUN 27",
-      "settle": 95.42,
-      "impliedRate": 4.58,
-      "last": "95.4050",
-      "volume": 10170,
-      "openInterest": 34229
+      "settle": 95.375,
+      "impliedRate": 4.625,
+      "last": "95.3800",
+      "volume": 3730,
+      "openInterest": 34803
     },
     {
       "month": "JUL 27",
-      "settle": 95.4,
-      "impliedRate": 4.6,
-      "last": "95.3800B",
-      "volume": 21789,
-      "openInterest": 47543
+      "settle": 95.35,
+      "impliedRate": 4.65,
+      "last": "95.3550",
+      "volume": 7322,
+      "openInterest": 48648
     },
     {
       "month": "AUG 27",
-      "settle": 95.395,
-      "impliedRate": 4.605,
-      "last": "95.3750",
-      "volume": 12288,
-      "openInterest": 32982
+      "settle": 95.33,
+      "impliedRate": 4.67,
+      "last": "95.3350",
+      "volume": 4398,
+      "openInterest": 29620
     },
     {
       "month": "SEP 27",
-      "settle": 95.395,
-      "impliedRate": 4.605,
-      "last": "95.3700",
-      "volume": 3982,
-      "openInterest": 12963
+      "settle": 95.32,
+      "impliedRate": 4.68,
+      "last": "95.3250",
+      "volume": 5277,
+      "openInterest": 12935
     },
     {
       "month": "OCT 27",
-      "settle": 95.395,
-      "impliedRate": 4.605,
-      "last": "95.3700",
-      "volume": 6690,
-      "openInterest": 14038
+      "settle": 95.315,
+      "impliedRate": 4.685,
+      "last": "95.3200",
+      "volume": 3339,
+      "openInterest": 14610
     },
     {
       "month": "NOV 27",
-      "settle": 95.4,
-      "impliedRate": 4.6,
-      "last": "95.3750",
-      "volume": 5422,
-      "openInterest": 7565
+      "settle": 95.32,
+      "impliedRate": 4.68,
+      "last": "95.3250",
+      "volume": 1536,
+      "openInterest": 10677
     },
     {
       "month": "DEC 27",
-      "settle": 95.43,
-      "impliedRate": 4.57,
-      "last": "95.4050B",
-      "volume": 910,
-      "openInterest": 1536
+      "settle": 95.35,
+      "impliedRate": 4.65,
+      "last": "95.3550",
+      "volume": 453,
+      "openInterest": 1768
     },
     {
       "month": "JAN 28",
-      "settle": 95.445,
-      "impliedRate": 4.555,
-      "last": "95.4250B",
-      "volume": 657,
-      "openInterest": 1054
+      "settle": 95.365,
+      "impliedRate": 4.635,
+      "last": "95.3550B",
+      "volume": 150,
+      "openInterest": 1328
     },
     {
       "month": "FEB 28",
-      "settle": 95.46,
-      "impliedRate": 4.54,
-      "last": "95.4300A",
-      "volume": 169,
-      "openInterest": 222
+      "settle": 95.38,
+      "impliedRate": 4.62,
+      "last": "95.3700A",
+      "volume": 105,
+      "openInterest": 295
     },
     {
       "month": "MAR 28",
-      "settle": 95.475,
-      "impliedRate": 4.525,
+      "settle": 95.395,
+      "impliedRate": 4.605,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "APR 28",
-      "settle": 95.54,
-      "impliedRate": 4.46,
+      "settle": 95.46,
+      "impliedRate": 4.54,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "MAY 28",
-      "settle": 95.515,
-      "impliedRate": 4.485,
+      "settle": 95.435,
+      "impliedRate": 4.565,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "JUN 28",
-      "settle": 95.495,
-      "impliedRate": 4.505,
+      "settle": 95.415,
+      "impliedRate": 4.585,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "JUL 28",
-      "settle": 95.475,
-      "impliedRate": 4.525,
+      "settle": 95.395,
+      "impliedRate": 4.605,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "AUG 28",
-      "settle": 95.395,
-      "impliedRate": 4.605,
+      "settle": 95.315,
+      "impliedRate": 4.685,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "SEP 28",
-      "settle": 95.395,
-      "impliedRate": 4.605,
+      "settle": 95.315,
+      "impliedRate": 4.685,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "OCT 28",
-      "settle": 95.39,
-      "impliedRate": 4.61,
+      "settle": 95.31,
+      "impliedRate": 4.69,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "NOV 28",
-      "settle": 95.37,
-      "impliedRate": 4.63,
+      "settle": 95.29,
+      "impliedRate": 4.71,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "DEC 28",
-      "settle": 95.35,
-      "impliedRate": 4.65,
+      "settle": 95.27,
+      "impliedRate": 4.73,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "JAN 29",
-      "settle": 95.335,
-      "impliedRate": 4.665,
+      "settle": 95.255,
+      "impliedRate": 4.745,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "FEB 29",
-      "settle": 95.32,
-      "impliedRate": 4.68,
-      "last": "-",
-      "volume": 0,
-      "openInterest": 0
-    },
-    {
-      "month": "MAR 29",
-      "settle": 95.305,
-      "impliedRate": 4.695,
-      "last": "-",
-      "volume": 0,
-      "openInterest": 0
-    },
-    {
-      "month": "APR 29",
-      "settle": 95.265,
-      "impliedRate": 4.735,
-      "last": "-",
-      "volume": 0,
-      "openInterest": 0
-    },
-    {
-      "month": "MAY 29",
       "settle": 95.24,
       "impliedRate": 4.76,
       "last": "-",
@@ -256,95 +232,95 @@
       "openInterest": 0
     },
     {
+      "month": "MAR 29",
+      "settle": 95.225,
+      "impliedRate": 4.775,
+      "last": "-",
+      "volume": 0,
+      "openInterest": 0
+    },
+    {
+      "month": "APR 29",
+      "settle": 95.185,
+      "impliedRate": 4.815,
+      "last": "-",
+      "volume": 0,
+      "openInterest": 0
+    },
+    {
+      "month": "MAY 29",
+      "settle": 95.16,
+      "impliedRate": 4.84,
+      "last": "-",
+      "volume": 0,
+      "openInterest": 0
+    },
+    {
       "month": "JUN 29",
-      "settle": 95.22,
-      "impliedRate": 4.78,
+      "settle": 95.14,
+      "impliedRate": 4.86,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "JUL 29",
-      "settle": 95.2,
-      "impliedRate": 4.8,
+      "settle": 95.12,
+      "impliedRate": 4.88,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "AUG 29",
-      "settle": 95.12,
-      "impliedRate": 4.88,
+      "settle": 95.04,
+      "impliedRate": 4.96,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "SEP 29",
-      "settle": 95.12,
-      "impliedRate": 4.88,
+      "settle": 95.04,
+      "impliedRate": 4.96,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "OCT 29",
-      "settle": 95.115,
-      "impliedRate": 4.885,
+      "settle": 95.035,
+      "impliedRate": 4.965,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "NOV 29",
-      "settle": 95.095,
-      "impliedRate": 4.905,
+      "settle": 95.015,
+      "impliedRate": 4.985,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "DEC 29",
-      "settle": 95.075,
-      "impliedRate": 4.925,
+      "settle": 94.995,
+      "impliedRate": 5.005,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "JAN 30",
-      "settle": 95.06,
-      "impliedRate": 4.94,
+      "settle": 94.98,
+      "impliedRate": 5.02,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "FEB 30",
-      "settle": 95.045,
-      "impliedRate": 4.955,
-      "last": "-",
-      "volume": 0,
-      "openInterest": 0
-    },
-    {
-      "month": "MAR 30",
-      "settle": 95.03,
-      "impliedRate": 4.97,
-      "last": "-",
-      "volume": 0,
-      "openInterest": 0
-    },
-    {
-      "month": "APR 30",
-      "settle": 94.99,
-      "impliedRate": 5.01,
-      "last": "-",
-      "volume": 0,
-      "openInterest": 0
-    },
-    {
-      "month": "MAY 30",
       "settle": 94.965,
       "impliedRate": 5.035,
       "last": "-",
@@ -352,95 +328,95 @@
       "openInterest": 0
     },
     {
+      "month": "MAR 30",
+      "settle": 94.95,
+      "impliedRate": 5.05,
+      "last": "-",
+      "volume": 0,
+      "openInterest": 0
+    },
+    {
+      "month": "APR 30",
+      "settle": 94.91,
+      "impliedRate": 5.09,
+      "last": "-",
+      "volume": 0,
+      "openInterest": 0
+    },
+    {
+      "month": "MAY 30",
+      "settle": 94.885,
+      "impliedRate": 5.115,
+      "last": "-",
+      "volume": 0,
+      "openInterest": 0
+    },
+    {
       "month": "JUN 30",
-      "settle": 94.945,
-      "impliedRate": 5.055,
+      "settle": 94.865,
+      "impliedRate": 5.135,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "JUL 30",
-      "settle": 94.925,
-      "impliedRate": 5.075,
+      "settle": 94.845,
+      "impliedRate": 5.155,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "AUG 30",
-      "settle": 94.845,
-      "impliedRate": 5.155,
+      "settle": 94.765,
+      "impliedRate": 5.235,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "SEP 30",
-      "settle": 94.845,
-      "impliedRate": 5.155,
+      "settle": 94.765,
+      "impliedRate": 5.235,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "OCT 30",
-      "settle": 94.84,
-      "impliedRate": 5.16,
+      "settle": 94.76,
+      "impliedRate": 5.24,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "NOV 30",
-      "settle": 94.82,
-      "impliedRate": 5.18,
+      "settle": 94.74,
+      "impliedRate": 5.26,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "DEC 30",
-      "settle": 94.8,
-      "impliedRate": 5.2,
+      "settle": 94.72,
+      "impliedRate": 5.28,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "JAN 31",
-      "settle": 94.785,
-      "impliedRate": 5.215,
+      "settle": 94.705,
+      "impliedRate": 5.295,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "FEB 31",
-      "settle": 94.77,
-      "impliedRate": 5.23,
-      "last": "-",
-      "volume": 0,
-      "openInterest": 0
-    },
-    {
-      "month": "MAR 31",
-      "settle": 94.755,
-      "impliedRate": 5.245,
-      "last": "-",
-      "volume": 0,
-      "openInterest": 0
-    },
-    {
-      "month": "APR 31",
-      "settle": 94.715,
-      "impliedRate": 5.285,
-      "last": "-",
-      "volume": 0,
-      "openInterest": 0
-    },
-    {
-      "month": "MAY 31",
       "settle": 94.69,
       "impliedRate": 5.31,
       "last": "-",
@@ -448,41 +424,65 @@
       "openInterest": 0
     },
     {
+      "month": "MAR 31",
+      "settle": 94.675,
+      "impliedRate": 5.325,
+      "last": "-",
+      "volume": 0,
+      "openInterest": 0
+    },
+    {
+      "month": "APR 31",
+      "settle": 94.635,
+      "impliedRate": 5.365,
+      "last": "-",
+      "volume": 0,
+      "openInterest": 0
+    },
+    {
+      "month": "MAY 31",
+      "settle": 94.61,
+      "impliedRate": 5.39,
+      "last": "-",
+      "volume": 0,
+      "openInterest": 0
+    },
+    {
       "month": "JUN 31",
-      "settle": 94.67,
-      "impliedRate": 5.33,
+      "settle": 94.59,
+      "impliedRate": 5.41,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "JUL 31",
-      "settle": 94.65,
-      "impliedRate": 5.35,
+      "settle": 94.57,
+      "impliedRate": 5.43,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "AUG 31",
-      "settle": 94.57,
-      "impliedRate": 5.43,
+      "settle": 94.49,
+      "impliedRate": 5.51,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "SEP 31",
-      "settle": 94.57,
-      "impliedRate": 5.43,
+      "settle": 94.49,
+      "impliedRate": 5.51,
       "last": "-",
       "volume": 0,
       "openInterest": 0
     },
     {
       "month": "OCT 31",
-      "settle": 94.565,
-      "impliedRate": 5.435,
+      "settle": 94.485,
+      "impliedRate": 5.515,
       "last": "-",
       "volume": 0,
       "openInterest": 0

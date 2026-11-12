@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-11T23:30:07.596+08:00",
+  "generatedAt": "2026-11-12T23:30:05.537+08:00",
   "method": {
     "eventDay": "目标利率生效日（FRED DFEDTAR / DFEDTARU 自动探测）",
     "baseline": "事件日前一交易日收盘",
@@ -77,7 +77,7 @@
       "group": "股票",
       "source": "Yahoo ^GSPC",
       "from": "1985-01-02",
-      "to": "2026-11-11"
+      "to": "2026-11-12"
     },
     {
       "key": "nasdaq",
@@ -87,7 +87,7 @@
       "group": "股票",
       "source": "Yahoo ^IXIC",
       "from": "1985-01-02",
-      "to": "2026-11-11"
+      "to": "2026-11-12"
     },
     {
       "key": "dxy",
@@ -97,7 +97,7 @@
       "group": "汇率",
       "source": "Yahoo DX-Y.NYB",
       "from": "1985-01-02",
-      "to": "2026-11-11"
+      "to": "2026-11-12"
     },
     {
       "key": "gold",
@@ -107,7 +107,7 @@
       "group": "商品",
       "source": "Yahoo GC=F",
       "from": "2000-08-30",
-      "to": "2026-11-11"
+      "to": "2026-11-12"
     },
     {
       "key": "vix",
@@ -117,7 +117,7 @@
       "group": "波动率",
       "source": "Yahoo ^VIX",
       "from": "1990-01-02",
-      "to": "2026-11-11"
+      "to": "2026-11-12"
     },
     {
       "key": "hyg",
@@ -127,7 +127,7 @@
       "group": "信用",
       "source": "Yahoo HYG",
       "from": "2007-04-11",
-      "to": "2026-11-11"
+      "to": "2026-11-12"
     },
     {
       "key": "dgs10",
@@ -1172,7 +1172,7 @@
               "n": 11,
               "med": -0.39,
               "q1": -0.75,
-              "q3": 0.13
+              "q3": 0.14
             },
             "10d": {
               "n": 11,
@@ -1372,7 +1372,9 @@
         "id": "B1",
         "key": "hike25",
         "name": "加息 25bp",
-        "probability": 0.77,
+        "probability": 1,
+        "configProbability": 0.77,
+        "probabilitySource": "market-implied",
         "analogy": "市场隐含 2026-12-09 会议 P(+25bp) = 77%（由 ZQ 曲线台阶反推，会后中点 4.069、当前 EFFR 3.88）。数据时点 CME 11/06/2026。⚠️ 决议后该概率曾在 67%–85% 区间反复，单点读数噪声较大，看趋势不看单日。",
         "filter": {
           "minBp": 25,
@@ -1811,6 +1813,8 @@
         "key": "hike50",
         "name": "加息 50bp 或更多",
         "probability": 0,
+        "configProbability": 0,
+        "probabilitySource": "market-implied",
         "analogy": "市场零定价：2026-12-09 至 2027-11 的【全部】会议隐含步长均 < 25bp（最大即 12-09 的 21bp，次高 2027-03 的 16bp），无任何一场被定价为 ≥50bp。历史参照：1994-08、1994-11、2022 系列属此类",
         "filter": {
           "minBp": 50
@@ -2218,7 +2222,9 @@
         "id": "B3",
         "key": "hold",
         "name": "按兵不动",
-        "probability": 0.23,
+        "probability": 0,
+        "configProbability": 0.23,
+        "probabilitySource": "market-implied",
         "analogy": "剩余 15% 归入此档：市场并非完全排除 12-09 继续等（会后隐含中点 4.097 与当前 3.875 差 21.2bp ⇒ 0.85 次 25bp），另一半可能是「12-09 不加但 2027 年初加」的均值混合。故 hold 的 15% 不等于「加息周期结束」，只是「这场不加」",
         "filter": null,
         "n": 0,
@@ -2232,6 +2238,8 @@
         "key": "cut",
         "name": "降息",
         "probability": 0,
+        "configProbability": 0,
+        "probabilitySource": "market-implied",
         "analogy": "仅作尾部标注：市场对可预见的会议无任何降息定价；但单次降息不需要在均值路径里体现（见 _probabilityBasis 的「均值 vs 尾部」说明）",
         "filter": null,
         "n": 40,
@@ -2282,7 +2290,9 @@
         "matrix": {}
       }
     ],
-    "nextMeeting": "2026-12-09"
+    "nextMeeting": "2026-12-09",
+    "probabilitySource": "market-implied",
+    "marketImpliedP25": 1
   },
   "axisC": {
     "label": "C · 本轮还需加多少",
@@ -2341,6 +2351,8 @@
         "key": "mild",
         "name": "温和收尾",
         "probability": 0.7,
+        "configProbability": 0.7,
+        "probabilitySource": "config",
         "definition": "自当前 4.00% 起再加 ≤100bp（对应终点 ≤5.00%）",
         "cycles": [
           "1997",
@@ -2688,6 +2700,8 @@
         "key": "mid",
         "name": "中性路径",
         "probability": 0.24,
+        "configProbability": 0.24,
+        "probabilitySource": "config",
         "definition": "自当前 4.00% 起再加 100–200bp（对应终点 5.00–6.00%）",
         "cycles": [
           "1994-1995",
@@ -3121,6 +3135,8 @@
         "key": "aggressive",
         "name": "激进加息",
         "probability": 0.06,
+        "configProbability": 0.06,
+        "probabilitySource": "config",
         "definition": "自当前 4.00% 起再加 >200bp（对应终点 >6.00%）",
         "cycles": [
           "2004-2006",
@@ -3373,7 +3389,7 @@
               "n": 11,
               "med": -0.39,
               "q1": -0.75,
-              "q3": 0.13
+              "q3": 0.14
             },
             "10d": {
               "n": 11,
@@ -3560,7 +3576,9 @@
           }
         }
       }
-    ]
+    ],
+    "probabilitySource": "market-implied",
+    "marketImpliedTerminalBp": 81.1
   },
   "currentReaction": {
     "date": "2026-09-17",

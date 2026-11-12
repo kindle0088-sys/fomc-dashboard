@@ -214,76 +214,94 @@ async function main() {
              n: evs.length, eventDates: evs.map(e => e.date), matrix: computeGroup(evs) };
   }) };
 
+  /* ── 概率解析：B / C 轴改为数据驱动（2026-11-12 用户拍板）──────────────
+     旧逻辑的病：config 里的概率是人工快照，market-implied 只用来打「偏离 >10pp」告警。
+     于是 11-07 写下的 B1=77% 一路显示到 11-11，市场已经 100%，看板静默落后两天。
+     新口径：B 轴＝隐含路径直接反推（(会后中点−EFFR)/25bp），C 轴＝隐含终点按 σ 正态分摊。
+     两者都能从 market-implied.json 复算，就应该以数据为准覆盖 config；
+     config 值保留在 configProbability 里供追溯，不再参与展示。
+     A 轴仍是主观判断（周期性质、触发条件满足度），市场没有对应量，不覆盖。 */
+  const MI = readJson(path.join(DATA, 'derived', 'market-implied.json'));
+  const miStale = !MI ? '缺 data/derived/market-implied.json'
+    : !MI.nextMeeting ? 'market-implied.json 里没有 nextMeeting'
+    : MI.nextMeeting.decision !== nextMeeting
+      ? `记录的是 ${MI.nextMeeting.decision}，与会议日历 ${nextMeeting} 不一致（先重跑 market-implied.mjs）`
+      : null;
+
+  /** B 轴：期货按 25bp 步长定价，故 hike50 / cut 没有独立信息，记 0 */
+  const impliedB = (() => {
+    if (miStale) return null;
+    const p = MI.nextMeeting.p25;
+    if (!Number.isFinite(p)) return null;
+    const q = Math.max(0, Math.min(1, p));
+    return { hike25: q, hike50: 0, hold: 1 - q, cut: 0 };
+  })();
+
+  /** C 轴：隐含终点（bp-to-go）为均值，σ 正态核分摊到三段 */
+  const impliedC = (() => {
+    const pp = cfg._probabilityBasis?.axisC_params;
+    if (!MI?.terminal || !Array.isArray(pp?.boundariesBp) || !Number.isFinite(pp?.sigmaPp)) return null;
+    if (!Number.isFinite(MI.terminal.addBp)) return null;
+    const mu = MI.terminal.addBp;
+    const sd = pp.sigmaPp * 100;
+    const [b1, b2] = pp.boundariesBp;
+    const c1 = normCdf((b1 - mu) / sd);
+    const c2 = normCdf((b2 - mu) / sd) - c1;
+    return { C1: c1, C2: c2, C3: 1 - normCdf((b2 - mu) / sd) };
+  })();
+
+  /** 取概率：数据可用就用数据，否则回退 config 并留下 source 标记 */
+  const pickProb = (g, implied) => {
+    const v = implied ? implied[g.key || g.id] : undefined;
+    const driven = Number.isFinite(v);
+    return {
+      probability: driven ? v : g.probability,
+      configProbability: g.probability,
+      probabilitySource: driven ? 'market-implied' : 'config',
+    };
+  };
+
+  log('');
+  log('▸ 概率来源（B / C 轴数据驱动）');
+  if (miStale) {
+    log(`  ⚠ ${miStale}`);
+    log('  → B / C 轴回退到 config 值，看板会标注「配置」；请修好数据后重跑');
+  } else {
+    const b1cfg = (cfg.axisB.groups.find(g => g.key === 'hike25') || {}).probability;
+    log(`  B 轴：市场隐含 P(25bp) = ${(impliedB.hike25 * 100).toFixed(0)}% ｜ config ${((b1cfg || 0) * 100).toFixed(0)}% → 采用市场值`);
+    if (impliedC) {
+      const ccfg = (cfg.axisC.groups.find(g => g.id === 'C1') || {}).probability;
+      log(`  C 轴：隐含终点 ${MI.terminal.upperBasis}%（再加 ${MI.terminal.addBp}bp，σ=${cfg._probabilityBasis.axisC_params.sigmaPp}pp）→ C1 ${(impliedC.C1 * 100).toFixed(0)}% ｜ config ${((ccfg || 0) * 100).toFixed(0)}%`);
+    } else {
+      log('  C 轴：缺 terminal 或 axisC_params → 回退 config');
+    }
+  }
+
   // ---------- B 轴 ----------
   const axisB = { ...cfg.axisB,
     // {next} 由会议日历填入；决议过后自动跟随到下一场（原先是手写死日期，会过期）
     question: String(cfg.axisB.question || '').replace(/\{next\}/g, nextMeeting || '待定'),
     nextMeeting,
+    probabilitySource: impliedB ? 'market-implied' : 'config',
+    marketImpliedP25: impliedB ? impliedB.hike25 : null,
     groups: cfg.axisB.groups.map(g => {
     let evs = [];
     if (g.key === 'hike25') evs = tagged.filter(e => e.bp === 25);
     else if (g.key === 'hike50') evs = tagged.filter(e => e.bp >= 50);
     else if (g.key === 'cut') evs = cuts.filter(e => e.date >= MODERN_FROM);
     const excluded = g.matrixExcluded === true;
-    return { id: g.id, key: g.key, name: g.name, probability: g.probability, analogy: g.analogy, filter: g.filter,
+    return { id: g.id, key: g.key, name: g.name, ...pickProb(g, impliedB), analogy: g.analogy, filter: g.filter,
              n: evs.length, matrixExcluded: excluded, matrixExcludeReason: g.matrixExcludeReason || null,
              eventDates: evs.map(e => e.date), matrix: (!excluded && evs.length) ? computeGroup(evs) : {} };
   }) };
 
-  // 概率与市场定价的偏离告警：config 里的 B 轴概率是「人工确认过」的值，
-  // 但市场会变 —— 偏离超过 10pp 就提示复核，避免看板静默沿用旧概率。
-  {
-    const mi = readJson(path.join(DATA, 'derived', 'market-implied.json'));
-    const cfgB1 = (cfg.axisB.groups.find(g => g.key === 'hike25') || {}).probability;
-    log('');
-    log(`▸ B 轴「下一次决议」指针：${nextMeeting || '（日历已用尽，请更新 config/meetings.json）'}`);
-    if (!mi?.nextMeeting) {
-      log('  ⚠ 缺 data/derived/market-implied.json → 无法与市场定价比对（先跑 market-implied.mjs）');
-    } else if (mi.nextMeeting.decision !== nextMeeting) {
-      log(`  ⚠ market-implied.json 记录的是 ${mi.nextMeeting.decision}，已过期 → 请重跑 market-implied.mjs`);
-    } else if (typeof cfgB1 === 'number') {
-      const gap = Math.abs(cfgB1 - mi.nextMeeting.p25);
-      log(`  市场隐含 P(25bp) = ${(mi.nextMeeting.p25 * 100).toFixed(0)}% ｜ 配置值 = ${(cfgB1 * 100).toFixed(0)}% ｜ 差 ${(gap * 100).toFixed(0)}pp`);
-      if (gap > 0.10) log(`  ⚠ 偏离 > 10pp —— 请复核 config/scenarios.json 的 B 轴概率（口径：以市场定价为准）`);
-    }
-  }
-
-  // C 轴同款偏离告警：市场隐含终点（bp-to-go）→ 按 σ 分摊到三档 → 与配置概率比对
-  // 与 B 轴一致，config 里的 C 轴概率是「人工确认过」的值，市场会漂移 → >10pp 提示复核。
-  {
-    const mi = readJson(path.join(DATA, 'derived', 'market-implied.json'));
-    const pp = cfg._probabilityBasis?.axisC_params;
-    log('');
-    log('▸ C 轴「还会再加多少」与市场定价比对');
-    if (!mi?.terminal || !Array.isArray(pp?.boundariesBp)) {
-      log('  ⚠ 缺 market-implied.json 的 terminal 或 config 的 axisC_params → 跳过比对');
-    } else {
-      const mu = mi.terminal.addBp;                     // 自当前档位上限起还需加多少 bp
-      const sd = pp.sigmaPp * 100;                      // pp → bp
-      const [b1, b2] = pp.boundariesBp;
-      const c1 = normCdf((b1 - mu) / sd);
-      const c2 = normCdf((b2 - mu) / sd) - c1;
-      const c3 = 1 - normCdf((b2 - mu) / sd);
-      const implied = { C1: c1, C2: c2, C3: c3 };
-      log(`  市场隐含终点 ${mi.terminal.upperBasis}%（自 ${pp.refLevel}% 再加 ${mu}bp）｜分摊假设 σ = ${pp.sigmaPp.toFixed(2)}pp ｜ 分档界 ${b1}/${b2}bp`);
-      let worst = 0, worstId = null;
-      for (const g of cfg.axisC.groups) {
-        const im = implied[g.id];
-        if (im === undefined) continue;
-        const gap = Math.abs(g.probability - im);
-        if (gap > worst) { worst = gap; worstId = g.id; }
-        const mark = gap > 0.10 ? '⚠' : ' ';
-        log(`  ${mark} ${g.id} ${g.name.padEnd(5)}  配置 ${(g.probability * 100).toFixed(0).padStart(3)}%   市场隐含 ${(im * 100).toFixed(0).padStart(3)}%   差 ${(gap * 100).toFixed(0).padStart(2)}pp`);
-      }
-      if (worst > 0.10) log(`  ⚠ 最大偏离 ${(worst * 100).toFixed(0)}pp（${worstId}）> 10pp —— 请复核 config/scenarios.json 的 C 轴概率`);
-      else log(`  ✓ 最大偏离 ${(worst * 100).toFixed(0)}pp（${worstId}）≤ 10pp，无需复核`);
-    }
-  }
-
   // ---------- C 轴 ----------
-  const axisC = { ...cfg.axisC, groups: cfg.axisC.groups.map(g => {
+  const axisC = { ...cfg.axisC,
+    probabilitySource: impliedC ? 'market-implied' : 'config',
+    marketImpliedTerminalBp: impliedC ? MI.terminal.addBp : null,
+    groups: cfg.axisC.groups.map(g => {
     const evs = tagged.filter(e => e.cycleTotalBp !== null && matchesRange(e.cycleTotalBp, g.filter));
-    return { id: g.id, key: g.key, name: g.name, probability: g.probability, definition: g.definition,
+    return { id: g.id, key: g.key, name: g.name, ...pickProb(g, impliedC), definition: g.definition,
              cycles: g.cycles, trigger: g.trigger, filter: g.filter,
              sampleLevels: (g.cycles || []).map(cycleLevel).filter(Boolean),
              n: evs.length, eventDates: evs.map(e => e.date), matrix: computeGroup(evs) };
