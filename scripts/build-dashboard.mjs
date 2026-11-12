@@ -366,6 +366,8 @@ nav.toc a:hover{color:var(--tx);border-color:var(--amber)}
 .sc .id{font-size:10.5px;color:var(--tx3);border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-variant-numeric:tabular-nums}
 .sc .nm{font-size:14px;font-weight:500}
 .sc .pb{margin-left:auto;font-size:14px;font-variant-numeric:tabular-nums;color:var(--amber)}
+.sc .psrc{font-style:normal;font-size:10px;font-weight:400;margin-left:5px;padding:1px 4px;border-radius:3px;border:1px solid var(--line);color:var(--tx3);vertical-align:1px;cursor:help}
+.sc .psrc.stale{color:var(--amber);border-color:rgba(251,191,36,.45)}
 .sc .bar{height:4px;border-radius:2px;background:#2A2724;margin:9px 0 0;overflow:hidden}
 .sc .bar>i{display:block;height:100%;background:linear-gradient(90deg,#854F0B,var(--amber));border-radius:2px}
 .sc .def{font-size:12px;color:var(--tx2);margin-top:9px;line-height:1.65}
@@ -617,12 +619,26 @@ function renderScenarioLayer(sc) {
   // 只在 A 轴有数据的资产才入表（避免整行空白）
   const shown = A.filter(a => (sc.axisA.groups || []).some(g => g.matrix && g.matrix[a.key]));
 
+  /* 概率来源标记（2026-11-12）：B / C 轴改成数据驱动后，读者要能看出这个百分比
+     是「CME 隐含路径算出来的」还是「config 里的人工值」。数据缺失回退 config 时
+     必须标红，否则又是「看起来在更新、其实是旧数字」。 */
+  const probSrcTag = g => {
+    if (g.probabilitySource === 'market-implied') {
+      return `<i class="psrc" title="由 CME 期货隐含路径复算（market-implied.json），非人工拍定">市场</i>`;
+    }
+    if (g.probabilitySource === 'config' && g.configProbability != null &&
+        Math.abs(g.configProbability - g.probability) > 1e-9) {
+      return `<i class="psrc stale" title="市场数据缺失，回退到 config 值">配置</i>`;
+    }
+    return '';
+  };
+
   /** 情景卡片组 */
   const cards = axis => `<div class="scg">${(axis.groups || []).map(g => `
     <div class="sc">
       <div class="hd">
         <span class="id">${g.id}</span><span class="nm">${g.name}</span>
-        <span class="pb">${(g.probability * 100).toFixed(0)}%</span>
+        <span class="pb">${(g.probability * 100).toFixed(0)}%${probSrcTag(g)}</span>
       </div>
       <div class="bar"><i style="width:${(g.probability * 100).toFixed(0)}%"></i></div>
       ${g.definition ? `<div class="def">${g.definition}</div>` : ''}

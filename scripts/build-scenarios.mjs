@@ -252,7 +252,8 @@ async function main() {
 
   /** 取概率：数据可用就用数据，否则回退 config 并留下 source 标记 */
   const pickProb = (g, implied) => {
-    const v = implied ? implied[g.key || g.id] : undefined;
+    // B 轴分组用 key（hike25…）、C 轴用 id（C1…），两种键都要试，否则 C 轴会静默回退 config
+    const v = implied ? (implied[g.id] ?? implied[g.key]) : undefined;
     const driven = Number.isFinite(v);
     return {
       probability: driven ? v : g.probability,
@@ -260,6 +261,30 @@ async function main() {
       probabilitySource: driven ? 'market-implied' : 'config',
     };
   };
+
+  /* 文案占位符：卡片 analogy 里的市场数字一律由数据填，
+     避免「百分比已经 100% 了、正文还写着 77%」这种自相矛盾。 */
+  const fmtPct = v => (Number.isFinite(v) ? `${Math.round(v * 100)}%` : '—');
+  const PH = (() => {
+    const nm = MI?.nextMeeting;
+    const now = MI?.source || {};
+    const diffBp = nm && Number.isFinite(nm.mid) && Number.isFinite(now.midNow)
+      ? (nm.mid - now.midNow) * 100 : null;
+    const np = (MI?.path || []).find(x => x.decision === nextMeeting);
+    return {
+      date: nextMeeting || '下次会议',
+      p25: nm ? fmtPct(nm.p25) : '—',
+      hold: nm ? fmtPct(1 - nm.p25) : '—',
+      mid: nm && Number.isFinite(nm.mid) ? nm.mid.toFixed(3) : '—',
+      effr: Number.isFinite(now.effr) ? now.effr.toFixed(2) : '—',
+      asOf: now.cmeTradeDate || '—',
+      dbp: diffBp == null ? '—' : diffBp.toFixed(1),
+      steps: diffBp == null ? '—' : (diffBp / 25).toFixed(2),
+      maxNextBp: np && Number.isFinite(np.d) ? Math.round(np.d * 100) : '—',
+      horizon: MI?.terminal?.decision || '—',
+    };
+  })();
+  const fillPH = t => String(t || '').replace(/\{(\w+)\}/g, (m, k) => (PH[k] ?? m));
 
   log('');
   log('▸ 概率来源（B / C 轴数据驱动）');
@@ -290,7 +315,7 @@ async function main() {
     else if (g.key === 'hike50') evs = tagged.filter(e => e.bp >= 50);
     else if (g.key === 'cut') evs = cuts.filter(e => e.date >= MODERN_FROM);
     const excluded = g.matrixExcluded === true;
-    return { id: g.id, key: g.key, name: g.name, ...pickProb(g, impliedB), analogy: g.analogy, filter: g.filter,
+    return { id: g.id, key: g.key, name: g.name, ...pickProb(g, impliedB), analogy: fillPH(g.analogy), analogyRaw: g.analogy, filter: g.filter,
              n: evs.length, matrixExcluded: excluded, matrixExcludeReason: g.matrixExcludeReason || null,
              eventDates: evs.map(e => e.date), matrix: (!excluded && evs.length) ? computeGroup(evs) : {} };
   }) };

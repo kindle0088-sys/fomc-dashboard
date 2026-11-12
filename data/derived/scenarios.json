@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-12T23:30:05.537+08:00",
+  "generatedAt": "2026-11-12T23:32:26.256+08:00",
   "method": {
     "eventDay": "目标利率生效日（FRED DFEDTAR / DFEDTARU 自动探测）",
     "baseline": "事件日前一交易日收盘",
@@ -1373,9 +1373,10 @@
         "key": "hike25",
         "name": "加息 25bp",
         "probability": 1,
-        "configProbability": 0.77,
+        "configProbability": 1,
         "probabilitySource": "market-implied",
-        "analogy": "市场隐含 2026-12-09 会议 P(+25bp) = 77%（由 ZQ 曲线台阶反推，会后中点 4.069、当前 EFFR 3.88）。数据时点 CME 11/06/2026。⚠️ 决议后该概率曾在 67%–85% 区间反复，单点读数噪声较大，看趋势不看单日。",
+        "analogy": "市场隐含 2026-12-09 会议 P(+25bp) = 100%（由 ZQ 曲线台阶反推，会后隐含中点 4.166、当前 EFFR 3.88）。数据时点 CME 11/11/2026。⚠️ 会前数周该概率会反复，单点读数噪声较大，看趋势不看单日。",
+        "analogyRaw": "市场隐含 {date} 会议 P(+25bp) = {p25}（由 ZQ 曲线台阶反推，会后隐含中点 {mid}、当前 EFFR {effr}）。数据时点 CME {asOf}。⚠️ 会前数周该概率会反复，单点读数噪声较大，看趋势不看单日。",
         "filter": {
           "minBp": 25,
           "maxBp": 25
@@ -1815,7 +1816,8 @@
         "probability": 0,
         "configProbability": 0,
         "probabilitySource": "market-implied",
-        "analogy": "市场零定价：2026-12-09 至 2027-11 的【全部】会议隐含步长均 < 25bp（最大即 12-09 的 21bp，次高 2027-03 的 16bp），无任何一场被定价为 ≥50bp。历史参照：1994-08、1994-11、2022 系列属此类",
+        "analogy": "市场零定价：2026-12-09 至 2027-09-15 的【全部】会议隐含步长均 < 50bp（2026-12-09 本身 28bp），没有任何一场被定价为 50bp 或更多。历史参照：1994-08、1994-11、2022 系列属此类",
+        "analogyRaw": "市场零定价：{date} 至 {horizon} 的【全部】会议隐含步长均 < 50bp（{date} 本身 {maxNextBp}bp），没有任何一场被定价为 50bp 或更多。历史参照：1994-08、1994-11、2022 系列属此类",
         "filter": {
           "minBp": 50
         },
@@ -2223,9 +2225,10 @@
         "key": "hold",
         "name": "按兵不动",
         "probability": 0,
-        "configProbability": 0.23,
+        "configProbability": 0,
         "probabilitySource": "market-implied",
-        "analogy": "剩余 15% 归入此档：市场并非完全排除 12-09 继续等（会后隐含中点 4.097 与当前 3.875 差 21.2bp ⇒ 0.85 次 25bp），另一半可能是「12-09 不加但 2027 年初加」的均值混合。故 hold 的 15% 不等于「加息周期结束」，只是「这场不加」",
+        "analogy": "剩余 0% 归入此档：2026-12-09 会后隐含中点 4.166 与当前 EFFR 3.88 相差 29.1bp ⇒ 约 1.16 次 25bp。⚠️ 这 0% 不等于「加息周期结束」，只是「这场不加」",
+        "analogyRaw": "剩余 {hold} 归入此档：{date} 会后隐含中点 {mid} 与当前 EFFR {effr} 相差 {dbp}bp ⇒ 约 {steps} 次 25bp。⚠️ 这 {hold} 不等于「加息周期结束」，只是「这场不加」",
         "filter": null,
         "n": 0,
         "matrixExcluded": true,
@@ -2241,6 +2244,7 @@
         "configProbability": 0,
         "probabilitySource": "market-implied",
         "analogy": "仅作尾部标注：市场对可预见的会议无任何降息定价；但单次降息不需要在均值路径里体现（见 _probabilityBasis 的「均值 vs 尾部」说明）",
+        "analogyRaw": "仅作尾部标注：市场对可预见的会议无任何降息定价；但单次降息不需要在均值路径里体现（见 _probabilityBasis 的「均值 vs 尾部」说明）",
         "filter": null,
         "n": 40,
         "matrixExcluded": true,
@@ -2290,6 +2294,8 @@
         "matrix": {}
       }
     ],
+    "_note": "probability 是【兜底值】：正常情况下由 build-scenarios.mjs 用 market-implied.json 复算覆盖（数据驱动，2026-11-12 起）。这里同步写一份当前值，只为 market-implied 缺失时仍能出图，并会在看板上标「配置」。",
+    "_phNote": "analogy 里的 {date}/{p25}/{hold}/{mid}/{effr}/{dbp}/{steps}/{maxNextBp}/{asOf}/{horizon} 由 build-scenarios.mjs 用 market-implied.json 填充；不要再手写具体数字（11-07 版写死 77%/4.069，11-11 市场已 100% 而卡片照旧）。",
     "nextMeeting": "2026-12-09",
     "probabilitySource": "market-implied",
     "marketImpliedP25": 1
@@ -2350,9 +2356,9 @@
         "id": "C1",
         "key": "mild",
         "name": "温和收尾",
-        "probability": 0.7,
-        "configProbability": 0.7,
-        "probabilitySource": "config",
+        "probability": 0.5749535783692976,
+        "configProbability": 0.575,
+        "probabilitySource": "market-implied",
         "definition": "自当前 4.00% 起再加 ≤100bp（对应终点 ≤5.00%）",
         "cycles": [
           "1997",
@@ -2699,9 +2705,9 @@
         "id": "C2",
         "key": "mid",
         "name": "中性路径",
-        "probability": 0.24,
-        "configProbability": 0.24,
-        "probabilitySource": "config",
+        "probability": 0.30782652827430246,
+        "configProbability": 0.3078,
+        "probabilitySource": "market-implied",
         "definition": "自当前 4.00% 起再加 100–200bp（对应终点 5.00–6.00%）",
         "cycles": [
           "1994-1995",
@@ -3134,9 +3140,9 @@
         "id": "C3",
         "key": "aggressive",
         "name": "激进加息",
-        "probability": 0.06,
-        "configProbability": 0.06,
-        "probabilitySource": "config",
+        "probability": 0.11721989335639993,
+        "configProbability": 0.1172,
+        "probabilitySource": "market-implied",
         "definition": "自当前 4.00% 起再加 >200bp（对应终点 >6.00%）",
         "cycles": [
           "2004-2006",
@@ -3577,6 +3583,7 @@
         }
       }
     ],
+    "_note": "probability 是【兜底值】：正常由 build-scenarios.mjs 按隐含终点 + σ 正态分摊覆盖。这里同步一份当前值。",
     "probabilitySource": "market-implied",
     "marketImpliedTerminalBp": 81.1
   },
