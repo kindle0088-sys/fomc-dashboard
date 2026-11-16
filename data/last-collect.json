@@ -1,10 +1,10 @@
 {
-  "collectedAt": "2026-11-13T23:30:00.932+08:00",
-  "date": "2026-11-13",
+  "collectedAt": "2026-11-16T23:30:00.585+08:00",
+  "date": "2026-11-16",
   "cme": {
-    "tradeDate": "11/12/2026",
+    "tradeDate": "11/13/2026",
     "contractCount": 60,
-    "front": 3.88
+    "front": 3.8775
   },
   "fred": {
     "total": 22,
