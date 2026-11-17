@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-16T23:30:05.910+08:00",
+  "generatedAt": "2026-11-17T23:30:18.784+08:00",
   "source": {
-    "cmeTradeDate": "11/13/2026",
+    "cmeTradeDate": "11/16/2026",
     "oiMin": 2000,
     "effr": 3.88,
     "midNow": 3.875,
@@ -10,8 +10,8 @@
   },
   "method": "ZQ 月均隐含利率 = 政策利率阶梯在该月的日均值；台阶落在决议生效日（决议日+1）；最小二乘求解",
   "fitQuality": {
-    "maxResidBp": 1.47,
-    "meanAbsResidBp": 0.37,
+    "maxResidBp": 1.43,
+    "meanAbsResidBp": 0.38,
     "nObs": 15,
     "nUnknown": 9
   },
@@ -28,84 +28,84 @@
       "decision": "2026-10-28",
       "eff": "2026-10-29",
       "assumed": false,
-      "mid": 3.877,
+      "mid": 3.88,
       "d": 0,
-      "p25": 0.01
+      "p25": 0.02
     },
     {
       "decision": "2026-12-09",
       "eff": "2026-12-10",
       "assumed": false,
-      "mid": 4.156,
-      "d": 0.28,
+      "mid": 4.141,
+      "d": 0.26,
       "p25": 1
     },
     {
       "decision": "2027-01-27",
       "eff": "2027-01-28",
       "assumed": false,
-      "mid": 4.341,
-      "d": 0.18,
+      "mid": 4.326,
+      "d": 0.19,
       "p25": 0.74
     },
     {
       "decision": "2027-03-17",
       "eff": "2027-03-18",
       "assumed": false,
-      "mid": 4.514,
+      "mid": 4.495,
       "d": 0.17,
-      "p25": 0.69
+      "p25": 0.68
     },
     {
       "decision": "2027-04-28",
       "eff": "2027-04-29",
       "assumed": false,
-      "mid": 4.613,
-      "d": 0.1,
-      "p25": 0.4
+      "mid": 4.583,
+      "d": 0.09,
+      "p25": 0.35
     },
     {
       "decision": "2027-06-16",
       "eff": "2027-06-17",
       "assumed": false,
-      "mid": 4.715,
-      "d": 0.1,
-      "p25": 0.41
+      "mid": 4.675,
+      "d": 0.09,
+      "p25": 0.37
     },
     {
       "decision": "2027-07-28",
       "eff": "2027-07-29",
       "assumed": true,
-      "mid": 4.745,
+      "mid": 4.7,
       "d": 0.03,
-      "p25": 0.12
+      "p25": 0.1
     },
     {
       "decision": "2027-09-15",
       "eff": "2027-09-16",
       "assumed": true,
-      "mid": 4.782,
-      "d": 0.04,
-      "p25": 0.15
+      "mid": 4.727,
+      "d": 0.03,
+      "p25": 0.11
     },
     {
       "decision": "2027-11-03",
       "eff": "2027-11-04",
       "assumed": true,
-      "mid": 4.752,
+      "mid": 4.697,
       "d": -0.03,
       "p25": 0
     }
   ],
   "nextMeeting": {
     "decision": "2026-12-09",
-    "mid": 4.156,
+    "mid": 4.141,
     "p25": 1
   },
   "terminal": {
-    "mid": 4.782,
+    "mid": 4.727,
     "decision": "2027-09-15",
-    "upperBasis": 4.907,
-    "addBp": 90.7
+    "upperBasis": 4.852,
+    "addBp": 85.2
   }
 }
