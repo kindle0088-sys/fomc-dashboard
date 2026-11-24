@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-23T23:30:07.108+08:00",
+  "generatedAt": "2026-11-24T23:30:05.742+08:00",
   "method": {
     "eventDay": "目标利率生效日（FRED DFEDTAR / DFEDTARU 自动探测）",
     "baseline": "事件日前一交易日收盘",
@@ -77,7 +77,7 @@
       "group": "股票",
       "source": "Yahoo ^GSPC",
       "from": "1985-01-02",
-      "to": "2026-11-23"
+      "to": "2026-11-24"
     },
     {
       "key": "nasdaq",
@@ -87,7 +87,7 @@
       "group": "股票",
       "source": "Yahoo ^IXIC",
       "from": "1985-01-02",
-      "to": "2026-11-23"
+      "to": "2026-11-24"
     },
     {
       "key": "dxy",
@@ -97,7 +97,7 @@
       "group": "汇率",
       "source": "Yahoo DX-Y.NYB",
       "from": "1985-01-02",
-      "to": "2026-11-23"
+      "to": "2026-11-24"
     },
     {
       "key": "gold",
@@ -107,7 +107,7 @@
       "group": "商品",
       "source": "Yahoo GC=F",
       "from": "2000-08-30",
-      "to": "2026-11-23"
+      "to": "2026-11-24"
     },
     {
       "key": "vix",
@@ -117,7 +117,7 @@
       "group": "波动率",
       "source": "Yahoo ^VIX",
       "from": "1990-01-02",
-      "to": "2026-11-23"
+      "to": "2026-11-24"
     },
     {
       "key": "hyg",
@@ -127,7 +127,7 @@
       "group": "信用",
       "source": "Yahoo HYG",
       "from": "2007-04-11",
-      "to": "2026-11-23"
+      "to": "2026-11-24"
     },
     {
       "key": "dgs10",
@@ -137,7 +137,7 @@
       "group": "利率",
       "source": "FRED DGS10",
       "from": "1985-01-02",
-      "to": "2026-11-19"
+      "to": "2026-11-20"
     },
     {
       "key": "dgs2",
@@ -147,7 +147,7 @@
       "group": "利率",
       "source": "FRED DGS2",
       "from": "1985-01-02",
-      "to": "2026-11-19"
+      "to": "2026-11-20"
     },
     {
       "key": "t10y2y",
@@ -157,7 +157,7 @@
       "group": "利率",
       "source": "FRED T10Y2Y",
       "from": "1985-01-02",
-      "to": "2026-11-20"
+      "to": "2026-11-23"
     },
     {
       "key": "dtb3",
@@ -167,7 +167,7 @@
       "group": "利率",
       "source": "FRED DTB3",
       "from": "1985-01-02",
-      "to": "2026-11-19"
+      "to": "2026-11-20"
     }
   ],
   "totalHikes": 51,
@@ -1372,10 +1372,10 @@
         "id": "B1",
         "key": "hike25",
         "name": "加息 25bp",
-        "probability": 0.89,
+        "probability": 1,
         "configProbability": 1,
         "probabilitySource": "market-implied",
-        "analogy": "市场隐含 2026-12-09 会议 P(+25bp) = 89%（由 ZQ 曲线台阶反推，会后隐含中点 4.103、当前 EFFR 3.88）。数据时点 CME 11/20/2026。⚠️ 会前数周该概率会反复，单点读数噪声较大，看趋势不看单日。",
+        "analogy": "市场隐含 2026-12-09 会议 P(+25bp) = 100%（由 ZQ 曲线台阶反推，会后隐含中点 4.140、当前 EFFR 3.88）。数据时点 CME 11/23/2026。⚠️ 会前数周该概率会反复，单点读数噪声较大，看趋势不看单日。",
         "analogyRaw": "市场隐含 {date} 会议 P(+25bp) = {p25}（由 ZQ 曲线台阶反推，会后隐含中点 {mid}、当前 EFFR {effr}）。数据时点 CME {asOf}。⚠️ 会前数周该概率会反复，单点读数噪声较大，看趋势不看单日。",
         "filter": {
           "minBp": 25,
@@ -1816,7 +1816,7 @@
         "probability": 0,
         "configProbability": 0,
         "probabilitySource": "market-implied",
-        "analogy": "市场零定价：2026-12-09 至 2027-09-15 的【全部】会议隐含步长均 < 50bp（2026-12-09 本身 22bp），没有任何一场被定价为 50bp 或更多。历史参照：1994-08、1994-11、2022 系列属此类",
+        "analogy": "市场零定价：2026-12-09 至 2027-06-16 的【全部】会议隐含步长均 < 50bp（2026-12-09 本身 26bp），没有任何一场被定价为 50bp 或更多。历史参照：1994-08、1994-11、2022 系列属此类",
         "analogyRaw": "市场零定价：{date} 至 {horizon} 的【全部】会议隐含步长均 < 50bp（{date} 本身 {maxNextBp}bp），没有任何一场被定价为 50bp 或更多。历史参照：1994-08、1994-11、2022 系列属此类",
         "filter": {
           "minBp": 50
@@ -2224,10 +2224,10 @@
         "id": "B3",
         "key": "hold",
         "name": "按兵不动",
-        "probability": 0.10999999999999999,
+        "probability": 0,
         "configProbability": 0,
         "probabilitySource": "market-implied",
-        "analogy": "剩余 11% 归入此档：2026-12-09 会后隐含中点 4.103 与当前 EFFR 3.88 相差 22.8bp ⇒ 约 0.91 次 25bp。⚠️ 这 11% 不等于「加息周期结束」，只是「这场不加」",
+        "analogy": "剩余 0% 归入此档：2026-12-09 会后隐含中点 4.140 与当前 EFFR 3.88 相差 26.5bp ⇒ 约 1.06 次 25bp。⚠️ 这 0% 不等于「加息周期结束」，只是「这场不加」",
         "analogyRaw": "剩余 {hold} 归入此档：{date} 会后隐含中点 {mid} 与当前 EFFR {effr} 相差 {dbp}bp ⇒ 约 {steps} 次 25bp。⚠️ 这 {hold} 不等于「加息周期结束」，只是「这场不加」",
         "filter": null,
         "n": 0,
@@ -2298,7 +2298,7 @@
     "_phNote": "analogy 里的 {date}/{p25}/{hold}/{mid}/{effr}/{dbp}/{steps}/{maxNextBp}/{asOf}/{horizon} 由 build-scenarios.mjs 用 market-implied.json 填充；不要再手写具体数字（11-07 版写死 77%/4.069，11-11 市场已 100% 而卡片照旧）。",
     "nextMeeting": "2026-12-09",
     "probabilitySource": "market-implied",
-    "marketImpliedP25": 0.89
+    "marketImpliedP25": 1
   },
   "axisC": {
     "label": "C · 本轮还需加多少",
@@ -2356,7 +2356,7 @@
         "id": "C1",
         "key": "mild",
         "name": "温和收尾",
-        "probability": 0.6583631214583302,
+        "probability": 0.6274093998449879,
         "configProbability": 0.575,
         "probabilitySource": "market-implied",
         "definition": "自当前 4.00% 起再加 ≤100bp（对应终点 ≤5.00%）",
@@ -2705,7 +2705,7 @@
         "id": "C2",
         "key": "mid",
         "name": "中性路径",
-        "probability": 0.26207129322275635,
+        "probability": 0.28000496152527055,
         "configProbability": 0.3078,
         "probabilitySource": "market-implied",
         "definition": "自当前 4.00% 起再加 100–200bp（对应终点 5.00–6.00%）",
@@ -3140,7 +3140,7 @@
         "id": "C3",
         "key": "aggressive",
         "name": "激进加息",
-        "probability": 0.07956558531891345,
+        "probability": 0.09258563862974156,
         "configProbability": 0.1172,
         "probabilitySource": "market-implied",
         "definition": "自当前 4.00% 起再加 >200bp（对应终点 >6.00%）",
@@ -3585,7 +3585,7 @@
     ],
     "_note": "probability 是【兜底值】：正常由 build-scenarios.mjs 按隐含终点 + σ 正态分摊覆盖。这里同步一份当前值。",
     "probabilitySource": "market-implied",
-    "marketImpliedTerminalBp": 59.2
+    "marketImpliedTerminalBp": 67.5
   },
   "currentReaction": {
     "date": "2026-09-17",
