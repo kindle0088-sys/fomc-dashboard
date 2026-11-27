@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-26T23:30:00.732+08:00",
-  "date": "2026-11-26",
+  "generatedAt": "2026-11-27T23:30:00.723+08:00",
+  "date": "2026-11-27",
   "policy": {
     "targetUpper": 4,
     "targetLower": 3.75,
     "effr": 3.88,
-    "sofr": 3.94,
-    "effrAsOf": "2026-11-24"
+    "sofr": 3.95,
+    "effrAsOf": "2026-11-25"
   },
   "inflation": {
     "corePceIndex": 131.312,
@@ -28,7 +28,7 @@
     "igSpread": 0.98,
     "hySpread": 3.72,
     "nfci": -0.444,
-    "vix": 26.36
+    "vix": 26.8
   },
   "liquidity": {
     "reserves": 2979656,
@@ -38,6 +38,6 @@
   "markets": {
     "sp500": 7201.09,
     "dxy": 123.5978,
-    "vix": 26.36
+    "vix": 26.8
   }
 }
